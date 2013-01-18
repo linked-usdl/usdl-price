@@ -1,0 +1,206 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix usdl-price: <http://www.linked-usdl.org/ns/usdl-price#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix gr: <http://purl.org/goodrelations/v1#> .
+
+<http://linked-usdl.org/ns/usdl-price> a owl:Ontology;
+    dc:title "USDL Pricing Vocabulary";
+    dc:description """<p>Simple pricing model vocabulary for USDL</p>
+""";
+    dc:modified "2012-09-20"^^xsd:date;
+    vann:preferredNamespaceUri "http://www.linked-usdl.org/ns/usdl-price#";
+    vann:preferredNamespacePrefix "usdl-price";
+    foaf:page <http://linked-usdl.org/ns/usdl-price.html>;
+    dc:creator <http://linked-usdl.org/ns/usdl-price#tleidig> .
+
+<http://linked-usdl.org/ns/usdl-price#tleidig> a foaf:Person;
+    foaf:name "Torsten Leidig";
+    foaf:homepage <> .
+
+<http://linked-usdl.org/ns/usdl-price#SAP%20Research%20Center%20CEC%20Karlsruhe%2C%20SAP%20AG> a foaf:Organization;
+    foaf:member <http://linked-usdl.org/ns/usdl-price#tleidig>;
+    foaf:name "SAP Research Center CEC Karlsruhe, SAP AG";
+    foaf:homepage <http://www.sap.com> .
+
+usdl-price:PricePlan a rdfs:Class, owl:Class;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-price>;
+    rdfs:label "Price Plan";
+    rdfs:comment """<p>&nbsp;</p>
+<div>
+\tA PricePlan is a set of charges associated with a network-provisioned entity. Alternative sets of fees</div>
+<div>
+\t(i.e. alternative PricePlans) of the same service provision may be made available for the consumer to</div>
+<div>
+\tchoose from, for example to offer the consumer the choice between a flat price scheme and a usage-</div>
+<div>
+\tbased scheme (a common practice in the telecommunication industry).</div>
+<div>
+\t&nbsp;</div>
+<div>
+\tSeveral PricePlans may exist for the same service in order to suit different user profiles and charge</div>
+<div>
+\tthem appropriately (e.g. heavy- and light-usage users), or as a key price customization instrument to</div>
+<div>
+\tindividually match diverse service valuations.</div>
+<div>
+\t&nbsp;</div>
+""" .
+
+usdl-price:PriceComponent a rdfs:Class, owl:Class;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-price>;
+    rdfs:label "Price Component";
+    rdfs:comment """<p>&nbsp;</p>
+<div>
+\tPriceComponents are fees included in a PricePlan, which subject to conditions (expressed as</div>
+<div>
+\tPriceFences) may contribute to the total amount charged. Components within the same plan are</div>
+<div>
+\tsummed together in order to get the total amount (price of the service). Common examples of</div>
+<div>
+\tPriceComponents that may coexist in the same PricePlan are: startup or membership charges (to</div>
+<div>
+\taccess the service), periodic subscription fees (with a certain recurrence - e.g. monthly - as long as</div>
+<div>
+\tcommitted to by the contract), pay-per-unit charges (whose total will be proportional to the metered</div>
+<div>
+\tusage), options or feature dependent charges. The final value of the component will depend on the</div>
+<div>
+\tactive PriceLevel (determined by the evaluation of the relative PriceFences) and the</div>
+<div>
+\tPriceAdjustments that may apply (e.g. discounts).</div>
+<div>
+\t&nbsp;</div>
+""" .
+
+usdl-price:Tax a rdfs:Class, owl:Class;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-price>;
+    rdfs:label "Tax";
+    rdfs:comment """<p>A tax is a special kind of a price component.</p>
+""";
+    rdfs:subClassOf usdl-price:PriceComponent .
+
+usdl-price:Deduction a rdfs:Class, owl:Class;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-price>;
+    rdfs:label "Deduction";
+    rdfs:comment """<p>Deduction is a negative price component. The total price will be reduced by a certain amount.</p>
+""";
+    rdfs:subClassOf usdl-price:PriceComponent .
+
+usdl-price:PriceFence a rdfs:Class, owl:Class;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-price>;
+    rdfs:label "Price Fence";
+    rdfs:comment """<p>A price fence is used for dynamic pricing, such as prices for certain time periods during the day or certain amounts of workload, etc.</p>
+""" .
+
+usdl-price:Variable a rdfs:Class, owl:Class;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-price>;
+    rdfs:label "Variable";
+    rdfs:comment """<p>A variable can be used for price fence expressions of dynamich price models. It has a name (rdfs:label) and a quantitative value.</p>
+<p>Variables can be referred from different fence expressions.</p>
+""" .
+
+usdl-price:hasPriceCap a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-price>;
+    rdfs:label "price cap";
+    rdfs:comment """<p>A uppper limit for the price.&nbsp;Providing this maximum PriceComponent value&nbsp;prevents the component final price from&nbsp;exceeding a certain amount, regardless of its&nbsp;levels and the parameters they are indexed to.</p>
+<p>&nbsp;</p>
+<div>
+\t&nbsp;</div>
+<div>
+\tExample: A cap may be used to set an upper&nbsp;limit for a component whose levels vary with&nbsp;usage.</div>
+<div>
+\t&nbsp;</div>
+""";
+    rdfs:domain usdl-price:PricePlan;
+    rdfs:range gr:PriceSpecification .
+
+usdl-price:hasPriceFloor a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-price>;
+    rdfs:label "price floor";
+    rdfs:comment """<p>Lower limit of the price.&nbsp;Providing this minimum PriceComponent value&nbsp;prevents the component final price from falling&nbsp;below a certain amount, regardless of its levels&nbsp;and the parameters they are indexed to.</p>
+<div>
+\tExample: A floor may be used to set a lower&nbsp;limit for a component whose levels vary with&nbsp;usage.</div>
+<div>
+\t&nbsp;</div>
+""";
+    rdfs:domain usdl-price:PricePlan;
+    rdfs:range gr:PriceSpecification .
+
+usdl-price:hasPriceComponent a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-price>;
+    rdfs:label "has price component";
+    rdfs:comment """<p>A price plan consists of a number of price components. that are added to the total price.</p>
+""";
+    rdfs:domain usdl-price:PricePlan;
+    rdfs:range usdl-price:PriceComponent .
+
+usdl-price:hasComponentCap a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-price>;
+    rdfs:label "component cap";
+    rdfs:comment """<p>see hasPriceCap.</p>
+""";
+    rdfs:domain usdl-price:PriceComponent;
+    rdfs:range gr:PriceSpecification .
+
+usdl-price:hasComponentFloor a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-price>;
+    rdfs:label "component floor";
+    rdfs:comment """<p>see hasPriceFloor</p>
+""";
+    rdfs:domain usdl-price:PriceComponent;
+    rdfs:range gr:PriceSpecification .
+
+usdl-price:hasPrice a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-price>;
+    rdfs:label "has price";
+    rdfs:comment """<p>The pricing specification for a price component</p>
+""";
+    rdfs:domain usdl-price:PriceComponent;
+    rdfs:range gr:PriceSpecification .
+
+usdl-price:hasMetrics a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-price>;
+    rdfs:label "has metrics";
+    rdfs:comment """<p>By which metrics is the price calculated. Usually the price is multiplied by a factor per period or per amount of use.</p>
+""";
+    rdfs:domain usdl-price:PriceComponent;
+    rdfs:range gr:QuantitativeValue .
+
+usdl-price:hasFence a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-price>;
+    rdfs:label "has fence";
+    rdfs:comment """<p>The fences whithin the price component is valid.</p>
+""";
+    rdfs:domain usdl-price:PriceComponent;
+    rdfs:range usdl-price:PriceFence .
+
+usdl-price:fenceExpression a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-price>;
+    rdfs:label "fence expression";
+    rdfs:comment """<p>An expression for the fence referring to variables that have to be specified in advance.</p>
+<p>The expresseion could be a mathematical expression in a well-defined language or a controlled natural language expression.</p>
+""";
+    rdfs:domain usdl-price:PriceFence .
+
+usdl-price:hasVariable a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-price>;
+    rdfs:label "has variable";
+    rdfs:comment """<p>The variables that are used by the fence expression.</p>
+""";
+    rdfs:domain usdl-price:PriceFence;
+    rdfs:range usdl-price:Variable .
+
+usdl-price:hasValue a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-price>;
+    rdfs:label "has value";
+    rdfs:comment """<p>The actual value of a variable.</p>
+""";
+    rdfs:domain usdl-price:Variable;
+    rdfs:range
+        gr:QuantitativeValue,
+        gr:QualitativeValue .
