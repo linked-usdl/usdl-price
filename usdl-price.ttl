@@ -29,6 +29,7 @@
 
 usdl-price:PricePlan a rdfs:Class, owl:Class;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-price>;
+    rdfs:subClassOf usdl-price:PriceComponent ;
     rdfs:label "Price Plan";
     rdfs:comment """<p>&nbsp;</p>
 <div>
@@ -53,6 +54,7 @@ usdl-price:PricePlan a rdfs:Class, owl:Class;
 
 usdl-price:PriceComponent a rdfs:Class, owl:Class;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-price>;
+    rdfs:subClassOf usdl-price:PriceComponent ;
     rdfs:label "Price Component";
     rdfs:comment """<p>&nbsp;</p>
 <div>
