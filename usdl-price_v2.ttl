@@ -1,0 +1,230 @@
+# baseURI: http://www.linked-usdl.org/ns/usdl-price
+# imports: http://spinrdf.org/spin
+
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix gr:      <http://purl.org/goodrelations/v1#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix usdl-core:  <http://www.linked-usdl.org/ns/usdl-core#> .
+@prefix usdl-price:  <http://www.linked-usdl.org/ns/usdl-price#> .
+@prefix vann:    <http://purl.org/vocab/vann/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.linked-usdl.org/ns/usdl-price>
+      rdf:type owl:Ontology ;
+      dc:creator usdl-price:jaraujo ;
+      dc:description """<p>Simple pricing model vocabulary for USDL</p>
+""" ;
+      dc:modified "2013-02-12"^^xsd:date ;
+      dc:title "USDL Pricing Vocabulary" ;
+      vann:preferredNamespacePrefix
+              "usdl-price" ;
+      vann:preferredNamespaceUri
+              "http://www.linked-usdl.org/ns/usdl-price#" ;
+      owl:imports <http://spinrdf.org/spin> ;
+      foaf:page <http://www.linked-usdl.org/ns/usdl-price.html> .
+
+usdl-price:Configuration
+      rdf:type owl:Class , rdfs:Class ;
+      rdfs:label "Configuration"^^xsd:string ;
+      rdfs:subClassOf usdl-price:PriceVariable .
+
+usdl-price:Constant
+      rdf:type owl:Class , rdfs:Class ;
+      rdfs:label "Constant"^^xsd:string ;
+      rdfs:subClassOf usdl-price:PriceVariable .
+
+usdl-price:Deduction
+      rdf:type rdfs:Class , owl:Class ;
+      rdfs:comment """<p>Deduction is a negative price component. The total price will be reduced by a certain amount.</p>
+""" ;
+      rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-price> ;
+      rdfs:label "Deduction" ;
+      rdfs:subClassOf usdl-price:PriceComponent .
+
+usdl-price:PriceComponent
+      rdf:type rdfs:Class , owl:Class ;
+      rdfs:comment """<p>&nbsp;</p>
+<div>
+	PriceComponents are fees included in a PricePlan, which subject to conditions (expressed as</div>
+<div>
+	PriceFences) may contribute to the total amount charged. Components within the same plan are</div>
+<div>
+	summed together in order to get the total amount (price of the service). Common examples of</div>
+<div>
+	PriceComponents that may coexist in the same PricePlan are: startup or membership charges (to</div>
+<div>
+	access the service), periodic subscription fees (with a certain recurrence - e.g. monthly - as long as</div>
+<div>
+	committed to by the contract), pay-per-unit charges (whose total will be proportional to the metered</div>
+<div>
+	usage), options or feature dependent charges. The final value of the component will depend on the</div>
+<div>
+	active PriceLevel (determined by the evaluation of the relative PriceFences) and the</div>
+<div>
+	PriceAdjustments that may apply (e.g. discounts).</div>
+<div>
+	&nbsp;</div>
+""" ;
+      rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-price> ;
+      rdfs:label "Price Component" .
+
+usdl-price:PricePlan
+      rdf:type rdfs:Class , owl:Class ;
+      rdfs:comment """<p>&nbsp;</p>
+<div>
+	A PricePlan is a set of charges associated with a network-provisioned entity. Alternative sets of fees</div>
+<div>
+	(i.e. alternative PricePlans) of the same service provision may be made available for the consumer to</div>
+<div>
+	choose from, for example to offer the consumer the choice between a flat price scheme and a usage-</div>
+<div>
+	based scheme (a common practice in the telecommunication industry).</div>
+<div>
+	&nbsp;</div>
+<div>
+	Several PricePlans may exist for the same service in order to suit different user profiles and charge</div>
+<div>
+	them appropriately (e.g. heavy- and light-usage users), or as a key price customization instrument to</div>
+<div>
+	individually match diverse service valuations.</div>
+<div>
+	&nbsp;</div>
+""" ;
+      rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-price> ;
+      rdfs:label "Price Plan" .
+
+usdl-price:PriceVariable
+      rdf:type rdfs:Class , owl:Class ;
+      rdfs:comment """<p>A variable can be used for price fence expressions of dynamich price models. It has a name (rdfs:label) and a quantitative value.</p>
+<p>Variables can be referred from different fence expressions.</p>
+""" ;
+      rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-price> ;
+      rdfs:label "Price Variable"^^xsd:string .
+
+usdl-price:Usage
+      rdf:type owl:Class , rdfs:Class ;
+      rdfs:label "Usage"^^xsd:string ;
+      rdfs:subClassOf usdl-price:PriceVariable .
+
+usdl-price:hasComponentCap
+      rdf:type rdf:Property ;
+      rdfs:comment """<p>see hasPriceCap.</p>
+""" ;
+      rdfs:domain usdl-price:PriceComponent ;
+      rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-price> ;
+      rdfs:label "component cap" ;
+      rdfs:range gr:PriceSpecification .
+
+usdl-price:hasComponentFloor
+      rdf:type rdf:Property ;
+      rdfs:comment """<p>see hasPriceFloor</p>
+""" ;
+      rdfs:domain usdl-price:PriceComponent ;
+      rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-price> ;
+      rdfs:label "component floor" ;
+      rdfs:range gr:PriceSpecification .
+
+usdl-price:hasMetrics
+      rdf:type rdf:Property ;
+      rdfs:comment """<p>By which metrics is the price calculated. Usually the price is multiplied by a factor per period or per amount of use.</p>
+""" ;
+      rdfs:domain usdl-price:PriceComponent ;
+      rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-price> ;
+      rdfs:label "has metrics" ;
+      rdfs:range gr:QuantitativeValue .
+
+usdl-price:hasPrice
+      rdf:type rdf:Property ;
+      rdfs:comment """<p>The pricing specification for a price component</p>
+""" ;
+      rdfs:domain usdl-price:PriceComponent ;
+      rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-price> ;
+      rdfs:label "has price" ;
+      rdfs:range gr:PriceSpecification .
+
+usdl-price:hasPriceCap
+      rdf:type rdf:Property ;
+      rdfs:comment """<p>A uppper limit for the price.&nbsp;Providing this maximum PriceComponent value&nbsp;prevents the component final price from&nbsp;exceeding a certain amount, regardless of its&nbsp;levels and the parameters they are indexed to.</p>
+<p>&nbsp;</p>
+<div>
+	&nbsp;</div>
+<div>
+	Example: A cap may be used to set an upper&nbsp;limit for a component whose levels vary with&nbsp;usage.</div>
+<div>
+	&nbsp;</div>
+""" ;
+      rdfs:domain usdl-price:PricePlan ;
+      rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-price> ;
+      rdfs:label "price cap" ;
+      rdfs:range gr:PriceSpecification .
+
+usdl-price:hasPriceComponent
+      rdf:type rdf:Property ;
+      rdfs:comment """<p>A price plan consists of a number of price components. that are added to the total price.</p>
+""" ;
+      rdfs:domain usdl-price:PricePlan ;
+      rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-price> ;
+      rdfs:label "has price component" ;
+      rdfs:range usdl-price:PriceComponent .
+
+usdl-price:hasPriceFloor
+      rdf:type rdf:Property ;
+      rdfs:comment """<p>Lower limit of the price.&nbsp;Providing this minimum PriceComponent value&nbsp;prevents the component final price from falling&nbsp;below a certain amount, regardless of its levels&nbsp;and the parameters they are indexed to.</p>
+<div>
+	Example: A floor may be used to set a lower&nbsp;limit for a component whose levels vary with&nbsp;usage.</div>
+<div>
+	&nbsp;</div>
+""" ;
+      rdfs:domain usdl-price:PricePlan ;
+      rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-price> ;
+      rdfs:label "price floor" ;
+      rdfs:range gr:PriceSpecification .
+
+usdl-price:hasPriceFuntion
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain usdl-price:PriceComponent ;
+      rdfs:label "has price funtion"^^xsd:string ;
+      rdfs:range <http://spinrdf.org/spin#Functions> .
+
+usdl-price:hasPricePlan
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain usdl-core:ServiceOffering ;
+      rdfs:label "has price plan"^^xsd:string ;
+      rdfs:range usdl-price:PricePlan .
+
+usdl-price:hasTextFuntion
+      rdf:type owl:DatatypeProperty ;
+      rdfs:domain usdl-price:PriceComponent ;
+      rdfs:label "has text funtion"^^xsd:string ;
+      rdfs:range xsd:string .
+
+usdl-price:hasValue
+      rdf:type rdf:Property ;
+      rdfs:comment """<p>The actual value of a variable.</p>
+""" ;
+      rdfs:domain usdl-price:PriceVariable ;
+      rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-price> ;
+      rdfs:label "has value" ;
+      rdfs:range gr:QualitativeValue , gr:QuantitativeValue .
+
+usdl-price:hasVariable
+      rdf:type rdf:Property ;
+      rdfs:comment """<p>The variables that are used by the fence expression.</p>
+""" ;
+      rdfs:domain <http://spinrdf.org/spin#Functions> ;
+      rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-price> ;
+      rdfs:label "has variable" ;
+      rdfs:range usdl-price:PriceVariable .
+
+usdl-price:isLinkedTo
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain usdl-price:PriceComponent ;
+      rdfs:label "is linked to"^^xsd:string .
+
+usdl-price:jaraujo
+      rdf:type foaf:Person ;
+      foaf:homepage <http://no-valid-base-found.com/> ;
+      foaf:name "Jorge Araújo" .
