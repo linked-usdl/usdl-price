@@ -1,0 +1,2078 @@
+# baseURI: http://rdfs.genssiz.org/Amazon_EC2_v2
+# imports: file:///HerokuPricing/GoodRelations_v1.owl
+# imports: http://rdfs.genssiz.org/Vocabulary_EC2
+# imports: http://spinrdf.org/spin
+# imports: http://www.linked-usdl.org/ns/usdl-core
+# imports: http://www.linked-usdl.org/ns/usdl-price
+
+@prefix :        <http://rdfs.genssiz.org/Amazon_EC2_v2#> .
+@prefix Vocabulary_EC2:  <http://rdfs.genssiz.org/Vocabulary_EC2#> .
+@prefix blueprint:  <http://bizweb.sap.com/TR/blueprint#> .
+@prefix core:    <http://www.linked-usdl.org/ns/usdl-core#> .
+@prefix ctag:    <http://commontag.org/ns#> .
+@prefix dbpedia:  <http://dbpedia.org/resource/> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix dctypes:  <http://purl.org/dc/dcmitype/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix gn:      <http://www.geonames.org/ontology#> .
+@prefix gr:      <http://purl.org/goodrelations/v1#> .
+@prefix http:    <http://www.w3.org/2011/http#> .
+@prefix language:  <http://www.lingvoj.org/lang/> .
+@prefix legal:   <http://www.linked-usdl.org/ns/usdl-legal#> .
+@prefix msm:     <http://cms-wg.sti2.org/ns/minimal-service-model#> .
+@prefix org:     <http://www.w3.org/ns/org#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix price:   <http://www.linked-usdl.org/ns/usdl-price#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sarest:  <http://www.knoesis.org/research/srl/standards/sa-rest/#> .
+@prefix sawsdl:  <http://www.w3.org/ns/sawsdl#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix sla:     <http://www.linked-usdl.org/ns/usdl-sla#> .
+@prefix sp:      <http://spinrdf.org/sp#> .
+@prefix spin:    <http://spinrdf.org/spin#> .
+@prefix spl:     <http://spinrdf.org/spl#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix vcard:   <http://www.w3.org/2006/vcard/ns#> .
+@prefix wl:      <http://www.wsmo.org/ns/wsmo-lite#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+<http://rdfs.genssiz.org/Amazon_EC2_v2>
+      rdf:type owl:Ontology ;
+      rdfs:label "Amazon EC2 service descriptions" ;
+      dcterms:contributor
+              [ rdf:type foaf:Person ;
+                foaf:firstName "Jorge" ;
+                foaf:lastName "Araújo" ;
+                foaf:name "Jorge Araújo"
+              ] ;
+      dcterms:created "2013-03-05"^^xsd:date ;
+      dcterms:description "Amazon EC2 description example" ;
+      dcterms:modified "2013-03-05"^^xsd:date ;
+      dcterms:title "Amazon EC2 description example" ;
+      owl:imports <http://www.linked-usdl.org/ns/usdl-price> , <http://spinrdf.org/spin> , <http://www.linked-usdl.org/ns/usdl-core> , <http://rdfs.genssiz.org/Vocabulary_EC2> , <file:///HerokuPricing/GoodRelations_v1.owl> .
+
+:Function_Data_Transfer_IN
+      rdf:type spin:Function ;
+      rdfs:label "Function Data Transfer IN"^^xsd:string ;
+      spin:body
+              [ rdf:type sp:Select ;
+                sp:resultVariables ([ sp:varName "price"^^xsd:string
+                          ]) ;
+                sp:where ([ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_IN_GB_Price
+                          ] [ sp:object
+                                    [ sp:varName "priceGB"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueFloat ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "b"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_IN_GB_Transferred
+                          ] [ sp:object
+                                    [ sp:varName "gbs"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "b"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:mul ;
+                                      sp:arg1 [ sp:varName "priceGB"^^xsd:string
+                                              ] ;
+                                      sp:arg2 [ sp:varName "gbs"^^xsd:string
+                                              ]
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "price"^^xsd:string
+                                    ]
+                          ])
+              ] ;
+      price:hasVariable :Variable_IN_GB_Transferred , :Variable_IN_GB_Price .
+
+:Function_Data_Transfer_Out
+      rdf:type spin:Function ;
+      rdfs:label "Data Transfer Out Function"^^xsd:string ;
+      spin:body
+              [ rdf:type sp:Select ;
+                sp:resultVariables ([ sp:varName "price"^^xsd:string
+                          ] [ sp:varName "priceA"^^xsd:string
+                          ] [ sp:varName "priceB"^^xsd:string
+                          ] [ sp:varName "priceC"^^xsd:string
+                          ] [ sp:varName "priceD"^^xsd:string
+                          ]) ;
+                sp:where ([ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_UP_to_10TB
+                          ] [ sp:object
+                                    [ sp:varName "price10"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueFloat ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "b"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_Next_40TB
+                          ] [ sp:object
+                                    [ sp:varName "price40"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueFloat ;
+                            sp:subject
+                                    [ sp:varName "b"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "c"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_Next_100TB
+                          ] [ sp:object
+                                    [ sp:varName "price100"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueFloat ;
+                            sp:subject
+                                    [ sp:varName "c"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "d"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_Next_350TB
+                          ] [ sp:object
+                                    [ sp:varName "price350"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueFloat ;
+                            sp:subject
+                                    [ sp:varName "d"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "e"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_OUT_GB_Transferred
+                          ] [ sp:object
+                                    [ sp:varName "gbs"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "e"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:if ;
+                                      sp:arg1 [ rdf:type sp:and ;
+                                                sp:arg1 [ rdf:type sp:gt ;
+                                                          sp:arg1 [ sp:varName "gbs"^^xsd:string
+                                                                  ] ;
+                                                          sp:arg2 1
+                                                        ] ;
+                                                sp:arg2 [ rdf:type sp:le ;
+                                                          sp:arg1 [ sp:varName "gbs"^^xsd:string
+                                                                  ] ;
+                                                          sp:arg2 [ rdf:type sp:mul ;
+                                                                    sp:arg1 10 ;
+                                                                    sp:arg2 1024
+                                                                  ]
+                                                        ]
+                                              ] ;
+                                      sp:arg2 [ rdf:type sp:mul ;
+                                                sp:arg1 [ rdf:type sp:sub ;
+                                                          sp:arg1 [ sp:varName "gbs"^^xsd:string
+                                                                  ] ;
+                                                          sp:arg2 1
+                                                        ] ;
+                                                sp:arg2 [ sp:varName "price10"^^xsd:string
+                                                        ]
+                                              ] ;
+                                      sp:arg3 0
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "priceA"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:if ;
+                                      sp:arg1 [ rdf:type sp:and ;
+                                                sp:arg1 [ rdf:type sp:gt ;
+                                                          sp:arg1 [ sp:varName "gbs"^^xsd:string
+                                                                  ] ;
+                                                          sp:arg2 [ rdf:type sp:mul ;
+                                                                    sp:arg1 10 ;
+                                                                    sp:arg2 1024
+                                                                  ]
+                                                        ] ;
+                                                sp:arg2 [ rdf:type sp:le ;
+                                                          sp:arg1 [ sp:varName "gbs"^^xsd:string
+                                                                  ] ;
+                                                          sp:arg2 [ rdf:type sp:mul ;
+                                                                    sp:arg1 40 ;
+                                                                    sp:arg2 1024
+                                                                  ]
+                                                        ]
+                                              ] ;
+                                      sp:arg2 [ rdf:type sp:add ;
+                                                sp:arg1 [ rdf:type sp:mul ;
+                                                          sp:arg1 [ rdf:type sp:sub ;
+                                                                    sp:arg1 [ rdf:type sp:mul ;
+                                                                              sp:arg1 10 ;
+                                                                              sp:arg2 1024
+                                                                            ] ;
+                                                                    sp:arg2 1
+                                                                  ] ;
+                                                          sp:arg2 [ sp:varName "price10"^^xsd:string
+                                                                  ]
+                                                        ] ;
+                                                sp:arg2 [ rdf:type sp:mul ;
+                                                          sp:arg1 [ rdf:type sp:sub ;
+                                                                    sp:arg1 [ rdf:type sp:sub ;
+                                                                              sp:arg1 [ sp:varName "gbs"^^xsd:string
+                                                                                      ] ;
+                                                                              sp:arg2 [ rdf:type sp:mul ;
+                                                                                        sp:arg1 10 ;
+                                                                                        sp:arg2 1024
+                                                                                      ]
+                                                                            ] ;
+                                                                    sp:arg2 1
+                                                                  ] ;
+                                                          sp:arg2 [ sp:varName "price40"^^xsd:string
+                                                                  ]
+                                                        ]
+                                              ] ;
+                                      sp:arg3 0
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "priceB"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:if ;
+                                      sp:arg1 [ rdf:type sp:and ;
+                                                sp:arg1 [ rdf:type sp:gt ;
+                                                          sp:arg1 [ sp:varName "gbs"^^xsd:string
+                                                                  ] ;
+                                                          sp:arg2 [ rdf:type sp:mul ;
+                                                                    sp:arg1 40 ;
+                                                                    sp:arg2 1024
+                                                                  ]
+                                                        ] ;
+                                                sp:arg2 [ rdf:type sp:le ;
+                                                          sp:arg1 [ sp:varName "gbs"^^xsd:string
+                                                                  ] ;
+                                                          sp:arg2 [ rdf:type sp:mul ;
+                                                                    sp:arg1 100 ;
+                                                                    sp:arg2 1024
+                                                                  ]
+                                                        ]
+                                              ] ;
+                                      sp:arg2 [ rdf:type sp:add ;
+                                                sp:arg1 [ rdf:type sp:add ;
+                                                          sp:arg1 [ rdf:type sp:mul ;
+                                                                    sp:arg1 [ rdf:type sp:sub ;
+                                                                              sp:arg1 [ rdf:type sp:mul ;
+                                                                                        sp:arg1 10 ;
+                                                                                        sp:arg2 1024
+                                                                                      ] ;
+                                                                              sp:arg2 1
+                                                                            ] ;
+                                                                    sp:arg2 [ sp:varName "price10"^^xsd:string
+                                                                            ]
+                                                                  ] ;
+                                                          sp:arg2 [ rdf:type sp:mul ;
+                                                                    sp:arg1 [ rdf:type sp:sub ;
+                                                                              sp:arg1 [ rdf:type sp:mul ;
+                                                                                        sp:arg1 40 ;
+                                                                                        sp:arg2 1024
+                                                                                      ] ;
+                                                                              sp:arg2 [ rdf:type sp:sub ;
+                                                                                        sp:arg1 [ rdf:type sp:mul ;
+                                                                                                  sp:arg1 10 ;
+                                                                                                  sp:arg2 1024
+                                                                                                ] ;
+                                                                                        sp:arg2 1
+                                                                                      ]
+                                                                            ] ;
+                                                                    sp:arg2 [ sp:varName "price40"^^xsd:string
+                                                                            ]
+                                                                  ]
+                                                        ] ;
+                                                sp:arg2 [ rdf:type sp:mul ;
+                                                          sp:arg1 [ rdf:type sp:sub ;
+                                                                    sp:arg1 [ rdf:type sp:sub ;
+                                                                              sp:arg1 [ rdf:type sp:sub ;
+                                                                                        sp:arg1 [ sp:varName "gbs"^^xsd:string
+                                                                                                ] ;
+                                                                                        sp:arg2 [ rdf:type sp:mul ;
+                                                                                                  sp:arg1 40 ;
+                                                                                                  sp:arg2 1024
+                                                                                                ]
+                                                                                      ] ;
+                                                                              sp:arg2 [ rdf:type sp:mul ;
+                                                                                        sp:arg1 10 ;
+                                                                                        sp:arg2 1024
+                                                                                      ]
+                                                                            ] ;
+                                                                    sp:arg2 1
+                                                                  ] ;
+                                                          sp:arg2 [ sp:varName "price100"^^xsd:string
+                                                                  ]
+                                                        ]
+                                              ] ;
+                                      sp:arg3 0
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "priceC"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:if ;
+                                      sp:arg1 [ rdf:type sp:and ;
+                                                sp:arg1 [ rdf:type sp:gt ;
+                                                          sp:arg1 [ sp:varName "gbs"^^xsd:string
+                                                                  ] ;
+                                                          sp:arg2 [ rdf:type sp:mul ;
+                                                                    sp:arg1 100 ;
+                                                                    sp:arg2 1024
+                                                                  ]
+                                                        ] ;
+                                                sp:arg2 [ rdf:type sp:le ;
+                                                          sp:arg1 [ sp:varName "gbs"^^xsd:string
+                                                                  ] ;
+                                                          sp:arg2 [ rdf:type sp:mul ;
+                                                                    sp:arg1 350 ;
+                                                                    sp:arg2 1024
+                                                                  ]
+                                                        ]
+                                              ] ;
+                                      sp:arg2 [ rdf:type sp:add ;
+                                                sp:arg1 [ rdf:type sp:add ;
+                                                          sp:arg1 [ rdf:type sp:add ;
+                                                                    sp:arg1 [ rdf:type sp:mul ;
+                                                                              sp:arg1 [ rdf:type sp:sub ;
+                                                                                        sp:arg1 [ rdf:type sp:mul ;
+                                                                                                  sp:arg1 10 ;
+                                                                                                  sp:arg2 1024
+                                                                                                ] ;
+                                                                                        sp:arg2 1
+                                                                                      ] ;
+                                                                              sp:arg2 [ sp:varName "price10"^^xsd:string
+                                                                                      ]
+                                                                            ] ;
+                                                                    sp:arg2 [ rdf:type sp:mul ;
+                                                                              sp:arg1 [ rdf:type sp:sub ;
+                                                                                        sp:arg1 [ rdf:type sp:mul ;
+                                                                                                  sp:arg1 40 ;
+                                                                                                  sp:arg2 1024
+                                                                                                ] ;
+                                                                                        sp:arg2 [ rdf:type sp:sub ;
+                                                                                                  sp:arg1 [ rdf:type sp:mul ;
+                                                                                                            sp:arg1 10 ;
+                                                                                                            sp:arg2 1024
+                                                                                                          ] ;
+                                                                                                  sp:arg2 1
+                                                                                                ]
+                                                                                      ] ;
+                                                                              sp:arg2 [ sp:varName "price40"^^xsd:string
+                                                                                      ]
+                                                                            ]
+                                                                  ] ;
+                                                          sp:arg2 [ rdf:type sp:mul ;
+                                                                    sp:arg1 [ rdf:type sp:sub ;
+                                                                              sp:arg1 [ rdf:type sp:sub ;
+                                                                                        sp:arg1 [ rdf:type sp:mul ;
+                                                                                                  sp:arg1 100 ;
+                                                                                                  sp:arg2 1024
+                                                                                                ] ;
+                                                                                        sp:arg2 [ rdf:type sp:mul ;
+                                                                                                  sp:arg1 40 ;
+                                                                                                  sp:arg2 1024
+                                                                                                ]
+                                                                                      ] ;
+                                                                              sp:arg2 [ rdf:type sp:sub ;
+                                                                                        sp:arg1 [ rdf:type sp:mul ;
+                                                                                                  sp:arg1 10 ;
+                                                                                                  sp:arg2 1024
+                                                                                                ] ;
+                                                                                        sp:arg2 1
+                                                                                      ]
+                                                                            ] ;
+                                                                    sp:arg2 [ sp:varName "price100"^^xsd:string
+                                                                            ]
+                                                                  ]
+                                                        ] ;
+                                                sp:arg2 [ rdf:type sp:mul ;
+                                                          sp:arg1 [ rdf:type sp:sub ;
+                                                                    sp:arg1 [ rdf:type sp:sub ;
+                                                                              sp:arg1 [ rdf:type sp:sub ;
+                                                                                        sp:arg1 [ sp:varName "gbs"^^xsd:string
+                                                                                                ] ;
+                                                                                        sp:arg2 [ rdf:type sp:mul ;
+                                                                                                  sp:arg1 100 ;
+                                                                                                  sp:arg2 1024
+                                                                                                ]
+                                                                                      ] ;
+                                                                              sp:arg2 [ rdf:type sp:mul ;
+                                                                                        sp:arg1 40 ;
+                                                                                        sp:arg2 1024
+                                                                                      ]
+                                                                            ] ;
+                                                                    sp:arg2 [ rdf:type sp:sub ;
+                                                                              sp:arg1 [ rdf:type sp:mul ;
+                                                                                        sp:arg1 10 ;
+                                                                                        sp:arg2 1024
+                                                                                      ] ;
+                                                                              sp:arg2 1
+                                                                            ]
+                                                                  ] ;
+                                                          sp:arg2 [ sp:varName "price350"^^xsd:string
+                                                                  ]
+                                                        ]
+                                              ] ;
+                                      sp:arg3 0
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "priceD"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:add ;
+                                      sp:arg1 [ rdf:type sp:add ;
+                                                sp:arg1 [ rdf:type sp:add ;
+                                                          sp:arg1 [ sp:varName "priceA"^^xsd:string
+                                                                  ] ;
+                                                          sp:arg2 [ sp:varName "priceB"^^xsd:string
+                                                                  ]
+                                                        ] ;
+                                                sp:arg2 [ sp:varName "priceC"^^xsd:string
+                                                        ]
+                                              ] ;
+                                      sp:arg2 [ sp:varName "priceD"^^xsd:string
+                                              ]
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "price"^^xsd:string
+                                    ]
+                          ])
+              ] ;
+      price:hasVariable :Variable_Next_100TB , :Variable_OUT_GB_Transferred , :Variable_Next_40TB , :Variable_Next_350TB , :Variable_UP_to_10TB .
+
+:Function_Data_Transfer_Out_To_Amazon
+      rdf:type spin:Function ;
+      rdfs:label "Data Transfer Out to other Amazon Services Function "^^xsd:string ;
+      spin:body
+              [ rdf:type sp:Select ;
+                sp:resultVariables ([ sp:varName "price"^^xsd:string
+                          ]) ;
+                sp:where ([ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_OUT_GB_Transfered_to_Different_Region
+                          ] [ sp:object
+                                    [ sp:varName "gbs2"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "b"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_OUT_GB_Transfered_to_Public_ElasticIP_Same_Region
+                          ] [ sp:object
+                                    [ sp:varName "gbs1"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "b"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "c"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_Out_GB_Price1
+                          ] [ sp:object
+                                    [ sp:varName "price1"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueFloat ;
+                            sp:subject
+                                    [ sp:varName "c"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "d"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_Out_GB_Price2
+                          ] [ sp:object
+                                    [ sp:varName "price2"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueFloat ;
+                            sp:subject
+                                    [ sp:varName "d"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:add ;
+                                      sp:arg1 [ rdf:type sp:mul ;
+                                                sp:arg1 [ sp:varName "gbs2"^^xsd:string
+                                                        ] ;
+                                                sp:arg2 [ sp:varName "price2"^^xsd:string
+                                                        ]
+                                              ] ;
+                                      sp:arg2 [ rdf:type sp:mul ;
+                                                sp:arg1 [ sp:varName "gbs1"^^xsd:string
+                                                        ] ;
+                                                sp:arg2 [ sp:varName "price1"^^xsd:string
+                                                        ]
+                                              ]
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "price"^^xsd:string
+                                    ]
+                          ])
+              ] ;
+      price:hasVariable :Variable_OUT_GB_Transfered_to_Public_ElasticIP_Same_Region , :Variable_Out_GB_Price2 , :Variable_Out_GB_Price1 , :Variable_OUT_GB_Transfered_to_Different_Region .
+
+:Function_EC2_Small_EU_OnDemand_Linux
+      rdf:type spin:Function ;
+      rdfs:label "Function EC2 Small EU Linux On demand"^^xsd:string ;
+      spin:body
+              [ rdf:type sp:Select ;
+                sp:resultVariables ([ sp:varName "price"^^xsd:string
+                          ]) ;
+                sp:where ([ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_OnDemand_Linux_Price
+                          ] [ sp:object
+                                    [ sp:varName "instance_price"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "c"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_OnDemand_Linux_Used_Hours
+                          ] [ sp:object
+                                    [ sp:varName "hours"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "c"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:mul ;
+                                      sp:arg1 [ sp:varName "hours"^^xsd:string
+                                              ] ;
+                                      sp:arg2 [ sp:varName "instance_price"^^xsd:string
+                                              ]
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "price"^^xsd:string
+                                    ]
+                          ])
+              ] ;
+      price:hasVariable :Variable_EC2_Small_EU_OnDemand_Linux_Used_Hours , :Variable_EC2_Small_EU_OnDemand_Linux_Price .
+
+:Function_EC2_Small_EU_OnDemand_Windows
+      rdf:type spin:Function ;
+      rdfs:label "Function EC2 Small EU Windows On demand"^^xsd:string ;
+      spin:body
+              [ rdf:type sp:Select ;
+                sp:resultVariables ([ sp:varName "price"^^xsd:string
+                          ]) ;
+                sp:where ([ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_OnDemand_Windows_Price
+                          ] [ sp:object
+                                    [ sp:varName "instance_price"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "c"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_OnDemand_Windows_Used_Hours
+                          ] [ sp:object
+                                    [ sp:varName "hours"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "c"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:mul ;
+                                      sp:arg1 [ sp:varName "hours"^^xsd:string
+                                              ] ;
+                                      sp:arg2 [ sp:varName "instance_price"^^xsd:string
+                                              ]
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "price"^^xsd:string
+                                    ]
+                          ])
+              ] ;
+      price:hasVariable :Variable_EC2_Small_EU_OnDemand_Windows_Price , :Variable_EC2_Small_EU_OnDemand_Windows_Used_Hours .
+
+:Function_EC2_Small_EU_Reserved_Heavy_1Yr_Linux
+      rdf:type spin:Function ;
+      rdfs:label "Function EC2 Small EU Reserved Heavy 1Yr Linux"^^xsd:string ;
+      spin:body
+              [ rdf:type sp:Select ;
+                sp:resultVariables ([ sp:varName "price"^^xsd:string
+                          ]) ;
+                sp:where ([ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Linux_Price
+                          ] [ sp:object
+                                    [ sp:varName "instance_price"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Upfront
+                          ] [ sp:object
+                                    [ sp:varName "upfront"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "c"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Linux_Used_Hours
+                          ] [ sp:object
+                                    [ sp:varName "hours"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "c"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:add ;
+                                      sp:arg1 [ rdf:type sp:mul ;
+                                                sp:arg1 [ sp:varName "hours"^^xsd:string
+                                                        ] ;
+                                                sp:arg2 [ sp:varName "instance_price"^^xsd:string
+                                                        ]
+                                              ] ;
+                                      sp:arg2 [ sp:varName "upfront"^^xsd:string
+                                              ]
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "price"^^xsd:string
+                                    ]
+                          ])
+              ] ;
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Linux_Used_Hours , :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Linux_Price , :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Upfront .
+
+:Function_EC2_Small_EU_Reserved_Heavy_1Yr_Windows
+      rdf:type spin:Function ;
+      rdfs:label "Function EC2 Small EU Reserved Heavy 1Yr Windows"^^xsd:string ;
+      spin:body
+              [ rdf:type sp:Select ;
+                sp:resultVariables ([ sp:varName "price"^^xsd:string
+                          ]) ;
+                sp:where ([ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Windows_Price
+                          ] [ sp:object
+                                    [ sp:varName "instance_price"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Upfront
+                          ] [ sp:object
+                                    [ sp:varName "upfront"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "c"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Windows_Used_Hours
+                          ] [ sp:object
+                                    [ sp:varName "hours"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "c"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:add ;
+                                      sp:arg1 [ rdf:type sp:mul ;
+                                                sp:arg1 [ sp:varName "hours"^^xsd:string
+                                                        ] ;
+                                                sp:arg2 [ sp:varName "instance_price"^^xsd:string
+                                                        ]
+                                              ] ;
+                                      sp:arg2 [ sp:varName "upfront"^^xsd:string
+                                              ]
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "price"^^xsd:string
+                                    ]
+                          ])
+              ] ;
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Windows_Price , :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Upfront , :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Windows_Used_Hours .
+
+:Function_EC2_Small_EU_Reserved_Heavy_3Yr_Linux
+      rdf:type spin:Function ;
+      rdfs:label "Function EC2 Small EU Reserved Heavy 3Yr Linux"^^xsd:string ;
+      spin:body
+              [ rdf:type sp:Select ;
+                sp:resultVariables ([ sp:varName "price"^^xsd:string
+                          ]) ;
+                sp:where ([ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Linux_Price
+                          ] [ sp:object
+                                    [ sp:varName "instance_price"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Upfront
+                          ] [ sp:object
+                                    [ sp:varName "upfront"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "c"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Linux_Used_Hours
+                          ] [ sp:object
+                                    [ sp:varName "hours"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "c"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:add ;
+                                      sp:arg1 [ rdf:type sp:mul ;
+                                                sp:arg1 [ sp:varName "hours"^^xsd:string
+                                                        ] ;
+                                                sp:arg2 [ sp:varName "instance_price"^^xsd:string
+                                                        ]
+                                              ] ;
+                                      sp:arg2 [ sp:varName "upfront"^^xsd:string
+                                              ]
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "price"^^xsd:string
+                                    ]
+                          ])
+              ] ;
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Linux_Price , :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Linux_Used_Hours , :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Upfront .
+
+:Function_EC2_Small_EU_Reserved_Heavy_3Yr_Windows
+      rdf:type spin:Function ;
+      rdfs:label "Function EC2 Small EU Reserved Heavy 3Yr Windows"^^xsd:string ;
+      spin:body
+              [ rdf:type sp:Select ;
+                sp:resultVariables ([ sp:varName "price"^^xsd:string
+                          ]) ;
+                sp:where ([ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Windows_Price
+                          ] [ sp:object
+                                    [ sp:varName "instance_price"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Upfront
+                          ] [ sp:object
+                                    [ sp:varName "upfront"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "c"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Windows_Used_Hours
+                          ] [ sp:object
+                                    [ sp:varName "hours"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "c"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:add ;
+                                      sp:arg1 [ rdf:type sp:mul ;
+                                                sp:arg1 [ sp:varName "hours"^^xsd:string
+                                                        ] ;
+                                                sp:arg2 [ sp:varName "instance_price"^^xsd:string
+                                                        ]
+                                              ] ;
+                                      sp:arg2 [ sp:varName "upfront"^^xsd:string
+                                              ]
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "price"^^xsd:string
+                                    ]
+                          ])
+              ] ;
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Windows_Used_Hours , :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Upfront , :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Windows_Price .
+
+:Function_EC2_Small_EU_Reserved_Light_1Yr_Linux
+      rdf:type spin:Function ;
+      rdfs:label "Function EC2 Small EU Reserved Light 1Yr Linux"^^xsd:string ;
+      spin:body
+              [ rdf:type sp:Select ;
+                sp:resultVariables ([ sp:varName "price"^^xsd:string
+                          ]) ;
+                sp:where ([ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Light_1Yr_Linux_Price
+                          ] [ sp:object
+                                    [ sp:varName "instance_price"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Light_1Yr_Upfront
+                          ] [ sp:object
+                                    [ sp:varName "upfront"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "c"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Light_1Yr_Linux_Used_Hours
+                          ] [ sp:object
+                                    [ sp:varName "hours"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "c"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:add ;
+                                      sp:arg1 [ rdf:type sp:mul ;
+                                                sp:arg1 [ sp:varName "hours"^^xsd:string
+                                                        ] ;
+                                                sp:arg2 [ sp:varName "instance_price"^^xsd:string
+                                                        ]
+                                              ] ;
+                                      sp:arg2 [ sp:varName "upfront"^^xsd:string
+                                              ]
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "price"^^xsd:string
+                                    ]
+                          ])
+              ] ;
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Light_1Yr_Linux_Used_Hours , :Variable_EC2_Small_EU_Reserved_Light_1Yr_Linux_Price , :Variable_EC2_Small_EU_Reserved_Light_1Yr_Upfront .
+
+:Function_EC2_Small_EU_Reserved_Light_1Yr_Windows
+      rdf:type spin:Function ;
+      rdfs:label "Function EC2 Small EU Reserved Light 1Yr Windows"^^xsd:string ;
+      spin:body
+              [ rdf:type sp:Select ;
+                sp:resultVariables ([ sp:varName "price"^^xsd:string
+                          ]) ;
+                sp:where ([ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Light_1Yr_Windows_Price
+                          ] [ sp:object
+                                    [ sp:varName "instance_price"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Light_1Yr_Upfront
+                          ] [ sp:object
+                                    [ sp:varName "upfront"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "c"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Light_1Yr_Windows_Used_Hours
+                          ] [ sp:object
+                                    [ sp:varName "hours"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "c"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:add ;
+                                      sp:arg1 [ rdf:type sp:mul ;
+                                                sp:arg1 [ sp:varName "hours"^^xsd:string
+                                                        ] ;
+                                                sp:arg2 [ sp:varName "instance_price"^^xsd:string
+                                                        ]
+                                              ] ;
+                                      sp:arg2 [ sp:varName "upfront"^^xsd:string
+                                              ]
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "price"^^xsd:string
+                                    ]
+                          ])
+              ] ;
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Light_1Yr_Windows_Price , :Variable_EC2_Small_EU_Reserved_Light_1Yr_Upfront , :Variable_EC2_Small_EU_Reserved_Light_1Yr_Windows_Used_Hours .
+
+:Function_EC2_Small_EU_Reserved_Light_3Yr_Linux
+      rdf:type spin:Function ;
+      rdfs:label "Function EC2 Small EU Reserved Light 3Yr Linux"^^xsd:string ;
+      spin:body
+              [ rdf:type sp:Select ;
+                sp:resultVariables ([ sp:varName "price"^^xsd:string
+                          ]) ;
+                sp:where ([ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Light_3Yr_Linux_Price
+                          ] [ sp:object
+                                    [ sp:varName "instance_price"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Light_3Yr_Upfront
+                          ] [ sp:object
+                                    [ sp:varName "upfront"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "c"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Light_3Yr_Linux_Used_Hours
+                          ] [ sp:object
+                                    [ sp:varName "hours"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "c"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:add ;
+                                      sp:arg1 [ rdf:type sp:mul ;
+                                                sp:arg1 [ sp:varName "hours"^^xsd:string
+                                                        ] ;
+                                                sp:arg2 [ sp:varName "instance_price"^^xsd:string
+                                                        ]
+                                              ] ;
+                                      sp:arg2 [ sp:varName "upfront"^^xsd:string
+                                              ]
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "price"^^xsd:string
+                                    ]
+                          ])
+              ] ;
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Light_3Yr_Linux_Price , :Variable_EC2_Small_EU_Reserved_Light_3Yr_Linux_Used_Hours , :Variable_EC2_Small_EU_Reserved_Light_3Yr_Upfront .
+
+:Function_EC2_Small_EU_Reserved_Light_3Yr_Windows
+      rdf:type spin:Function ;
+      rdfs:label "Function EC2 Small EU Reserved Light 3Yr Windows"^^xsd:string ;
+      spin:body
+              [ rdf:type sp:Select ;
+                sp:resultVariables ([ sp:varName "price"^^xsd:string
+                          ]) ;
+                sp:where ([ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Light_3Yr_Windows_Price
+                          ] [ sp:object
+                                    [ sp:varName "instance_price"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Light_3Yr_Upfront
+                          ] [ sp:object
+                                    [ sp:varName "upfront"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "c"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Light_3Yr_Windows_Used_Hours
+                          ] [ sp:object
+                                    [ sp:varName "hours"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "c"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:add ;
+                                      sp:arg1 [ rdf:type sp:mul ;
+                                                sp:arg1 [ sp:varName "hours"^^xsd:string
+                                                        ] ;
+                                                sp:arg2 [ sp:varName "instance_price"^^xsd:string
+                                                        ]
+                                              ] ;
+                                      sp:arg2 [ sp:varName "upfront"^^xsd:string
+                                              ]
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "price"^^xsd:string
+                                    ]
+                          ])
+              ] ;
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Light_3Yr_Windows_Used_Hours , :Variable_EC2_Small_EU_Reserved_Light_3Yr_Upfront , :Variable_EC2_Small_EU_Reserved_Light_3Yr_Windows_Price .
+
+:Function_EC2_Small_EU_Reserved_Medium_1Yr_Linux
+      rdf:type spin:Function ;
+      rdfs:label "Function EC2 Small EU Reserved Medium 1Yr Linux"^^xsd:string ;
+      spin:body
+              [ rdf:type sp:Select ;
+                sp:resultVariables ([ sp:varName "price"^^xsd:string
+                          ]) ;
+                sp:where ([ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Linux_Price
+                          ] [ sp:object
+                                    [ sp:varName "instance_price"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Upfront
+                          ] [ sp:object
+                                    [ sp:varName "upfront"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "c"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Linux_Used_Hours
+                          ] [ sp:object
+                                    [ sp:varName "hours"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "c"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:add ;
+                                      sp:arg1 [ rdf:type sp:mul ;
+                                                sp:arg1 [ sp:varName "hours"^^xsd:string
+                                                        ] ;
+                                                sp:arg2 [ sp:varName "instance_price"^^xsd:string
+                                                        ]
+                                              ] ;
+                                      sp:arg2 [ sp:varName "upfront"^^xsd:string
+                                              ]
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "price"^^xsd:string
+                                    ]
+                          ])
+              ] ;
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Linux_Used_Hours , :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Linux_Price , :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Upfront .
+
+:Function_EC2_Small_EU_Reserved_Medium_1Yr_Windows
+      rdf:type spin:Function ;
+      rdfs:label "Function EC2 Small EU Reserved Medium 1Yr Windows"^^xsd:string ;
+      spin:body
+              [ rdf:type sp:Select ;
+                sp:resultVariables ([ sp:varName "price"^^xsd:string
+                          ]) ;
+                sp:where ([ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Windows_Price
+                          ] [ sp:object
+                                    [ sp:varName "instance_price"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Upfront
+                          ] [ sp:object
+                                    [ sp:varName "upfront"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "c"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Windows_Used_Hours
+                          ] [ sp:object
+                                    [ sp:varName "hours"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "c"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:add ;
+                                      sp:arg1 [ rdf:type sp:mul ;
+                                                sp:arg1 [ sp:varName "hours"^^xsd:string
+                                                        ] ;
+                                                sp:arg2 [ sp:varName "instance_price"^^xsd:string
+                                                        ]
+                                              ] ;
+                                      sp:arg2 [ sp:varName "upfront"^^xsd:string
+                                              ]
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "price"^^xsd:string
+                                    ]
+                          ])
+              ] ;
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Windows_Price , :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Upfront , :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Windows_Used_Hours .
+
+:Function_EC2_Small_EU_Reserved_Medium_3Yr_Linux
+      rdf:type spin:Function ;
+      rdfs:label "Function EC2 Small EU Reserved Medium 3Yr Linux"^^xsd:string ;
+      spin:body
+              [ rdf:type sp:Select ;
+                sp:resultVariables ([ sp:varName "price"^^xsd:string
+                          ]) ;
+                sp:where ([ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Medium_3Yr_Linux_Price
+                          ] [ sp:object
+                                    [ sp:varName "instance_price"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Medium_3Yr_Upfront
+                          ] [ sp:object
+                                    [ sp:varName "upfront"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "c"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Medium_3Yr_Linux_Used_Hours
+                          ] [ sp:object
+                                    [ sp:varName "hours"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "c"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:add ;
+                                      sp:arg1 [ rdf:type sp:mul ;
+                                                sp:arg1 [ sp:varName "hours"^^xsd:string
+                                                        ] ;
+                                                sp:arg2 [ sp:varName "instance_price"^^xsd:string
+                                                        ]
+                                              ] ;
+                                      sp:arg2 [ sp:varName "upfront"^^xsd:string
+                                              ]
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "price"^^xsd:string
+                                    ]
+                          ])
+              ] ;
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Medium_3Yr_Linux_Price , :Variable_EC2_Small_EU_Reserved_Medium_3Yr_Linux_Used_Hours , :Variable_EC2_Small_EU_Reserved_Medium_3Yr_Upfront .
+
+:Function_EC2_Small_EU_Reserved_Medium_3Yr_Windows
+      rdf:type spin:Function ;
+      rdfs:label "Function EC2 Small EU Reserved Medium 3Yr Windows"^^xsd:string ;
+      spin:body
+              [ rdf:type sp:Select ;
+                sp:resultVariables ([ sp:varName "price"^^xsd:string
+                          ]) ;
+                sp:where ([ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Medium_3Yr_Windows_Price
+                          ] [ sp:object
+                                    [ sp:varName "instance_price"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Medium_3Yr_Upfront
+                          ] [ sp:object
+                                    [ sp:varName "upfront"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "c"^^xsd:string
+                                    ] ;
+                            sp:predicate price:hasValue ;
+                            sp:subject :Variable_EC2_Small_EU_Reserved_Medium_3Yr_Windows_Used_Hours
+                          ] [ sp:object
+                                    [ sp:varName "hours"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "c"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:add ;
+                                      sp:arg1 [ rdf:type sp:mul ;
+                                                sp:arg1 [ sp:varName "hours"^^xsd:string
+                                                        ] ;
+                                                sp:arg2 [ sp:varName "instance_price"^^xsd:string
+                                                        ]
+                                              ] ;
+                                      sp:arg2 [ sp:varName "upfront"^^xsd:string
+                                              ]
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "price"^^xsd:string
+                                    ]
+                          ])
+              ] ;
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Medium_3Yr_Windows_Used_Hours , :Variable_EC2_Small_EU_Reserved_Medium_3Yr_Upfront , :Variable_EC2_Small_EU_Reserved_Medium_3Yr_Windows_Price .
+
+:IaaS
+      rdf:type rdfs:Class , skos:Concept ;
+      dcterms:description "Service model to all IaaS like services" .
+
+:PriceComponent_EC2_Small_EU_OnDemand_Linux_General
+      rdf:type price:PriceComponent ;
+      rdfs:label "Price component EC2 Small EU Windows On demand General"^^xsd:string ;
+      price:hasMetrics
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "MON"^^xsd:string ;
+                gr:hasValueInteger 1
+              ] ;
+      price:hasPriceFuntion
+              :Function_EC2_Small_EU_OnDemand_Linux ;
+      price:hasTextFuntion
+              "Instance Price * Hours used"^^xsd:string .
+
+:PriceComponent_EC2_Small_EU_OnDemand_Windows_General
+      rdf:type price:PriceComponent ;
+      rdfs:label "Price component EC2 Small EU Windows On demand General"^^xsd:string ;
+      price:hasMetrics
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "MON"^^xsd:string ;
+                gr:hasValueInteger 1
+              ] ;
+      price:hasPriceFuntion
+              :Function_EC2_Small_EU_OnDemand_Windows ;
+      price:hasTextFuntion
+              "Instance Price * Hours used"^^xsd:string .
+
+:PriceComponent_EC2_Small_EU_Reserved_Heavy_1Yr_Linux_General
+      rdf:type price:PriceComponent ;
+      rdfs:label "PriceComponent EC2 Small EU Reserved Linux Heavy 1Year General"^^xsd:string ;
+      price:hasMetrics
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "MON"^^xsd:string ;
+                gr:hasValueInteger 1
+              ] ;
+      price:hasPriceFuntion
+              :Function_EC2_Small_EU_Reserved_Heavy_1Yr_Linux ;
+      price:hasTextFuntion
+              "(Instance Price * Hours used) + upfront"^^xsd:string .
+
+:PriceComponent_EC2_Small_EU_Reserved_Heavy_1Yr_Windows_General
+      rdf:type price:PriceComponent ;
+      rdfs:label "PriceComponent EC2 Small EU Reserved Windows Heavy 1Year General"^^xsd:string ;
+      price:hasMetrics
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "MON"^^xsd:string ;
+                gr:hasValueInteger 1
+              ] ;
+      price:hasPriceFuntion
+              :Function_EC2_Small_EU_Reserved_Heavy_1Yr_Windows ;
+      price:hasTextFuntion
+              "(Instance Price * Hours used) + upfront"^^xsd:string .
+
+:PriceComponent_EC2_Small_EU_Reserved_Heavy_3Yr_Linux_General
+      rdf:type price:PriceComponent ;
+      rdfs:label "PriceComponent EC2 Small EU Reserved Linux Heavy 3Year General"^^xsd:string ;
+      price:hasMetrics
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "MON"^^xsd:string ;
+                gr:hasValueInteger 1
+              ] ;
+      price:hasPriceFuntion
+              :Function_EC2_Small_EU_Reserved_Heavy_3Yr_Linux ;
+      price:hasTextFuntion
+              "(Instance Price * Hours used) + upfront"^^xsd:string .
+
+:PriceComponent_EC2_Small_EU_Reserved_Heavy_3Yr_Windows_General
+      rdf:type price:PriceComponent ;
+      rdfs:label "PriceComponent EC2 Small EU Reserved Windows Heavy 3Year General"^^xsd:string ;
+      price:hasMetrics
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "MON"^^xsd:string ;
+                gr:hasValueInteger 1
+              ] ;
+      price:hasPriceFuntion
+              :Function_EC2_Small_EU_Reserved_Heavy_3Yr_Windows ;
+      price:hasTextFuntion
+              "(Instance Price * Hours used) + upfront"^^xsd:string .
+
+:PriceComponent_EC2_Small_EU_Reserved_Light_1Yr_Linux_General
+      rdf:type price:PriceComponent ;
+      rdfs:label "PriceComponent EC2 Small EU Reserved Linux Light 1Year General"^^xsd:string ;
+      price:hasMetrics
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "MON"^^xsd:string ;
+                gr:hasValueInteger 1
+              ] ;
+      price:hasPriceFuntion
+              :Function_EC2_Small_EU_Reserved_Light_1Yr_Linux ;
+      price:hasTextFuntion
+              "(Instance Price * Hours used) + upfront"^^xsd:string .
+
+:PriceComponent_EC2_Small_EU_Reserved_Light_1Yr_Windows_General
+      rdf:type price:PriceComponent ;
+      rdfs:label "PriceComponent EC2 Small EU Reserved Windows Light 1Year General"^^xsd:string ;
+      price:hasMetrics
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "MON"^^xsd:string ;
+                gr:hasValueInteger 1
+              ] ;
+      price:hasPriceFuntion
+              :Function_EC2_Small_EU_Reserved_Light_1Yr_Windows ;
+      price:hasTextFuntion
+              "(Instance Price * Hours used) + upfront"^^xsd:string .
+
+:PriceComponent_EC2_Small_EU_Reserved_Light_3Yr_Linux_General
+      rdf:type price:PriceComponent ;
+      rdfs:label "PriceComponent EC2 Small EU Reserved Linux Light 3Year General"^^xsd:string ;
+      price:hasMetrics
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "MON"^^xsd:string ;
+                gr:hasValueInteger 1
+              ] ;
+      price:hasPriceFuntion
+              :Function_EC2_Small_EU_Reserved_Light_3Yr_Linux ;
+      price:hasTextFuntion
+              "(Instance Price * Hours used) + upfront"^^xsd:string .
+
+:PriceComponent_EC2_Small_EU_Reserved_Light_3Yr_Windows_General
+      rdf:type price:PriceComponent ;
+      rdfs:label "PriceComponent EC2 Small EU Reserved Windows Light 3Year General"^^xsd:string ;
+      price:hasMetrics
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "MON"^^xsd:string ;
+                gr:hasValueInteger 1
+              ] ;
+      price:hasPriceFuntion
+              :Function_EC2_Small_EU_Reserved_Light_3Yr_Windows ;
+      price:hasTextFuntion
+              "(Instance Price * Hours used) + upfront"^^xsd:string .
+
+:PriceComponent_EC2_Small_EU_Reserved_Medium_1Yr_Linux_General
+      rdf:type price:PriceComponent ;
+      rdfs:label "PriceComponent EC2 Small EU Reserved Linux Medium 1Year General"^^xsd:string ;
+      price:hasMetrics
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "MON"^^xsd:string ;
+                gr:hasValueInteger 1
+              ] ;
+      price:hasPriceFuntion
+              :Function_EC2_Small_EU_Reserved_Medium_1Yr_Linux ;
+      price:hasTextFuntion
+              "(Instance Price * Hours used) + upfront"^^xsd:string .
+
+:PriceComponent_EC2_Small_EU_Reserved_Medium_1Yr_Windows_General
+      rdf:type price:PriceComponent ;
+      rdfs:label "PriceComponent EC2 Small EU Reserved Windows Medium 1Year General"^^xsd:string ;
+      price:hasMetrics
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "MON"^^xsd:string ;
+                gr:hasValueInteger 1
+              ] ;
+      price:hasPriceFuntion
+              :Function_EC2_Small_EU_Reserved_Medium_1Yr_Windows ;
+      price:hasTextFuntion
+              "(Instance Price * Hours used) + upfront"^^xsd:string .
+
+:PriceComponent_EC2_Small_EU_Reserved_Medium_3Yr_Linux_General
+      rdf:type price:PriceComponent ;
+      rdfs:label "PriceComponent EC2 Small EU Reserved Linux Medium 3Year General"^^xsd:string ;
+      price:hasMetrics
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "MON"^^xsd:string ;
+                gr:hasValueInteger 1
+              ] ;
+      price:hasPriceFuntion
+              :Function_EC2_Small_EU_Reserved_Medium_3Yr_Linux ;
+      price:hasTextFuntion
+              "(Instance Price * Hours used) + upfront"^^xsd:string .
+
+:PriceComponent_EC2_Small_EU_Reserved_Medium_3Yr_Windows_General
+      rdf:type price:PriceComponent ;
+      rdfs:label "PriceComponent EC2 Small EU Reserved Windows Medium 3Year General"^^xsd:string ;
+      price:hasMetrics
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "MON"^^xsd:string ;
+                gr:hasValueInteger 1
+              ] ;
+      price:hasPriceFuntion
+              :Function_EC2_Small_EU_Reserved_Medium_3Yr_Windows ;
+      price:hasTextFuntion
+              "(Instance Price * Hours used) + upfront"^^xsd:string .
+
+:PriceComponent_EU_Data_Transfer_IN
+      rdf:type price:PriceComponent ;
+      rdfs:label "Price component EU Data Transfer IN"^^xsd:string ;
+      price:hasMetrics
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "MON"^^xsd:string ;
+                gr:hasValueInteger 1
+              ] ;
+      price:hasPriceFuntion
+              :Function_Data_Transfer_IN ;
+      price:hasTextFuntion
+              "(Number of GB transfered) * (Price per GB)"^^xsd:string .
+
+:PriceComponent_EU_Data_Transfer_OUT
+      rdf:type price:PriceComponent ;
+      rdfs:label "Price component EU Data Transfer OUT"^^xsd:string ;
+      price:hasMetrics
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "MON"^^xsd:string ;
+                gr:hasValueInteger 1
+              ] ;
+      price:hasPriceFuntion
+              :Function_Data_Transfer_Out ;
+      price:hasTextFuntion
+              "(GB tranfered until 1 = 0.0), (from 1 to 10TB = 0.12), (from 10TB to 40TB = 0.09) , (from 40TB to 100TB = 0.07), (from 100TB to 350TB = 0.05)   "^^xsd:string .
+
+:PriceComponent_EU_Data_Transfer_OUT_To_Amazon
+      rdf:type price:PriceComponent ;
+      rdfs:label "Price component EU Data Transfer OUT To Amazon"^^xsd:string ;
+      price:hasMetrics
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "MON"^^xsd:string ;
+                gr:hasValueInteger 1
+              ] ;
+      price:hasPriceFuntion
+              :Function_Data_Transfer_Out_To_Amazon ;
+      price:hasTextFuntion
+              "(GB price to different region * GB tranferred to different region) + (GB price for Public/elasticIP/same regions * GB tranferred to Public/elasticIP/same regions)"^^xsd:string .
+
+:PricePlan_EC2_Small_EU_OnDemand_Linux
+      rdf:type price:PricePlan ;
+      rdfs:label "Price Plan for an On demand EC2 Small instance with Linux in the EU region"^^xsd:string ;
+      price:hasPriceComponent
+              :PriceComponent_EC2_Small_EU_OnDemand_Linux_General , :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT .
+
+:PricePlan_EC2_Small_EU_OnDemand_Windows
+      rdf:type price:PricePlan ;
+      rdfs:label "Price Plan for an On demand EC2 Small instance with Windows in the EU region"^^xsd:string ;
+      price:hasPriceComponent
+              :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EC2_Small_EU_OnDemand_Windows_General .
+
+:PricePlan_EC2_Small_EU_Reserved_Heavy_1Yr_Linux
+      rdf:type price:PricePlan ;
+      rdfs:label "Price Plan for a Heavy utilization reserved EC2 Small instance with Linux in the EU region with an 1 year contract"^^xsd:string ;
+      price:hasPriceComponent
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Heavy_1Yr_Linux_General .
+
+:PricePlan_EC2_Small_EU_Reserved_Heavy_1Yr_Windows
+      rdf:type price:PricePlan ;
+      rdfs:label "Price Plan for a Heavy utilization reserved EC2 Small instance with Windows in the EU region with an 1 year contract"^^xsd:string ;
+      price:hasPriceComponent
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Heavy_1Yr_Windows_General .
+
+:PricePlan_EC2_Small_EU_Reserved_Heavy_3Yr_Linux
+      rdf:type price:PricePlan ;
+      rdfs:label "Price Plan for a Heavy utilization reserved EC2 Small instance with Linux in the EU region with an 3 year contract"^^xsd:string ;
+      price:hasPriceComponent
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Heavy_3Yr_Linux_General .
+
+:PricePlan_EC2_Small_EU_Reserved_Heavy_3Yr_Windows
+      rdf:type price:PricePlan ;
+      rdfs:label "Price Plan for a Heavy utilization reserved EC2 Small instance with Windows in the EU region with an 3 year contract"^^xsd:string ;
+      price:hasPriceComponent
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Heavy_3Yr_Windows_General .
+
+:PricePlan_EC2_Small_EU_Reserved_Light_1Yr_Linux
+      rdf:type price:PricePlan ;
+      rdfs:label "Price Plan for a light utilization reserved EC2 Small instance with Linux in the EU region with an 1 year contract"^^xsd:string ;
+      price:hasPriceComponent
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Light_1Yr_Linux_General .
+
+:PricePlan_EC2_Small_EU_Reserved_Light_1Yr_Windows
+      rdf:type price:PricePlan ;
+      rdfs:label "Price Plan for a light utilization reserved EC2 Small instance with Windows in the EU region with an 1 year contract"^^xsd:string ;
+      price:hasPriceComponent
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Light_1Yr_Windows_General .
+
+:PricePlan_EC2_Small_EU_Reserved_Light_3Yr_Linux
+      rdf:type price:PricePlan ;
+      rdfs:label "Price Plan for a light utilization reserved EC2 Small instance with Linux in the EU region with an 3 year contract"^^xsd:string ;
+      price:hasPriceComponent
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Light_3Yr_Linux_General .
+
+:PricePlan_EC2_Small_EU_Reserved_Light_3Yr_Windows
+      rdf:type price:PricePlan ;
+      rdfs:label "Price Plan for a light utilization reserved EC2 Small instance with Windows in the EU region with an 3 year contract"^^xsd:string ;
+      price:hasPriceComponent
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Light_3Yr_Windows_General .
+
+:PricePlan_EC2_Small_EU_Reserved_Medium_1Yr_Linux
+      rdf:type price:PricePlan ;
+      rdfs:label "Price Plan for a Medium utilization reserved EC2 Small instance with Linux in the EU region with an 1 year contract"^^xsd:string ;
+      price:hasPriceComponent
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Medium_1Yr_Linux_General .
+
+:PricePlan_EC2_Small_EU_Reserved_Medium_1Yr_Windows
+      rdf:type price:PricePlan ;
+      rdfs:label "Price Plan for a Medium utilization reserved EC2 Small instance with Windows in the EU region with an 1 year contract"^^xsd:string ;
+      price:hasPriceComponent
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Medium_1Yr_Windows_General .
+
+:PricePlan_EC2_Small_EU_Reserved_Medium_3Yr_Linux
+      rdf:type price:PricePlan ;
+      rdfs:label "Price Plan for a Medium utilization reserved EC2 Small instance with Linux in the EU region with an 3 year contract"^^xsd:string ;
+      price:hasPriceComponent
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Medium_3Yr_Linux_General .
+
+:PricePlan_EC2_Small_EU_Reserved_Medium_3Yr_Windows
+      rdf:type price:PricePlan ;
+      rdfs:label "Price Plan for a Medium utilization reserved EC2 Small instance with Windows in the EU region with an 3 year contract"^^xsd:string ;
+      price:hasPriceComponent
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Medium_3Yr_Windows_General .
+
+:Service_AmazonEC2_Instance_Small
+      rdf:type core:Service ;
+      rdfs:label "Amazon EC2 Small Instance"^^xsd:string ;
+      dcterms:title "Amazon EC2 Small Instance"@en ;
+      gr:qualitativeProductOrServiceProperty
+              Vocabulary_EC2:IOPerformance_Low , Vocabulary_EC2:AWS_Marketplace , Vocabulary_EC2:Web-Service_APIs , Vocabulary_EC2:VM_Import_Export , Vocabulary_EC2:Fully_Controllable_Instances , Vocabulary_EC2:Basic_Monitoring , Vocabulary_EC2:Platform_32bit , Vocabulary_EC2:On_Demmand_Instances , Vocabulary_EC2:Configurable_FireWall_Setting , Vocabulary_EC2:Platform_64bit , Vocabulary_EC2:Integration_with_other_Amazon_Services , Vocabulary_EC2:Automatic_Scalling ;
+      gr:quantitativeProductOrServiceProperty
+              :resource_EC2_Small_EC2_Compute_Unit , :resource_EC2_Small_Main_Memory , :resource_EC2_Small_Cores , :resource_EC2_Small_EC2_Local_Storage ;
+      core:hasClassification
+              :IaaS ;
+      core:hasProvider :provider_Amazon .
+
+:Variable_EC2_Small_EU_OnDemand_Linux_Price
+      rdf:type price:Constant ;
+      rdfs:label "Variable EC2 Small EU Windows On demand Price"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "0.065"^^xsd:float
+              ] .
+
+:Variable_EC2_Small_EU_OnDemand_Linux_Used_Hours
+      rdf:type price:Usage ;
+      rdfs:label "Variable EC2 Small EU Linux On demand Used Hours"^^xsd:string ;
+      gr:hasUnitOfMeasurement
+              "HUR"^^xsd:string .
+
+:Variable_EC2_Small_EU_OnDemand_Windows_Price
+      rdf:type price:Constant ;
+      rdfs:label "Variable EC2 Small EU Windows On demand Price"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "0.115"^^xsd:float
+              ] .
+
+:Variable_EC2_Small_EU_OnDemand_Windows_Used_Hours
+      rdf:type price:Usage ;
+      rdfs:label "Variable EC2 Small EU Windows On demand Used Hours"^^xsd:string ;
+      gr:hasUnitOfMeasurement
+              "HUR"^^xsd:string .
+
+:Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Linux_Price
+      rdf:type price:Constant ;
+      rdfs:label "Variable EC2 Small EU Reserved Heavy 1Yr Linux Price"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "0.025"^^xsd:float
+              ] .
+
+:Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Linux_Used_Hours
+      rdf:type price:Usage ;
+      rdfs:label "Variable EC2 Small EU Reserved Heavy 1Yr Linux Used Hours"^^xsd:string ;
+      gr:hasUnitOfMeasurement
+              "HUR"^^xsd:string .
+
+:Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Upfront
+      rdf:type price:Constant ;
+      rdfs:label "Variable EC2 Small EU Reserved Heavy 1Yr Linux Upfront"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "195"^^xsd:float
+              ] .
+
+:Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Windows_Price
+      rdf:type price:Constant ;
+      rdfs:label "Variable EC2 Small EU Reserved Heavy 1Yr Windows Price"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "0.045"^^xsd:float
+              ] .
+
+:Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Windows_Used_Hours
+      rdf:type price:Usage ;
+      rdfs:label "Variable EC2 Small EU Reserved Heavy 1Yr Windows Used Hours"^^xsd:string ;
+      gr:hasUnitOfMeasurement
+              "HUR"^^xsd:string .
+
+:Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Linux_Price
+      rdf:type price:Constant ;
+      rdfs:label "Variable EC2 Small EU Reserved Heavy 3Yr Linux Price"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "0.02"^^xsd:float
+              ] .
+
+:Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Linux_Used_Hours
+      rdf:type price:Usage ;
+      rdfs:label "Variable EC2 Small EU Reserved Heavy 3Yr Linux Used Hours"^^xsd:string ;
+      gr:hasUnitOfMeasurement
+              "HUR"^^xsd:string .
+
+:Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Upfront
+      rdf:type price:Constant ;
+      rdfs:label "Variable EC2 Small EU Reserved Heavy 3Yr Linux Upfront"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "300"^^xsd:float
+              ] .
+
+:Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Windows_Price
+      rdf:type price:Constant ;
+      rdfs:label "Variable EC2 Small EU Reserved Heavy 3Yr Windows Price"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "0.04"^^xsd:float
+              ] .
+
+:Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Windows_Used_Hours
+      rdf:type price:Usage ;
+      rdfs:label "Variable EC2 Small EU Reserved Heavy 3Yr Windows Used Hours"^^xsd:string ;
+      gr:hasUnitOfMeasurement
+              "HUR"^^xsd:string .
+
+:Variable_EC2_Small_EU_Reserved_Light_1Yr_Linux_Price
+      rdf:type price:Constant ;
+      rdfs:label "Variable EC2 Small EU Reserved Light 1Yr Linux Price"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "0.049"^^xsd:float
+              ] .
+
+:Variable_EC2_Small_EU_Reserved_Light_1Yr_Linux_Used_Hours
+      rdf:type price:Usage ;
+      rdfs:label "Variable EC2 Small EU Reserved Light 1Yr Linux Used Hours"^^xsd:string ;
+      gr:hasUnitOfMeasurement
+              "HUR"^^xsd:string .
+
+:Variable_EC2_Small_EU_Reserved_Light_1Yr_Upfront
+      rdf:type price:Constant ;
+      rdfs:label "Variable EC2 Small EU Reserved Light 1Yr Linux Upfront"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "69"^^xsd:float
+              ] .
+
+:Variable_EC2_Small_EU_Reserved_Light_1Yr_Windows_Price
+      rdf:type price:Constant ;
+      rdfs:label "Variable EC2 Small EU Reserved Light 1Yr Windows Price"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "0.069"^^xsd:float
+              ] .
+
+:Variable_EC2_Small_EU_Reserved_Light_1Yr_Windows_Used_Hours
+      rdf:type price:Usage ;
+      rdfs:label "Variable EC2 Small EU Reserved Light 1Yr Windows Used Hours"^^xsd:string ;
+      gr:hasUnitOfMeasurement
+              "HUR"^^xsd:string .
+
+:Variable_EC2_Small_EU_Reserved_Light_3Yr_Linux_Price
+      rdf:type price:Constant ;
+      rdfs:label "Variable EC2 Small EU Reserved Light 3Yr Linux Price"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "0.039"^^xsd:float
+              ] .
+
+:Variable_EC2_Small_EU_Reserved_Light_3Yr_Linux_Used_Hours
+      rdf:type price:Usage ;
+      rdfs:label "Variable EC2 Small EU Reserved Light 3Yr Linux Used Hours"^^xsd:string ;
+      gr:hasUnitOfMeasurement
+              "HUR"^^xsd:string .
+
+:Variable_EC2_Small_EU_Reserved_Light_3Yr_Upfront
+      rdf:type price:Constant ;
+      rdfs:label "Variable EC2 Small EU Reserved Light 3Yr Linux Upfront"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "106.3"^^xsd:float
+              ] .
+
+:Variable_EC2_Small_EU_Reserved_Light_3Yr_Windows_Price
+      rdf:type price:Constant ;
+      rdfs:label "Variable EC2 Small EU Reserved Light 3Yr Windows Price"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "0.059"^^xsd:float
+              ] .
+
+:Variable_EC2_Small_EU_Reserved_Light_3Yr_Windows_Used_Hours
+      rdf:type price:Usage ;
+      rdfs:label "Variable EC2 Small EU Reserved Light 3Yr Windows Used Hours"^^xsd:string ;
+      gr:hasUnitOfMeasurement
+              "HUR"^^xsd:string .
+
+:Variable_EC2_Small_EU_Reserved_Medium_1Yr_Linux_Price
+      rdf:type price:Constant ;
+      rdfs:label "Variable EC2 Small EU Reserved Medium 1Yr Linux Price"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "0.031"^^xsd:float
+              ] .
+
+:Variable_EC2_Small_EU_Reserved_Medium_1Yr_Linux_Used_Hours
+      rdf:type price:Usage ;
+      rdfs:label "Variable EC2 Small EU Reserved Medium 1Yr Linux Used Hours"^^xsd:string ;
+      gr:hasUnitOfMeasurement
+              "HUR"^^xsd:string .
+
+:Variable_EC2_Small_EU_Reserved_Medium_1Yr_Upfront
+      rdf:type price:Constant ;
+      rdfs:label "Variable EC2 Small EU Reserved Medium 1Yr Linux Upfront"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "160"^^xsd:float
+              ] .
+
+:Variable_EC2_Small_EU_Reserved_Medium_1Yr_Windows_Price
+      rdf:type price:Constant ;
+      rdfs:label "Variable EC2 Small EU Reserved Medium 1Yr Windows Price"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "0.045"^^xsd:float
+              ] .
+
+:Variable_EC2_Small_EU_Reserved_Medium_1Yr_Windows_Used_Hours
+      rdf:type price:Usage ;
+      rdfs:label "Variable EC2 Small EU Reserved Medium 1Yr Windows Used Hours"^^xsd:string ;
+      gr:hasUnitOfMeasurement
+              "HUR"^^xsd:string .
+
+:Variable_EC2_Small_EU_Reserved_Medium_3Yr_Linux_Price
+      rdf:type price:Constant ;
+      rdfs:label "Variable EC2 Small EU Reserved Medium 3Yr Linux Price"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "0.025"^^xsd:float
+              ] .
+
+:Variable_EC2_Small_EU_Reserved_Medium_3Yr_Linux_Used_Hours
+      rdf:type price:Usage ;
+      rdfs:label "Variable EC2 Small EU Reserved Medium 3Yr Linux Used Hours"^^xsd:string ;
+      gr:hasUnitOfMeasurement
+              "HUR"^^xsd:string .
+
+:Variable_EC2_Small_EU_Reserved_Medium_3Yr_Upfront
+      rdf:type price:Constant ;
+      rdfs:label "Variable EC2 Small EU Reserved Medium 3Yr Linux Upfront"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "250"^^xsd:float
+              ] .
+
+:Variable_EC2_Small_EU_Reserved_Medium_3Yr_Windows_Price
+      rdf:type price:Constant ;
+      rdfs:label "Variable EC2 Small EU Reserved Medium 3Yr Windows Price"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "0.045"^^xsd:float
+              ] .
+
+:Variable_EC2_Small_EU_Reserved_Medium_3Yr_Windows_Used_Hours
+      rdf:type price:Usage ;
+      rdfs:label "Variable EC2 Small EU Reserved Medium 3Yr Windows Used Hours"^^xsd:string ;
+      gr:hasUnitOfMeasurement
+              "HUR"^^xsd:string .
+
+:Variable_IN_GB_Price
+      rdf:type price:Constant ;
+      rdfs:label "Variable IN GB Price"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "0.01"^^xsd:float
+              ] .
+
+:Variable_IN_GB_Transferred
+      rdf:type price:Usage ;
+      rdfs:label "Variable IN GB Transferred"^^xsd:string ;
+      gr:hasUnitOfMeasurement
+              "E34"^^xsd:string .
+
+:Variable_Next_100TB
+      rdf:type price:Constant ;
+      rdfs:label "From 40TB to 100TB"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "0.07"^^xsd:float
+              ] .
+
+:Variable_Next_350TB
+      rdf:type price:Constant ;
+      rdfs:label "From 100TB to 350TB"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "0.05"^^xsd:float
+              ] .
+
+:Variable_Next_40TB
+      rdf:type price:Constant ;
+      rdfs:label "From 10TB to 40TB"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "0.09"^^xsd:float
+              ] .
+
+:Variable_OUT_GB_Transfered_to_Different_Region
+      rdf:type price:Usage ;
+      rdfs:label "OUT GB Transfered to Different Region"^^xsd:string .
+
+:Variable_OUT_GB_Transfered_to_Public_ElasticIP_Same_Region
+      rdf:type price:Usage ;
+      rdfs:label "OUT GB Transfered to Public  ElasticIP Same Region"^^xsd:string .
+
+:Variable_OUT_GB_Transferred
+      rdf:type price:Usage ;
+      rdfs:label "OUT GB Transfered"^^xsd:string ;
+      gr:hasUnitOfMeasurement
+              "E34"^^xsd:string .
+
+:Variable_Out_GB_Price1
+      rdf:type price:Constant ;
+      rdfs:label "Transfer Out GB price for public Elastic IP or Same Region "^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "0.01"^^xsd:float
+              ] .
+
+:Variable_Out_GB_Price2
+      rdf:type price:Constant ;
+      rdfs:label "Transfer Out GB price for different region"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "0.02"^^xsd:float
+              ] .
+
+:Variable_UP_to_10TB
+      rdf:type price:Constant ;
+      rdfs:label "From 1GB to 10TB"^^xsd:string ;
+      price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasValueFloat "0.12"^^xsd:float
+              ] .
+
+:offering_EC2_Instance_Small_Region_EU
+      rdf:type core:ServiceOffering ;
+      dcterms:description "Offering for a 'Small' EC2 Instance in the European Region (Ireland)."@en ;
+      dcterms:title "EC2 Small Instance for EU Region"@en ;
+      core:includes :Service_AmazonEC2_Instance_Small ;
+      price:hasPricePlan :PricePlan_EC2_Small_EU_Reserved_Medium_1Yr_Linux , :PricePlan_EC2_Small_EU_Reserved_Light_3Yr_Linux , :PricePlan_EC2_Small_EU_Reserved_Light_1Yr_Linux , :PricePlan_EC2_Small_EU_Reserved_Light_1Yr_Windows , :PricePlan_EC2_Small_EU_Reserved_Medium_3Yr_Windows , :PricePlan_EC2_Small_EU_Reserved_Heavy_1Yr_Windows , :PricePlan_EC2_Small_EU_Reserved_Heavy_3Yr_Linux , :PricePlan_EC2_Small_EU_OnDemand_Linux , :PricePlan_EC2_Small_EU_Reserved_Light_3Yr_Windows , :PricePlan_EC2_Small_EU_Reserved_Heavy_1Yr_Linux , :PricePlan_EC2_Small_EU_Reserved_Medium_1Yr_Windows , :PricePlan_EC2_Small_EU_Reserved_Medium_3Yr_Linux , :PricePlan_EC2_Small_EU_OnDemand_Windows , :PricePlan_EC2_Small_EU_Reserved_Heavy_3Yr_Windows .
+
+:provider_Amazon
+      rdf:type gr:BusinessEntity ;
+      core:legalForm "LLC" ;
+      vcard:adr
+              [ rdf:type vcard:Work ;
+                vcard:country-name "U.S."@en
+              ] ;
+      foaf:homepage <http://aws.amazon.com/> ;
+      foaf:logo <http://d36cz9buwru1tt.cloudfront.net/logo_aws.gif> ;
+      foaf:name "Amazon Web Services LLC" .
+
+:resource_EC2_Small_Cores
+      rdf:type Vocabulary_EC2:Cores ;
+      gr:hasValueInteger "1"^^xsd:float .
+
+:resource_EC2_Small_EC2_Compute_Unit
+      rdf:type Vocabulary_EC2:EC2_Compute_Unit ;
+      gr:hasValueInteger "1"^^xsd:float .
+
+:resource_EC2_Small_EC2_Local_Storage
+      rdf:type Vocabulary_EC2:Local_Storage ;
+      gr:hasUnitOfMeasurement
+              "E34"^^xsd:string ;
+      gr:hasValueFloat "160"^^xsd:float .
+
+:resource_EC2_Small_Main_Memory
+      rdf:type Vocabulary_EC2:Main_Memory ;
+      gr:hasUnitOfMeasurement
+              "E34"^^xsd:string ;
+      gr:hasValueFloat "1.7"^^xsd:float .
