@@ -1,11 +1,13 @@
 # baseURI: http://rdfs.genssiz.org/heroku
 # imports: file:///HerokuPricing/GoodRelations_v1.owl
+# imports: http://rdfs.genssiz.org/CloudTaxonomy
 # imports: http://spinrdf.org/spin
 # imports: http://tutorial.topbraid.com/heroku_vocabulary
 # imports: http://www.linked-usdl.org/ns/usdl-core
 # imports: http://www.linked-usdl.org/ns/usdl-price
 
 @prefix :        <http://rdfs.genssiz.org/heroku#> .
+@prefix CloudTaxonomy:  <http://rdfs.genssiz.org/CloudTaxonomy#> .
 @prefix blueprint:  <http://bizweb.sap.com/TR/blueprint#> .
 @prefix ctag:    <http://commontag.org/ns#> .
 @prefix dbpedia:  <http://dbpedia.org/resource/> .
@@ -48,9 +50,9 @@
               ] ;
       dcterms:created "2013-02-18"^^xsd:date ;
       dcterms:description "Heroku description example" ;
-      dcterms:modified "2013-03-15"^^xsd:date ;
+      dcterms:modified "2013-03-27"^^xsd:date ;
       dcterms:title "Heroku description example" ;
-      owl:imports <http://www.linked-usdl.org/ns/usdl-price> , <http://www.linked-usdl.org/ns/usdl-core> , <http://spinrdf.org/spin> , <http://tutorial.topbraid.com/heroku_vocabulary> , <file:///HerokuPricing/GoodRelations_v1.owl> ;
+      owl:imports <file:///HerokuPricing/GoodRelations_v1.owl> , <http://tutorial.topbraid.com/heroku_vocabulary> , <http://www.linked-usdl.org/ns/usdl-price> , <http://www.linked-usdl.org/ns/usdl-core> , <http://spinrdf.org/spin> , <http://rdfs.genssiz.org/CloudTaxonomy> ;
       owl:versionInfo "Created with TopBraid Composer"^^xsd:string .
 
 :Function_Dynos
@@ -171,12 +173,22 @@
       dcterms:title "Heroku legal statements"@en ;
       legal:hasClause
               [ rdf:type legal:Clause ;
-                legal:name "Heroku Security" ;
-                legal:text "https://policy.heroku.com/security"@en
+                legal:name "Terms of Service" ;
+                legal:text "https://policy.heroku.com/tos"@en
               ] ;
       legal:hasClause
               [ rdf:type legal:Clause ;
                 legal:name "Acceptable Use Policy" ;
+                legal:text "https://policy.heroku.com/aup"@en
+              ] ;
+      legal:hasClause
+              [ rdf:type legal:Clause ;
+                legal:name "DMCA Notice" ;
+                legal:text "https://policy.heroku.com/dmca"@en
+              ] ;
+      legal:hasClause
+              [ rdf:type legal:Clause ;
+                legal:name "Support Policy" ;
                 legal:text "https://policy.heroku.com/aup"@en
               ] ;
       legal:hasClause
@@ -186,18 +198,8 @@
               ] ;
       legal:hasClause
               [ rdf:type legal:Clause ;
-                legal:name "Support Policy" ;
-                legal:text "https://policy.heroku.com/aup"@en
-              ] ;
-      legal:hasClause
-              [ rdf:type legal:Clause ;
-                legal:name "Terms of Service" ;
-                legal:text "https://policy.heroku.com/tos"@en
-              ] ;
-      legal:hasClause
-              [ rdf:type legal:Clause ;
-                legal:name "DMCA Notice" ;
-                legal:text "https://policy.heroku.com/dmca"@en
+                legal:name "Heroku Security" ;
+                legal:text "https://policy.heroku.com/security"@en
               ] ;
       legal:hasClause
               [ rdf:type legal:Clause ;
@@ -526,7 +528,11 @@
       gr:qualitativeProductOrServiceProperty
               heroku_vocabulary:Multi_Ingress , heroku_vocabulary:Continuos_Protection , heroku_vocabulary:Production_Database , heroku_vocabulary:Automatic_Health_Checks , heroku_vocabulary:Configuration_Strings , heroku_vocabulary:PostgreSQL , heroku_vocabulary:Direct_Psql_Access , heroku_vocabulary:Fork , heroku_vocabulary:Data_Clips , heroku_vocabulary:Follow ;
       gr:quantitativeProductOrServiceProperty
-              :resource_Heroku_Database_Disk_Storage , :resource_Heroku_Baku_Cache .
+              :resource_Heroku_Database_Disk_Storage , :resource_Heroku_Baku_Cache ;
+      usdl-core:hasClassification
+              CloudTaxonomy:PaaS ;
+      usdl-core:hasProvider
+              :provider_Heroku .
 
 :Service_Heroku_Crane_Databases
       rdf:type usdl-core:Service ;
@@ -535,14 +541,22 @@
       gr:qualitativeProductOrServiceProperty
               heroku_vocabulary:Continuos_Protection , heroku_vocabulary:Automatic_Health_Checks , heroku_vocabulary:Configuration_Strings , heroku_vocabulary:PostgreSQL , heroku_vocabulary:Direct_Psql_Access , heroku_vocabulary:Follow , heroku_vocabulary:Multi_Ingress , heroku_vocabulary:Fork , heroku_vocabulary:Data_Clips , heroku_vocabulary:Production_Database ;
       gr:quantitativeProductOrServiceProperty
-              :resource_Heroku_Crane_Cache , :resource_Heroku_Database_Disk_Storage .
+              :resource_Heroku_Crane_Cache , :resource_Heroku_Database_Disk_Storage ;
+      usdl-core:hasClassification
+              CloudTaxonomy:PaaS ;
+      usdl-core:hasProvider
+              :provider_Heroku .
 
 :Service_Heroku_Dynos
       rdf:type usdl-core:Service ;
       rdfs:label "Service Heroku"^^xsd:string ;
       dcterms:title "Heroku - Cloud Application Platform "@en ;
       gr:qualitativeProductOrServiceProperty
-              heroku_vocabulary:Technical_Support , heroku_vocabulary:Secure_Hardened_and_Tuned_Runtime , heroku_vocabulary:Open_and_Standard_Stacks_No_Lock-in , heroku_vocabulary:Instant_Deployment_And_Scalling , heroku_vocabulary:Fast_And_Fault-Tolerant_HTTP_Routing , <http://tutorial.topbraid.com/heroku_vocabulary#24x7_Platform-Wide_Monitoring> , heroku_vocabulary:Complete_API_CLI_for_App_Management .
+              heroku_vocabulary:Technical_Support , heroku_vocabulary:Secure_Hardened_and_Tuned_Runtime , heroku_vocabulary:Open_and_Standard_Stacks_No_Lock-in , heroku_vocabulary:Instant_Deployment_And_Scalling , heroku_vocabulary:Fast_And_Fault-Tolerant_HTTP_Routing , <http://tutorial.topbraid.com/heroku_vocabulary#24x7_Platform-Wide_Monitoring> , heroku_vocabulary:Complete_API_CLI_for_App_Management ;
+      usdl-core:hasClassification
+              CloudTaxonomy:PaaS ;
+      usdl-core:hasProvider
+              :provider_Heroku .
 
 :Service_Heroku_Fugu_Databases
       rdf:type usdl-core:Service ;
@@ -551,7 +565,11 @@
       gr:qualitativeProductOrServiceProperty
               heroku_vocabulary:Automatic_Health_Checks , heroku_vocabulary:Multi_Ingress , heroku_vocabulary:Data_Clips , heroku_vocabulary:Follow , heroku_vocabulary:Fork , heroku_vocabulary:Direct_Psql_Access , heroku_vocabulary:Production_Database , heroku_vocabulary:PostgreSQL , heroku_vocabulary:Continuos_Protection , heroku_vocabulary:Configuration_Strings ;
       gr:quantitativeProductOrServiceProperty
-              :resource_Heroku_Database_Disk_Storage , :resource_Heroku_Fugu_Cache .
+              :resource_Heroku_Database_Disk_Storage , :resource_Heroku_Fugu_Cache ;
+      usdl-core:hasClassification
+              CloudTaxonomy:PaaS ;
+      usdl-core:hasProvider
+              :provider_Heroku .
 
 :Service_Heroku_Ika_Databases
       rdf:type usdl-core:Service ;
@@ -560,7 +578,11 @@
       gr:qualitativeProductOrServiceProperty
               heroku_vocabulary:Data_Clips , heroku_vocabulary:Fork , heroku_vocabulary:Direct_Psql_Access , heroku_vocabulary:Configuration_Strings , heroku_vocabulary:Follow , heroku_vocabulary:Automatic_Health_Checks , heroku_vocabulary:Production_Database , heroku_vocabulary:PostgreSQL , heroku_vocabulary:Continuos_Protection , heroku_vocabulary:Multi_Ingress ;
       gr:quantitativeProductOrServiceProperty
-              :resource_Heroku_Ika_Cache , :resource_Heroku_Database_Disk_Storage .
+              :resource_Heroku_Ika_Cache , :resource_Heroku_Database_Disk_Storage ;
+      usdl-core:hasClassification
+              CloudTaxonomy:PaaS ;
+      usdl-core:hasProvider
+              :provider_Heroku .
 
 :Service_Heroku_Kappa_Databases
       rdf:type usdl-core:Service ;
@@ -569,7 +591,11 @@
       gr:qualitativeProductOrServiceProperty
               heroku_vocabulary:Automatic_Health_Checks , heroku_vocabulary:PostgreSQL , heroku_vocabulary:Direct_Psql_Access , heroku_vocabulary:Fork , heroku_vocabulary:Data_Clips , heroku_vocabulary:Configuration_Strings , heroku_vocabulary:Multi_Ingress , heroku_vocabulary:Production_Database , heroku_vocabulary:Continuos_Protection , heroku_vocabulary:Follow ;
       gr:quantitativeProductOrServiceProperty
-              :resource_Heroku_Kappa_Cache , :resource_Heroku_Database_Disk_Storage .
+              :resource_Heroku_Kappa_Cache , :resource_Heroku_Database_Disk_Storage ;
+      usdl-core:hasClassification
+              CloudTaxonomy:PaaS ;
+      usdl-core:hasProvider
+              :provider_Heroku .
 
 :Service_Heroku_Mecha_Databases
       rdf:type usdl-core:Service ;
@@ -578,7 +604,11 @@
       gr:qualitativeProductOrServiceProperty
               heroku_vocabulary:Configuration_Strings , heroku_vocabulary:Automatic_Health_Checks , heroku_vocabulary:Multi_Ingress , heroku_vocabulary:Direct_Psql_Access , heroku_vocabulary:Follow , heroku_vocabulary:Data_Clips , heroku_vocabulary:PostgreSQL , heroku_vocabulary:Continuos_Protection , heroku_vocabulary:Fork , heroku_vocabulary:Production_Database ;
       gr:quantitativeProductOrServiceProperty
-              :resource_Heroku_Mecha_Cache , :resource_Heroku_Database_Disk_Storage .
+              :resource_Heroku_Mecha_Cache , :resource_Heroku_Database_Disk_Storage ;
+      usdl-core:hasClassification
+              CloudTaxonomy:PaaS ;
+      usdl-core:hasProvider
+              :provider_Heroku .
 
 :Service_Heroku_Ronin_Databases
       rdf:type usdl-core:Service ;
@@ -587,7 +617,11 @@
       gr:qualitativeProductOrServiceProperty
               heroku_vocabulary:Data_Clips , heroku_vocabulary:Continuos_Protection , heroku_vocabulary:Production_Database , heroku_vocabulary:Configuration_Strings , heroku_vocabulary:Fork , heroku_vocabulary:PostgreSQL , heroku_vocabulary:Automatic_Health_Checks , heroku_vocabulary:Direct_Psql_Access , heroku_vocabulary:Follow , heroku_vocabulary:Multi_Ingress ;
       gr:quantitativeProductOrServiceProperty
-              :resource_Heroku_Database_Disk_Storage , :resource_Heroku_Ronin_Cache .
+              :resource_Heroku_Database_Disk_Storage , :resource_Heroku_Ronin_Cache ;
+      usdl-core:hasClassification
+              CloudTaxonomy:PaaS ;
+      usdl-core:hasProvider
+              :provider_Heroku .
 
 :Service_Heroku_Zilla_Databases
       rdf:type usdl-core:Service ;
@@ -596,7 +630,11 @@
       gr:qualitativeProductOrServiceProperty
               heroku_vocabulary:Fork , heroku_vocabulary:Follow , heroku_vocabulary:PostgreSQL , heroku_vocabulary:Automatic_Health_Checks , heroku_vocabulary:Multi_Ingress , heroku_vocabulary:Production_Database , heroku_vocabulary:Direct_Psql_Access , heroku_vocabulary:Data_Clips , heroku_vocabulary:Continuos_Protection , heroku_vocabulary:Configuration_Strings ;
       gr:quantitativeProductOrServiceProperty
-              :resource_Heroku_Database_Disk_Storage , :resource_Heroku_Zilla_Cache .
+              :resource_Heroku_Database_Disk_Storage , :resource_Heroku_Zilla_Cache ;
+      usdl-core:hasClassification
+              CloudTaxonomy:PaaS ;
+      usdl-core:hasProvider
+              :provider_Heroku .
 
 :Variable_Dyno_Hour_Cost
       rdf:type usdl-price:Constant ;
@@ -630,55 +668,55 @@
       foaf:name "Heroku Inc" .
 
 :resource_Heroku_Baku_Cache
-      rdf:type heroku_vocabulary:Cache ;
+      rdf:type CloudTaxonomy:CacheSize ;
       gr:hasUnitOfMeasurement
               "E34"^^xsd:string ;
       gr:hasValueFloat "34"^^xsd:float .
 
 :resource_Heroku_Crane_Cache
-      rdf:type heroku_vocabulary:Cache ;
+      rdf:type CloudTaxonomy:CacheSize ;
       gr:hasUnitOfMeasurement
               "4L"^^xsd:string ;
       gr:hasValueFloat "400"^^xsd:float .
 
 :resource_Heroku_Database_Disk_Storage
-      rdf:type heroku_vocabulary:Disk_Storage ;
+      rdf:type CloudTaxonomy:StorageCapacity ;
       gr:hasUnitOfMeasurement
               "E35"^^xsd:string ;
       gr:hasValueFloat "1"^^xsd:float .
 
 :resource_Heroku_Fugu_Cache
-      rdf:type heroku_vocabulary:Cache ;
+      rdf:type CloudTaxonomy:CacheSize ;
       gr:hasUnitOfMeasurement
               "E34"^^xsd:string ;
       gr:hasValueFloat "3.75"^^xsd:float .
 
 :resource_Heroku_Ika_Cache
-      rdf:type heroku_vocabulary:Cache ;
+      rdf:type CloudTaxonomy:CacheSize ;
       gr:hasUnitOfMeasurement
               "E34"^^xsd:string ;
       gr:hasValueFloat "7.5"^^xsd:float .
 
 :resource_Heroku_Kappa_Cache
-      rdf:type heroku_vocabulary:Cache ;
+      rdf:type CloudTaxonomy:CacheSize ;
       gr:hasUnitOfMeasurement
               "4L"^^xsd:string ;
       gr:hasValueFloat "800"^^xsd:float .
 
 :resource_Heroku_Mecha_Cache
-      rdf:type heroku_vocabulary:Cache ;
+      rdf:type CloudTaxonomy:CacheSize ;
       gr:hasUnitOfMeasurement
               "E34"^^xsd:string ;
       gr:hasValueFloat "68"^^xsd:float .
 
 :resource_Heroku_Ronin_Cache
-      rdf:type heroku_vocabulary:Cache ;
+      rdf:type CloudTaxonomy:CacheSize ;
       gr:hasUnitOfMeasurement
               "E34"^^xsd:string ;
       gr:hasValueFloat "1.7"^^xsd:float .
 
 :resource_Heroku_Zilla_Cache
-      rdf:type heroku_vocabulary:Cache ;
+      rdf:type CloudTaxonomy:CacheSize ;
       gr:hasUnitOfMeasurement
               "E34"^^xsd:string ;
       gr:hasValueFloat "17"^^xsd:float .

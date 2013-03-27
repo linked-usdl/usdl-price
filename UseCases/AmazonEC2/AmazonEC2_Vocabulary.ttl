@@ -1,468 +1,411 @@
-@base <http://rdfs.genssiz.org/Vocabulary_EC2> .
-@prefix : <http://rdfs.genssiz.org/Vocabulary_EC2#> .
+# baseURI: http://rdfs.genssiz.org/Vocabulary_EC2
+# imports: http://rdfs.genssiz.org/CloudTaxonomy
 
+@prefix :        <http://rdfs.genssiz.org/Vocabulary_EC2#> .
+@prefix CloudTaxonomy:  <http://rdfs.genssiz.org/CloudTaxonomy#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
 @prefix gr:      <http://purl.org/goodrelations/v1#> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
 @prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix sp:      <http://spinrdf.org/sp#> .
 @prefix spin:    <http://spinrdf.org/spin#> .
 @prefix spl:     <http://spinrdf.org/spl#> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 
+<http://rdfs.genssiz.org/Vocabulary_EC2>
+      rdf:type owl:Ontology ;
+      owl:imports <http://rdfs.genssiz.org/CloudTaxonomy> ;
+      dcterms:contributor
+              [ a       foaf:Person ;
+                foaf:firstName "Jorge" ;
+                foaf:lastName "Araújo" ;
+                foaf:name "Jorge Araújo"
+              ] ;
+      dcterms:created "2013-03-05"^^xsd:date ;
+      dcterms:description "Amazon EC2 vocabulary" ;
+      dcterms:modified "2013-03-27"^^xsd:date ;
+      dcterms:title "Amazon EC2 Vocavulary" .
 
-:Amazon_Concepts a rdfs:Class, skos:ConceptScheme ; 
-      skos:prefLabel "General service resource/property vocabulary for Amazon EC2 services"@en ;
-      skos:altLabel "General vocabulary"@en ;
-      skos:definition "Specification of the vocabulary for Amazon EC2 cloud services." ;
-      dcterms:contributor [ a foaf:Person ;
-                foaf:name "Jorge Araújo" ;
-                  foaf:firstName "Jorge" ;
-                  foaf:lastName "Araújo" ] ;
+:AWS_Marketplace
+      rdf:type CloudTaxonomy:Feature , skos:Concept , rdfs:Class ;
+      rdfs:comment "AWS Marketplace is an online store that helps you find, buy and quickly deploy software that runs on AWS. You can use AWS Marketplace’s 1-Click deployment to quickly launch pre-configured software and be charged for what you use, by the hour or month." ;
+      rdfs:label "AWS Marketplace"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :General_Features .
+
+:Amazon_CloudWatch
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:comment "Amazon CloudWatch is a web service that provides monitoring for AWS cloud resources and applications, starting with Amazon EC2. It provides you with visibility into resource utilization, operational performance, and overall demand patterns—including metrics such as CPU utilization, disk reads and writes, and network traffic. You can get statistics, view graphs, and set alarms for your metric data. To use Amazon CloudWatch, simply select the Amazon EC2 instances that you’d like to monitor. You can also supply your own business or application metric data. Amazon CloudWatch will begin aggregating and storing monitoring data that can be accessed using web service APIs or Command Line Tools." ;
+      rdfs:label "Amazon CloudWatch"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :General_Features .
+
+:Amazon_Concepts
+      rdf:type skos:ConceptScheme , rdfs:Class ;
+      dcterms:contributor
+              [ rdf:type foaf:Person ;
+                foaf:firstName "Jorge" ;
+                foaf:lastName "Araújo" ;
+                foaf:name "Jorge Araújo"
+              ] ;
       dcterms:created "2013-02-18"^^xsd:date ;
       dcterms:modified "2013-02-11"^^xsd:date ;
       owl:versionInfo "001" ;
-      skos:topConceptOf
-            :OS ,
-            :Region ,
-            :IOPerformance ,
-            :Metrics ,
-            :General_Features ,
-            :General_Concepts .
-
-
-#____________________________________________________________________________________ 
-
-:OS
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Types of Operating Systems"^^xsd:string ;
-      skos:broader :Amazon_Concepts ;
-      skos:narrower
-             :Windows ,
-             :Linux .
-
-:Windows
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Windows OS"^^xsd:string ;
-      skos:broader :OS  .
-
-:Linux
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Linux OS"^^xsd:string ;
-      skos:broader :OS  .
-
-#____________________________________________________________________________________ 
-
-:Region
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Regions for Amazon Service"^^xsd:string ;
-      skos:broader :Amazon_Concepts ;
-      skos:narrower
-             :US_East_Northern_Virginia ,
-             :US_West_Oregon ,
-             :US_West_Northern_California ,
-             :EU_Ireland ,
-             :Asia_Pacific_Singapore ,
-             :Asia_Pacific_Tokyo ,
-             :Asia_Pacific_Sydney ,
-             :South_America_Sao_Paulo .
-
-:US_East_Northern_Virginia
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "US East (Northern Virginia) Region"^^xsd:string ;
-      skos:broader :Region  .
-
-:US_West_Oregon
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "US West (Oregon) Region"^^xsd:string ;
-      skos:broader :Region  .
-
-:US_West_Northern_California
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "US West (Northern California) Region"^^xsd:string ;
-      skos:broader :Region  .
-
-:EU_Ireland
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "EU (Ireland) Region"^^xsd:string ;
-      skos:broader :Region  .
-
-:Asia_Pacific_Singapore
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Asia Pacific (Singapore) Region"^^xsd:string ;
-      skos:broader :Region  .
-
-:Asia_Pacific_Tokyo
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Asia Pacific (Tokyo) Region"^^xsd:string ;
-      skos:broader :Region  .
-
-:Asia_Pacific_Sydney
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Asia Pacific (Sydney) Region"^^xsd:string ;
-      skos:broader :Region  .
-
-:South_America_Sao_Paulo
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "South America (Sao Paulo) Region"^^xsd:string ;
-      skos:broader :Region  .
-
-
-#____________________________________________________________________________________ 
-
-:IOPerformance a rdfs:Class , skos:Concept ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      skos:prefLabel "I/O performance" ;
-      skos:editorialNote "Amazon declares their I/O statements as qualitative measure in the categories: low, moderate, high and very high." ;
-      skos:broader :Amazon_Concepts ;
-      skos:narrower 
-            :IOPerformance_Low ,
-            :IOPerformance_Moderate ,
-            :IOPerformance_High ,
-            :IOPerformance_VeryHigh .
-
-:IOPerformance_Low a rdfs:Class , skos:Concept ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      skos:prefLabel "I/O performance category low" ;
-      skos:broader :IOPerformance .
-
-:IOPerformance_Moderate a rdfs:Class , skos:Concept ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      skos:prefLabel "I/O performance category moderate" ;
-      skos:broader :IOPerformance .
-
-:IOPerformance_High a rdfs:Class , skos:Concept ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      skos:prefLabel "I/O performance category high" ;
-      skos:broader :IOPerformance .
-
-:IOPerformance_VeryHigh a rdfs:Class , skos:Concept ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      skos:prefLabel "I/O performance category very high" ;
-      skos:broader :IOPerformance .
-
-
-
-#____________________________________________________________________________________ 
-
-:Metrics
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Metrics for measuring instances capacity"^^xsd:string ;
-      skos:broader :Amazon_Concepts ;
-      skos:narrower
-             :Main_Memory ,
-             :Local_Storage ,
-             :Platform_32bit ,
-             :Platform_64bit ,
-             :EC2_Compute_Unit ,
-             :Cores ,
-             :EBS_Storage ,
-             :Ethernet ,
-             :NVIDIA_Tesla_Fermi_M2050_GPU ,
-             :SSD-based_Storage ,             
-             :Hard_Disk ,
-             :I-Os ,
-             :GB_Data_Processed_Load_Balancer ,
-             :Snapshot_Storage ,
-             :Bandwith_OUT ,
-             :Regional_Data_transfer ,
-             :IOPS .
-
-:Main_Memory
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Local Storage"^^xsd:string ;
-      skos:broader :Metrics  .
-
-:Local_Storage
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Main memory instance"^^xsd:string ;
-      skos:broader :Metrics  .
-
-:Platform_32bit
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "32bit Platform"^^xsd:string ;
-      skos:broader :Metrics  .
-
-:Platform_64bit
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "64bit Platform"^^xsd:string ;
-      skos:broader :Metrics  .
-
-:EC2_Compute_Unit
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "EC2 Compute Unit"^^xsd:string ;
-      skos:broader :Metrics  .
-
-:Cores
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Number of cores"^^xsd:string ;
-      skos:broader :Metrics  .
-
-:EBS_Storage
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "EBS Storage"^^xsd:string ;
-      skos:broader :Metrics  .
-
-:Ethernet
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Ethernet"^^xsd:string ;
-      skos:broader :Metrics  .
-
-:NVIDIA_Tesla_Fermi_M2050_GPU
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "NVIDIA Tesla Fermi M2050 GPU"^^xsd:string ;
-      skos:broader :Metrics  .
-
-:SSD-based_Storage
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "SSD-based Storage"^^xsd:string ;
-      skos:broader :Metrics  .
-
-:Hard_Disk
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Hard Disk"^^xsd:string ;
-      skos:broader :Metrics  .
-
-:I-Os
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Input/Output operations"^^xsd:string ;
-      skos:broader :Metrics  .
-
-:GB_Data_Processed_Load_Balancer
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "GB of data processed by load balancer"^^xsd:string ;
-      skos:broader :Metrics  .
-
-:Snapshot_Storage
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Snapshot storage"^^xsd:string ;
-      skos:broader :Metrics  .
-
-:Bandwith_OUT
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Bandwith OUT"^^xsd:string ;
-      skos:broader :Metrics  .
-
-:Regional_Data_transfer
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Regional Data transfer"^^xsd:string ;
-      skos:broader :Metrics  .
-      
-:IOPS
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Input Output Operations per Second"^^xsd:string ;
-      skos:broader :Metrics  .    
-
-#____________________________________________________________________________________ 
-
-:General_Features
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "general concepts for the Amazon EC2 service"^^xsd:string ;
-      skos:broader :Amazon_Concepts ;
-      skos:narrower
-             :Amazon_Elastic_Block_Store ,
-             :Elastic_IP_Address ,
-             :Amazon_Virtual_Private_Cloud ,
-             :Amazon_CloudWatch ,
-             :Elastic_Load_Balancing ,
-             :High_Performance_Computing_Clusters ,
-             :VM_Import_Export ,
-             :AWS_Marketplace ,
-             :Web-Service_APIs ,
-             :Fully_Controllable_Instances ,
-             :Integration_with_other_Amazon_Services ,
-             :Configurable_FireWall_Setting ,
-             :On_Demmand_Instances ,         
-             :Automatic_Scalling ,
-             :Basic_Monitoring .
+      skos:altLabel "General vocabulary"@en ;
+      skos:definition "Specification of the vocabulary for Amazon EC2 cloud services." ;
+      skos:prefLabel "General service resource/property vocabulary for Amazon EC2 services"@en ;
+      skos:topConceptOf :Region , :OS , :Metrics , :IOPerformance , :General_Features , :General_Concepts .
 
 :Amazon_Elastic_Block_Store
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Amazon Elastic Block Store"^^xsd:string ;
+      rdf:type skos:Concept , rdfs:Class ;
       rdfs:comment "Amazon Elastic Block Store (EBS) offers persistent storage for Amazon EC2 instances. Amazon EBS volumes are network-attached, and persist independently from the life of an instance. Amazon EBS volumes are highly available, highly reliable volumes that can be leveraged as an Amazon EC2 instance’s boot partition or attached to a running Amazon EC2 instance as a standard block device. When used as a boot partition, Amazon EC2 instances can be stopped and subsequently restarted, enabling you to only pay for the storage resources used while maintaining your instance’s state. Amazon EBS volumes offer greatly improved durability over local Amazon EC2 instance stores, as Amazon EBS volumes are automatically replicated on the backend (in a single Availability Zone). For those wanting even more durability, Amazon EBS provides the ability to create point-in-time consistent snapshots of your volumes that are then stored in Amazon S3, and automatically replicated across multiple Availability Zones. These snapshots can be used as the starting point for new Amazon EBS volumes, and can protect your data for long term durability. You can also easily share these snapshots with co-workers and other AWS developers. Amazon EBS provides two volume types: Standard volumes and Provisioned IOPS volumes. Standard volumes offer cost effective storage that is ideal for applications with moderate or bursty I/O requirements. Provisioned IOPS volumes are designed to deliver predictable, high performance for I/O intensive applications such as databases." ;
-      skos:broader :General_Features  .
-
-:Elastic_IP_Address
-      rdf:type rdfs:Class, skos:Concept  ;
+      rdfs:label "Amazon Elastic Block Store"^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Elastic IP Address"^^xsd:string ;
-      rdfs:comment "Elastic IP addresses are static IP addresses designed for dynamic cloud computing. An Elastic IP address is associated with your account not a particular instance, and you control that address until you choose to explicitly release it. Unlike traditional static IP addresses, however, Elastic IP addresses allow you to mask instance or Availability Zone failures by programmatically remapping your public IP addresses to any instance in your account. Rather than waiting on a data technician to reconfigure or replace your host, or waiting for DNS to propagate to all of your customers, Amazon EC2 enables you to engineer around problems with your instance or software by quickly remapping your Elastic IP address to a replacement instance." ;
-      skos:broader :General_Features  .
-
-:Amazon_Virtual_Private_Cloud
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Amazon Virtual Private Cloud"^^xsd:string ;
-      rdfs:Comment "Amazon VPC is a secure and seamless bridge between a company’s existing IT infrastructure and the AWS cloud. Amazon VPC enables enterprises to connect their existing infrastructure to a set of isolated AWS compute resources via a Virtual Private Network (VPN) connection, and to extend their existing management capabilities such as security services, firewalls, and intrusion detection systems to include their AWS resources." ;
-      skos:broader :General_Features  .
-
-:Amazon_CloudWatch
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Amazon CloudWatch"^^xsd:string ;
-      rdfs:comment "Amazon CloudWatch is a web service that provides monitoring for AWS cloud resources and applications, starting with Amazon EC2. It provides you with visibility into resource utilization, operational performance, and overall demand patterns—including metrics such as CPU utilization, disk reads and writes, and network traffic. You can get statistics, view graphs, and set alarms for your metric data. To use Amazon CloudWatch, simply select the Amazon EC2 instances that you’d like to monitor. You can also supply your own business or application metric data. Amazon CloudWatch will begin aggregating and storing monitoring data that can be accessed using web service APIs or Command Line Tools." ;
-      skos:broader :General_Features  .
-
-:Elastic_Load_Balancing
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Elastic Load Balancing"^^xsd:string ;
-      rdfs:comment "Elastic Load Balancing automatically distributes incoming application traffic across multiple Amazon EC2 instances. It enables you to achieve even greater fault tolerance in your applications, seamlessly providing the amount of load balancing capacity needed in response to incoming application traffic. Elastic Load Balancing detects unhealthy instances within a pool and automatically reroutes traffic to healthy instances until the unhealthy instances have been restored. You can enable Elastic Load Balancing within a single Availability Zone or across multiple zones for even more consistent application performance." ;
-      skos:broader :General_Features  .
-
-:High_Performance_Computing_Clusters
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "High Performance Computing (HPC) Clusters"^^xsd:string ;
-      rdfs:comment "Customers with complex computational workloads such as tightly coupled parallel processes, or with applications sensitive to network performance, can achieve the same high compute and network performance provided by custom-built infrastructure while benefiting from the elasticity, flexibility and cost advantages of Amazon EC2. Cluster Compute, Cluster GPU, and High Memory Cluster instances have been specifically engineered to provide high-performance network capability and can be programmatically launched into clusters – allowing applications to get the low-latency network performance required for tightly coupled, node-to-node communication. Cluster instances also provide significantly increased throughput making them well suited for customer applications that need to perform network-intensive operations." ;
-      skos:broader :General_Features  .
-
-:VM_Import_Export
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "VM Import/Export"^^xsd:string ;
-      rdfs:comment "VM Import/Export enables you to easily import virtual machine images from your existing environment to Amazon EC2 instances and export them back at any time. By importing virtual machines as ready to use EC2 instances, you can leverage your existing investments in virtual machines that meet your IT security, configuration management, and compliance requirements. You can export your previously imported EC2 instances back to your on-premise environment at any time." ;
-      skos:broader :General_Features  .
-
-:AWS_Marketplace
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "AWS Marketplace"^^xsd:string ;
-      rdfs:comment "AWS Marketplace is an online store that helps you find, buy and quickly deploy software that runs on AWS. You can use AWS Marketplace’s 1-Click deployment to quickly launch pre-configured software and be charged for what you use, by the hour or month." ;
-      skos:broader :General_Features  .
-
-:Web-Service_APIs
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Web-Service APIs"^^xsd:string ;
-      skos:broader :General_Features  .
-
-:Fully_Controllable_Instances
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Fully Controllable Instances"^^xsd:string ;
-      skos:broader :General_Features  .
-
-:Integration_with_other_Amazon_Services
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Integration with other Amazon Services"^^xsd:string ;
-      skos:broader :General_Features  .
-
-:Configurable_FireWall_Setting
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Configurable FireWall Setting"^^xsd:string ;
-      skos:broader :General_Features  .
-
-:On_Demmand_Instances
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "On Demmand Instances"^^xsd:string ;
-      skos:broader :General_Features  .
-
-:Automatic_Scalling
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Automatic Scalling"^^xsd:string ;
-      rdfs:comment "Auto Scaling allows you to automatically scale your Amazon EC2 capacity up or down according to conditions you define. With Auto Scaling, you can ensure that the number of Amazon EC2 instances you’re using scales up seamlessly during demand spikes to maintain performance, and scales down automatically during demand lulls to minimize costs. Auto Scaling is particularly well suited for applications that experience hourly, daily, or weekly variability in usage." ;
-      skos:broader :General_Features  .
-
-:Basic_Monitoring
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "basic cloudWatch monitoring each 5 minutes"^^xsd:string ;
-      skos:broader :General_Features  .
-
-#____________________________________________________________________________________ 
-
-:General_Concepts
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "general concepts for the Amazon EC2 service"^^xsd:string ;
-      skos:broader :Amazon_Concepts ;
-      skos:narrower
-      		:Amazon_Machine_Image_AMI ,
-      		:EBS_Optimized_Instance ,
-      		:Availability_Zone .	       
-
+      skos:broader :General_Features .
 
 :Amazon_Machine_Image_AMI
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
+      rdf:type skos:Concept , rdfs:Class ;
       rdfs:label "Amazon Machine Image"^^xsd:string ;
-      skos:broader :General_Concepts  .
-
-:EBS_Optimized_Instance
-      rdf:type rdfs:Class, skos:Concept  ;
       rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "EBS Optimized Instance"^^xsd:string ;
-      rdfs:comment "EBS-Optimized instances enable Amazon EC2 instances to fully utilize the IOPS provisioned on an EBS volume. EBS-Optimized instances deliver dedicated throughput between Amazon EC2 and Amazon EBS, with options between 500 Mbps and 1000 Mbps depending on the instance type used. When attached to EBS-Optimized instances, Provisioned IOPS volumes are designed to deliver within 10% of their provisioned performance 99.9% of the time." ;
-      skos:broader :General_Concepts  .
+      skos:broader :General_Concepts .
+
+:Amazon_Virtual_Private_Cloud
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:Comment "Amazon VPC is a secure and seamless bridge between a company’s existing IT infrastructure and the AWS cloud. Amazon VPC enables enterprises to connect their existing infrastructure to a set of isolated AWS compute resources via a Virtual Private Network (VPN) connection, and to extend their existing management capabilities such as security services, firewalls, and intrusion detection systems to include their AWS resources." ;
+      rdfs:label "Amazon Virtual Private Cloud"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :General_Features .
+
+:Asia_Pacific_Singapore
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "Asia Pacific (Singapore) Region"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Region .
+
+:Asia_Pacific_Sydney
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "Asia Pacific (Sydney) Region"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Region .
+
+:Asia_Pacific_Tokyo
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "Asia Pacific (Tokyo) Region"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Region .
+
+:Automatic_Scalling
+      rdf:type CloudTaxonomy:Scalability , skos:Concept , rdfs:Class ;
+      rdfs:comment "Auto Scaling allows you to automatically scale your Amazon EC2 capacity up or down according to conditions you define. With Auto Scaling, you can ensure that the number of Amazon EC2 instances you’re using scales up seamlessly during demand spikes to maintain performance, and scales down automatically during demand lulls to minimize costs. Auto Scaling is particularly well suited for applications that experience hourly, daily, or weekly variability in usage." ;
+      rdfs:label "Automatic Scalling"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :General_Features .
 
 :Availability_Zone
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      rdfs:label "Availability Zone"^^xsd:string ;
+      rdf:type skos:Concept , rdfs:Class ;
       rdfs:comment "Availability Zones are distinct locations that are engineered to be insulated from failures in other Availability Zones and provide inexpensive, low latency network connectivity to other Availability Zones in the same Region. By launching instances in separate Availability Zones, you can protect your applications from failure of a single location" ;
-      skos:broader :General_Concepts  .
+      rdfs:label "Availability Zone"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :General_Concepts .
 
-#____________________________________________________________________________________ 
+:Bandwith_OUT
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "Bandwith OUT"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Metrics .
+
+:Basic_Monitoring
+      rdf:type CloudTaxonomy:Monitoring , skos:Concept , rdfs:Class ;
+      rdfs:label "basic cloudWatch monitoring each 5 minutes"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :General_Features .
+
+:Configurable_FireWall_Setting
+      rdf:type CloudTaxonomy:Firewall , skos:Concept , rdfs:Class ;
+      rdfs:label "Configurable FireWall Setting"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :General_Features .
+
+:Cores
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "Number of cores"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Metrics .
 
 :Dedicated_Instances
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
+      rdf:type skos:Concept , rdfs:Class ;
       rdfs:label "Dedicated Instances"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
       skos:broader :Amazon_Concepts .
 
-#____________________________________________________________________________________ 
+:EBS_Optimized_Instance
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:comment "EBS-Optimized instances enable Amazon EC2 instances to fully utilize the IOPS provisioned on an EBS volume. EBS-Optimized instances deliver dedicated throughput between Amazon EC2 and Amazon EBS, with options between 500 Mbps and 1000 Mbps depending on the instance type used. When attached to EBS-Optimized instances, Provisioned IOPS volumes are designed to deliver within 10% of their provisioned performance 99.9% of the time." ;
+      rdfs:label "EBS Optimized Instance"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :General_Concepts .
+
+:EBS_Storage
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "EBS Storage"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Metrics .
+
+:EC2_Compute_Unit
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "EC2 Compute Unit"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Metrics .
+
+:EU_Ireland
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "EU (Ireland) Region"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Region .
+
+:Elastic_IP_Address
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:comment "Elastic IP addresses are static IP addresses designed for dynamic cloud computing. An Elastic IP address is associated with your account not a particular instance, and you control that address until you choose to explicitly release it. Unlike traditional static IP addresses, however, Elastic IP addresses allow you to mask instance or Availability Zone failures by programmatically remapping your public IP addresses to any instance in your account. Rather than waiting on a data technician to reconfigure or replace your host, or waiting for DNS to propagate to all of your customers, Amazon EC2 enables you to engineer around problems with your instance or software by quickly remapping your Elastic IP address to a replacement instance." ;
+      rdfs:label "Elastic IP Address"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :General_Features .
+
+:Elastic_Load_Balancing
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:comment "Elastic Load Balancing automatically distributes incoming application traffic across multiple Amazon EC2 instances. It enables you to achieve even greater fault tolerance in your applications, seamlessly providing the amount of load balancing capacity needed in response to incoming application traffic. Elastic Load Balancing detects unhealthy instances within a pool and automatically reroutes traffic to healthy instances until the unhealthy instances have been restored. You can enable Elastic Load Balancing within a single Availability Zone or across multiple zones for even more consistent application performance." ;
+      rdfs:label "Elastic Load Balancing"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :General_Features .
+
+:Ethernet
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "Ethernet"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Metrics .
+
+:Fully_Controllable_Instances
+      rdf:type CloudTaxonomy:Feature , skos:Concept , rdfs:Class ;
+      rdfs:label "Fully Controllable Instances"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :General_Features .
+
+:GB_Data_Processed_Load_Balancer
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "GB of data processed by load balancer"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Metrics .
+
+:General_Concepts
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "general concepts for the Amazon EC2 service"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Amazon_Concepts ;
+      skos:narrower :Availability_Zone , :EBS_Optimized_Instance , :Amazon_Machine_Image_AMI .
+
+:General_Features
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "general concepts for the Amazon EC2 service"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Amazon_Concepts ;
+      skos:narrower :On_Demmand_Instances , :Integration_with_other_Amazon_Services , :Elastic_IP_Address , :Amazon_CloudWatch , :AWS_Marketplace , :Elastic_Load_Balancing , :Web-Service_APIs , :Amazon_Virtual_Private_Cloud , :Basic_Monitoring , :Configurable_FireWall_Setting , :Amazon_Elastic_Block_Store , :VM_Import_Export , :High_Performance_Computing_Clusters , :Automatic_Scalling , :Fully_Controllable_Instances .
+
+:Hard_Disk
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "Hard Disk"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Metrics .
+
+:High_Performance_Computing_Clusters
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:comment "Customers with complex computational workloads such as tightly coupled parallel processes, or with applications sensitive to network performance, can achieve the same high compute and network performance provided by custom-built infrastructure while benefiting from the elasticity, flexibility and cost advantages of Amazon EC2. Cluster Compute, Cluster GPU, and High Memory Cluster instances have been specifically engineered to provide high-performance network capability and can be programmatically launched into clusters – allowing applications to get the low-latency network performance required for tightly coupled, node-to-node communication. Cluster instances also provide significantly increased throughput making them well suited for customer applications that need to perform network-intensive operations." ;
+      rdfs:label "High Performance Computing (HPC) Clusters"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :General_Features .
+
+:I-Os
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "Input/Output operations"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Metrics .
+
+:IOPS
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "Input Output Operations per Second"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Metrics .
+
+:IOPerformance
+      rdf:type rdfs:Class , skos:Concept ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Amazon_Concepts ;
+      skos:editorialNote "Amazon declares their I/O statements as qualitative measure in the categories: low, moderate, high and very high." ;
+      skos:narrower :IOPerformance_Low , :IOPerformance_High , :IOPerformance_VeryHigh , :IOPerformance_Moderate ;
+      skos:prefLabel "I/O performance" .
+
+:IOPerformance_High
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :IOPerformance ;
+      skos:prefLabel "I/O performance category high" .
+
+:IOPerformance_Low
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :IOPerformance ;
+      skos:prefLabel "I/O performance category low" .
+
+:IOPerformance_Moderate
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :IOPerformance ;
+      skos:prefLabel "I/O performance category moderate" .
+
+:IOPerformance_VeryHigh
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :IOPerformance ;
+      skos:prefLabel "I/O performance category very high" .
+
+:Integration_with_other_Amazon_Services
+      rdf:type CloudTaxonomy:Feature , skos:Concept , rdfs:Class ;
+      rdfs:label "Integration with other Amazon Services"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :General_Features .
+
+:Linux
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "Linux OS"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :OS .
+
+:Local_Storage
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "Main memory instance"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Metrics .
+
+:Main_Memory
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "Local Storage"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Metrics .
+
+:Metrics
+      rdf:type rdfs:Class , skos:Concept ;
+      rdfs:label "Metrics for measuring instances capacity"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Amazon_Concepts ;
+      skos:narrower :SSD-based_Storage , :Local_Storage , :GB_Data_Processed_Load_Balancer , :Main_Memory , :Regional_Data_transfer , :Snapshot_Storage , :NVIDIA_Tesla_Fermi_M2050_GPU , :Hard_Disk , :Platform_64bit , :Ethernet , :Cores , :Platform_32bit , :I-Os , :Bandwith_OUT , :IOPS , :EC2_Compute_Unit , :EBS_Storage .
+
+:NVIDIA_Tesla_Fermi_M2050_GPU
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "NVIDIA Tesla Fermi M2050 GPU"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Metrics .
+
+:OS   rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "Types of Operating Systems"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Amazon_Concepts ;
+      skos:narrower :Linux , :Windows .
+
+:On_Demmand_Instances
+      rdf:type CloudTaxonomy:ComputingInstance , skos:Concept , rdfs:Class ;
+      rdfs:label "On Demmand Instances"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :General_Features .
+
+:Platform_32bit
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "32bit Platform"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Metrics .
+
+:Platform_64bit
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "64bit Platform"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Metrics .
+
+:Region
+      rdf:type rdfs:Class , skos:Concept ;
+      rdfs:label "Regions for Amazon Service"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Amazon_Concepts ;
+      skos:narrower :Asia_Pacific_Sydney , :Asia_Pacific_Singapore , :EU_Ireland , :Asia_Pacific_Tokyo , :US_West_Oregon , :US_West_Northern_California , :US_East_Northern_Virginia , :South_America_Sao_Paulo .
+
+:Regional_Data_transfer
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "Regional Data transfer"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Metrics .
 
 :Reserved_Instances
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
+      rdf:type skos:Concept , rdfs:Class ;
       rdfs:label "Reserved Instances"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
       skos:broader :Amazon_Concepts .
 
+:SSD-based_Storage
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "SSD-based Storage"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Metrics .
 
-#____________________________________________________________________________________ 
+:Snapshot_Storage
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "Snapshot storage"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Metrics .
+
+:South_America_Sao_Paulo
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "South America (Sao Paulo) Region"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Region .
 
 :Spot_Instances
-      rdf:type rdfs:Class, skos:Concept  ;
-      rdfs:subClassOf gr:QualitativeValue ;
+      rdf:type skos:Concept , rdfs:Class ;
       rdfs:label "Spot Instances"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
       skos:broader :Amazon_Concepts .
+
+:US_East_Northern_Virginia
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "US East (Northern Virginia) Region"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Region .
+
+:US_West_Northern_California
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "US West (Northern California) Region"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Region .
+
+:US_West_Oregon
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "US West (Oregon) Region"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :Region .
+
+:VM_Import_Export
+      rdf:type CloudTaxonomy:Feature , skos:Concept , rdfs:Class ;
+      rdfs:comment "VM Import/Export enables you to easily import virtual machine images from your existing environment to Amazon EC2 instances and export them back at any time. By importing virtual machines as ready to use EC2 instances, you can leverage your existing investments in virtual machines that meet your IT security, configuration management, and compliance requirements. You can export your previously imported EC2 instances back to your on-premise environment at any time." ;
+      rdfs:label "VM Import/Export"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :General_Features .
+
+:Web-Service_APIs
+      rdf:type CloudTaxonomy:API , skos:Concept , rdfs:Class ;
+      rdfs:label "Web-Service APIs"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :General_Features .
+
+:Windows
+      rdf:type skos:Concept , rdfs:Class ;
+      rdfs:label "Windows OS"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      skos:broader :OS .

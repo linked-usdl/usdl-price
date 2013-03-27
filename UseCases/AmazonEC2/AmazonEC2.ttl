@@ -1,11 +1,12 @@
-# baseURI: http://rdfs.genssiz.org/Amazon_EC2_v2
+# baseURI: http://rdfs.genssiz.org/Amazon_EC2_v3
 # imports: file:///HerokuPricing/GoodRelations_v1.owl
 # imports: http://rdfs.genssiz.org/Vocabulary_EC2
 # imports: http://spinrdf.org/spin
 # imports: http://www.linked-usdl.org/ns/usdl-core
 # imports: http://www.linked-usdl.org/ns/usdl-price
 
-@prefix :        <http://rdfs.genssiz.org/Amazon_EC2_v2#> .
+@prefix :        <http://rdfs.genssiz.org/Amazon_EC2_v3#> .
+@prefix CloudTaxonomy:  <http://rdfs.genssiz.org/CloudTaxonomy#> .
 @prefix Vocabulary_EC2:  <http://rdfs.genssiz.org/Vocabulary_EC2#> .
 @prefix blueprint:  <http://bizweb.sap.com/TR/blueprint#> .
 @prefix core:    <http://www.linked-usdl.org/ns/usdl-core#> .
@@ -37,7 +38,7 @@
 @prefix wl:      <http://www.wsmo.org/ns/wsmo-lite#> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 
-<http://rdfs.genssiz.org/Amazon_EC2_v2>
+<http://rdfs.genssiz.org/Amazon_EC2_v3>
       rdf:type owl:Ontology ;
       rdfs:label "Amazon EC2 service descriptions" ;
       dcterms:contributor
@@ -48,9 +49,9 @@
               ] ;
       dcterms:created "2013-03-05"^^xsd:date ;
       dcterms:description "Amazon EC2 description example" ;
-      dcterms:modified "2013-03-05"^^xsd:date ;
+      dcterms:modified "2013-03-27"^^xsd:date ;
       dcterms:title "Amazon EC2 description example" ;
-      owl:imports <http://www.linked-usdl.org/ns/usdl-price> , <http://spinrdf.org/spin> , <http://www.linked-usdl.org/ns/usdl-core> , <http://rdfs.genssiz.org/Vocabulary_EC2> , <file:///HerokuPricing/GoodRelations_v1.owl> .
+      owl:imports <http://rdfs.genssiz.org/Vocabulary_EC2> , <http://www.linked-usdl.org/ns/usdl-core> , <file:///HerokuPricing/GoodRelations_v1.owl> , <http://spinrdf.org/spin> , <http://www.linked-usdl.org/ns/usdl-price> .
 
 :Function_Data_Transfer_IN
       rdf:type spin:Function ;
@@ -465,7 +466,7 @@
                                     ]
                           ])
               ] ;
-      price:hasVariable :Variable_Next_100TB , :Variable_OUT_GB_Transferred , :Variable_Next_40TB , :Variable_Next_350TB , :Variable_UP_to_10TB .
+      price:hasVariable :Variable_UP_to_10TB , :Variable_Next_350TB , :Variable_Next_40TB , :Variable_OUT_GB_Transferred , :Variable_Next_100TB .
 
 :Function_Data_Transfer_Out_To_Amazon
       rdf:type spin:Function ;
@@ -543,7 +544,7 @@
                                     ]
                           ])
               ] ;
-      price:hasVariable :Variable_OUT_GB_Transfered_to_Public_ElasticIP_Same_Region , :Variable_Out_GB_Price2 , :Variable_Out_GB_Price1 , :Variable_OUT_GB_Transfered_to_Different_Region .
+      price:hasVariable :Variable_OUT_GB_Transfered_to_Public_ElasticIP_Same_Region , :Variable_OUT_GB_Transfered_to_Different_Region , :Variable_Out_GB_Price1 , :Variable_Out_GB_Price2 .
 
 :Function_EC2_Small_EU_OnDemand_Linux
       rdf:type spin:Function ;
@@ -635,7 +636,7 @@
                                     ]
                           ])
               ] ;
-      price:hasVariable :Variable_EC2_Small_EU_OnDemand_Windows_Price , :Variable_EC2_Small_EU_OnDemand_Windows_Used_Hours .
+      price:hasVariable :Variable_EC2_Small_EU_OnDemand_Windows_Used_Hours , :Variable_EC2_Small_EU_OnDemand_Windows_Price .
 
 :Function_EC2_Small_EU_Reserved_Heavy_1Yr_Linux
       rdf:type spin:Function ;
@@ -697,7 +698,7 @@
                                     ]
                           ])
               ] ;
-      price:hasVariable :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Linux_Used_Hours , :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Linux_Price , :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Upfront .
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Linux_Price , :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Upfront , :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Linux_Used_Hours .
 
 :Function_EC2_Small_EU_Reserved_Heavy_1Yr_Windows
       rdf:type spin:Function ;
@@ -759,7 +760,7 @@
                                     ]
                           ])
               ] ;
-      price:hasVariable :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Windows_Price , :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Upfront , :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Windows_Used_Hours .
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Upfront , :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Windows_Price , :Variable_EC2_Small_EU_Reserved_Heavy_1Yr_Windows_Used_Hours .
 
 :Function_EC2_Small_EU_Reserved_Heavy_3Yr_Linux
       rdf:type spin:Function ;
@@ -821,7 +822,7 @@
                                     ]
                           ])
               ] ;
-      price:hasVariable :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Linux_Price , :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Linux_Used_Hours , :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Upfront .
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Linux_Used_Hours , :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Linux_Price , :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Upfront .
 
 :Function_EC2_Small_EU_Reserved_Heavy_3Yr_Windows
       rdf:type spin:Function ;
@@ -883,7 +884,7 @@
                                     ]
                           ])
               ] ;
-      price:hasVariable :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Windows_Used_Hours , :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Upfront , :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Windows_Price .
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Windows_Used_Hours , :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Windows_Price , :Variable_EC2_Small_EU_Reserved_Heavy_3Yr_Upfront .
 
 :Function_EC2_Small_EU_Reserved_Light_1Yr_Linux
       rdf:type spin:Function ;
@@ -945,7 +946,7 @@
                                     ]
                           ])
               ] ;
-      price:hasVariable :Variable_EC2_Small_EU_Reserved_Light_1Yr_Linux_Used_Hours , :Variable_EC2_Small_EU_Reserved_Light_1Yr_Linux_Price , :Variable_EC2_Small_EU_Reserved_Light_1Yr_Upfront .
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Light_1Yr_Linux_Used_Hours , :Variable_EC2_Small_EU_Reserved_Light_1Yr_Upfront , :Variable_EC2_Small_EU_Reserved_Light_1Yr_Linux_Price .
 
 :Function_EC2_Small_EU_Reserved_Light_1Yr_Windows
       rdf:type spin:Function ;
@@ -1007,7 +1008,7 @@
                                     ]
                           ])
               ] ;
-      price:hasVariable :Variable_EC2_Small_EU_Reserved_Light_1Yr_Windows_Price , :Variable_EC2_Small_EU_Reserved_Light_1Yr_Upfront , :Variable_EC2_Small_EU_Reserved_Light_1Yr_Windows_Used_Hours .
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Light_1Yr_Windows_Used_Hours , :Variable_EC2_Small_EU_Reserved_Light_1Yr_Upfront , :Variable_EC2_Small_EU_Reserved_Light_1Yr_Windows_Price .
 
 :Function_EC2_Small_EU_Reserved_Light_3Yr_Linux
       rdf:type spin:Function ;
@@ -1069,7 +1070,7 @@
                                     ]
                           ])
               ] ;
-      price:hasVariable :Variable_EC2_Small_EU_Reserved_Light_3Yr_Linux_Price , :Variable_EC2_Small_EU_Reserved_Light_3Yr_Linux_Used_Hours , :Variable_EC2_Small_EU_Reserved_Light_3Yr_Upfront .
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Light_3Yr_Linux_Used_Hours , :Variable_EC2_Small_EU_Reserved_Light_3Yr_Upfront , :Variable_EC2_Small_EU_Reserved_Light_3Yr_Linux_Price .
 
 :Function_EC2_Small_EU_Reserved_Light_3Yr_Windows
       rdf:type spin:Function ;
@@ -1193,7 +1194,7 @@
                                     ]
                           ])
               ] ;
-      price:hasVariable :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Linux_Used_Hours , :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Linux_Price , :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Upfront .
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Linux_Price , :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Upfront , :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Linux_Used_Hours .
 
 :Function_EC2_Small_EU_Reserved_Medium_1Yr_Windows
       rdf:type spin:Function ;
@@ -1255,7 +1256,7 @@
                                     ]
                           ])
               ] ;
-      price:hasVariable :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Windows_Price , :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Upfront , :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Windows_Used_Hours .
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Windows_Used_Hours , :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Windows_Price , :Variable_EC2_Small_EU_Reserved_Medium_1Yr_Upfront .
 
 :Function_EC2_Small_EU_Reserved_Medium_3Yr_Linux
       rdf:type spin:Function ;
@@ -1317,7 +1318,7 @@
                                     ]
                           ])
               ] ;
-      price:hasVariable :Variable_EC2_Small_EU_Reserved_Medium_3Yr_Linux_Price , :Variable_EC2_Small_EU_Reserved_Medium_3Yr_Linux_Used_Hours , :Variable_EC2_Small_EU_Reserved_Medium_3Yr_Upfront .
+      price:hasVariable :Variable_EC2_Small_EU_Reserved_Medium_3Yr_Upfront , :Variable_EC2_Small_EU_Reserved_Medium_3Yr_Linux_Used_Hours , :Variable_EC2_Small_EU_Reserved_Medium_3Yr_Linux_Price .
 
 :Function_EC2_Small_EU_Reserved_Medium_3Yr_Windows
       rdf:type spin:Function ;
@@ -1381,10 +1382,6 @@
               ] ;
       price:hasVariable :Variable_EC2_Small_EU_Reserved_Medium_3Yr_Windows_Used_Hours , :Variable_EC2_Small_EU_Reserved_Medium_3Yr_Upfront , :Variable_EC2_Small_EU_Reserved_Medium_3Yr_Windows_Price .
 
-:IaaS
-      rdf:type rdfs:Class , skos:Concept ;
-      dcterms:description "Service model to all IaaS like services" .
-
 :PriceComponent_EC2_Small_EU_OnDemand_Linux_General
       rdf:type price:PriceComponent ;
       rdfs:label "Price component EC2 Small EU Windows On demand General"^^xsd:string ;
@@ -1397,7 +1394,8 @@
       price:hasPriceFuntion
               :Function_EC2_Small_EU_OnDemand_Linux ;
       price:hasTextFuntion
-              "Instance Price * Hours used"^^xsd:string .
+              "Instance Price * Hours used"^^xsd:string ;
+      price:isLinkedTo CloudTaxonomy:Unix , CloudTaxonomy:ComputingInstance .
 
 :PriceComponent_EC2_Small_EU_OnDemand_Windows_General
       rdf:type price:PriceComponent ;
@@ -1411,7 +1409,8 @@
       price:hasPriceFuntion
               :Function_EC2_Small_EU_OnDemand_Windows ;
       price:hasTextFuntion
-              "Instance Price * Hours used"^^xsd:string .
+              "Instance Price * Hours used"^^xsd:string ;
+      price:isLinkedTo CloudTaxonomy:ComputingInstance , CloudTaxonomy:Windows .
 
 :PriceComponent_EC2_Small_EU_Reserved_Heavy_1Yr_Linux_General
       rdf:type price:PriceComponent ;
@@ -1425,7 +1424,8 @@
       price:hasPriceFuntion
               :Function_EC2_Small_EU_Reserved_Heavy_1Yr_Linux ;
       price:hasTextFuntion
-              "(Instance Price * Hours used) + upfront"^^xsd:string .
+              "(Instance Price * Hours used) + upfront"^^xsd:string ;
+      price:isLinkedTo CloudTaxonomy:ComputingInstance , CloudTaxonomy:Unix .
 
 :PriceComponent_EC2_Small_EU_Reserved_Heavy_1Yr_Windows_General
       rdf:type price:PriceComponent ;
@@ -1439,7 +1439,8 @@
       price:hasPriceFuntion
               :Function_EC2_Small_EU_Reserved_Heavy_1Yr_Windows ;
       price:hasTextFuntion
-              "(Instance Price * Hours used) + upfront"^^xsd:string .
+              "(Instance Price * Hours used) + upfront"^^xsd:string ;
+      price:isLinkedTo CloudTaxonomy:ComputingInstance , CloudTaxonomy:Windows .
 
 :PriceComponent_EC2_Small_EU_Reserved_Heavy_3Yr_Linux_General
       rdf:type price:PriceComponent ;
@@ -1453,7 +1454,8 @@
       price:hasPriceFuntion
               :Function_EC2_Small_EU_Reserved_Heavy_3Yr_Linux ;
       price:hasTextFuntion
-              "(Instance Price * Hours used) + upfront"^^xsd:string .
+              "(Instance Price * Hours used) + upfront"^^xsd:string ;
+      price:isLinkedTo CloudTaxonomy:Unix , CloudTaxonomy:ComputingInstance .
 
 :PriceComponent_EC2_Small_EU_Reserved_Heavy_3Yr_Windows_General
       rdf:type price:PriceComponent ;
@@ -1467,7 +1469,8 @@
       price:hasPriceFuntion
               :Function_EC2_Small_EU_Reserved_Heavy_3Yr_Windows ;
       price:hasTextFuntion
-              "(Instance Price * Hours used) + upfront"^^xsd:string .
+              "(Instance Price * Hours used) + upfront"^^xsd:string ;
+      price:isLinkedTo CloudTaxonomy:ComputingInstance , CloudTaxonomy:Windows .
 
 :PriceComponent_EC2_Small_EU_Reserved_Light_1Yr_Linux_General
       rdf:type price:PriceComponent ;
@@ -1481,7 +1484,8 @@
       price:hasPriceFuntion
               :Function_EC2_Small_EU_Reserved_Light_1Yr_Linux ;
       price:hasTextFuntion
-              "(Instance Price * Hours used) + upfront"^^xsd:string .
+              "(Instance Price * Hours used) + upfront"^^xsd:string ;
+      price:isLinkedTo CloudTaxonomy:ComputingInstance , CloudTaxonomy:Unix .
 
 :PriceComponent_EC2_Small_EU_Reserved_Light_1Yr_Windows_General
       rdf:type price:PriceComponent ;
@@ -1495,7 +1499,8 @@
       price:hasPriceFuntion
               :Function_EC2_Small_EU_Reserved_Light_1Yr_Windows ;
       price:hasTextFuntion
-              "(Instance Price * Hours used) + upfront"^^xsd:string .
+              "(Instance Price * Hours used) + upfront"^^xsd:string ;
+      price:isLinkedTo CloudTaxonomy:Windows , CloudTaxonomy:ComputingInstance .
 
 :PriceComponent_EC2_Small_EU_Reserved_Light_3Yr_Linux_General
       rdf:type price:PriceComponent ;
@@ -1509,7 +1514,8 @@
       price:hasPriceFuntion
               :Function_EC2_Small_EU_Reserved_Light_3Yr_Linux ;
       price:hasTextFuntion
-              "(Instance Price * Hours used) + upfront"^^xsd:string .
+              "(Instance Price * Hours used) + upfront"^^xsd:string ;
+      price:isLinkedTo CloudTaxonomy:ComputingInstance , CloudTaxonomy:Unix .
 
 :PriceComponent_EC2_Small_EU_Reserved_Light_3Yr_Windows_General
       rdf:type price:PriceComponent ;
@@ -1523,7 +1529,8 @@
       price:hasPriceFuntion
               :Function_EC2_Small_EU_Reserved_Light_3Yr_Windows ;
       price:hasTextFuntion
-              "(Instance Price * Hours used) + upfront"^^xsd:string .
+              "(Instance Price * Hours used) + upfront"^^xsd:string ;
+      price:isLinkedTo CloudTaxonomy:Windows , CloudTaxonomy:ComputingInstance .
 
 :PriceComponent_EC2_Small_EU_Reserved_Medium_1Yr_Linux_General
       rdf:type price:PriceComponent ;
@@ -1537,7 +1544,8 @@
       price:hasPriceFuntion
               :Function_EC2_Small_EU_Reserved_Medium_1Yr_Linux ;
       price:hasTextFuntion
-              "(Instance Price * Hours used) + upfront"^^xsd:string .
+              "(Instance Price * Hours used) + upfront"^^xsd:string ;
+      price:isLinkedTo CloudTaxonomy:ComputingInstance , CloudTaxonomy:Unix .
 
 :PriceComponent_EC2_Small_EU_Reserved_Medium_1Yr_Windows_General
       rdf:type price:PriceComponent ;
@@ -1551,7 +1559,8 @@
       price:hasPriceFuntion
               :Function_EC2_Small_EU_Reserved_Medium_1Yr_Windows ;
       price:hasTextFuntion
-              "(Instance Price * Hours used) + upfront"^^xsd:string .
+              "(Instance Price * Hours used) + upfront"^^xsd:string ;
+      price:isLinkedTo CloudTaxonomy:ComputingInstance , CloudTaxonomy:Windows .
 
 :PriceComponent_EC2_Small_EU_Reserved_Medium_3Yr_Linux_General
       rdf:type price:PriceComponent ;
@@ -1565,7 +1574,8 @@
       price:hasPriceFuntion
               :Function_EC2_Small_EU_Reserved_Medium_3Yr_Linux ;
       price:hasTextFuntion
-              "(Instance Price * Hours used) + upfront"^^xsd:string .
+              "(Instance Price * Hours used) + upfront"^^xsd:string ;
+      price:isLinkedTo CloudTaxonomy:ComputingInstance , CloudTaxonomy:Unix .
 
 :PriceComponent_EC2_Small_EU_Reserved_Medium_3Yr_Windows_General
       rdf:type price:PriceComponent ;
@@ -1579,7 +1589,8 @@
       price:hasPriceFuntion
               :Function_EC2_Small_EU_Reserved_Medium_3Yr_Windows ;
       price:hasTextFuntion
-              "(Instance Price * Hours used) + upfront"^^xsd:string .
+              "(Instance Price * Hours used) + upfront"^^xsd:string ;
+      price:isLinkedTo CloudTaxonomy:ComputingInstance , CloudTaxonomy:Windows .
 
 :PriceComponent_EU_Data_Transfer_IN
       rdf:type price:PriceComponent ;
@@ -1593,7 +1604,8 @@
       price:hasPriceFuntion
               :Function_Data_Transfer_IN ;
       price:hasTextFuntion
-              "(Number of GB transfered) * (Price per GB)"^^xsd:string .
+              "(Number of GB transfered) * (Price per GB)"^^xsd:string ;
+      price:isLinkedTo CloudTaxonomy:DataINExternal , CloudTaxonomy:DataINInternal .
 
 :PriceComponent_EU_Data_Transfer_OUT
       rdf:type price:PriceComponent ;
@@ -1607,7 +1619,8 @@
       price:hasPriceFuntion
               :Function_Data_Transfer_Out ;
       price:hasTextFuntion
-              "(GB tranfered until 1 = 0.0), (from 1 to 10TB = 0.12), (from 10TB to 40TB = 0.09) , (from 40TB to 100TB = 0.07), (from 100TB to 350TB = 0.05)   "^^xsd:string .
+              "(GB tranfered until 1 = 0.0), (from 1 to 10TB = 0.12), (from 10TB to 40TB = 0.09) , (from 40TB to 100TB = 0.07), (from 100TB to 350TB = 0.05)   "^^xsd:string ;
+      price:isLinkedTo CloudTaxonomy:DataOUTExternal .
 
 :PriceComponent_EU_Data_Transfer_OUT_To_Amazon
       rdf:type price:PriceComponent ;
@@ -1621,102 +1634,103 @@
       price:hasPriceFuntion
               :Function_Data_Transfer_Out_To_Amazon ;
       price:hasTextFuntion
-              "(GB price to different region * GB tranferred to different region) + (GB price for Public/elasticIP/same regions * GB tranferred to Public/elasticIP/same regions)"^^xsd:string .
+              "(GB price to different region * GB tranferred to different region) + (GB price for Public/elasticIP/same regions * GB tranferred to Public/elasticIP/same regions)"^^xsd:string ;
+      price:isLinkedTo CloudTaxonomy:DataOUTInternal .
 
 :PricePlan_EC2_Small_EU_OnDemand_Linux
       rdf:type price:PricePlan ;
       rdfs:label "Price Plan for an On demand EC2 Small instance with Linux in the EU region"^^xsd:string ;
       price:hasPriceComponent
-              :PriceComponent_EC2_Small_EU_OnDemand_Linux_General , :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT .
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_OnDemand_Linux_General , :PriceComponent_EU_Data_Transfer_IN .
 
 :PricePlan_EC2_Small_EU_OnDemand_Windows
       rdf:type price:PricePlan ;
       rdfs:label "Price Plan for an On demand EC2 Small instance with Windows in the EU region"^^xsd:string ;
       price:hasPriceComponent
-              :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EC2_Small_EU_OnDemand_Windows_General .
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EC2_Small_EU_OnDemand_Windows_General , :PriceComponent_EU_Data_Transfer_OUT .
 
 :PricePlan_EC2_Small_EU_Reserved_Heavy_1Yr_Linux
       rdf:type price:PricePlan ;
       rdfs:label "Price Plan for a Heavy utilization reserved EC2 Small instance with Linux in the EU region with an 1 year contract"^^xsd:string ;
       price:hasPriceComponent
-              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Heavy_1Yr_Linux_General .
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EC2_Small_EU_Reserved_Heavy_1Yr_Linux_General , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT .
 
 :PricePlan_EC2_Small_EU_Reserved_Heavy_1Yr_Windows
       rdf:type price:PricePlan ;
       rdfs:label "Price Plan for a Heavy utilization reserved EC2 Small instance with Windows in the EU region with an 1 year contract"^^xsd:string ;
       price:hasPriceComponent
-              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Heavy_1Yr_Windows_General .
+              :PriceComponent_EC2_Small_EU_Reserved_Heavy_1Yr_Windows_General , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN .
 
 :PricePlan_EC2_Small_EU_Reserved_Heavy_3Yr_Linux
       rdf:type price:PricePlan ;
       rdfs:label "Price Plan for a Heavy utilization reserved EC2 Small instance with Linux in the EU region with an 3 year contract"^^xsd:string ;
       price:hasPriceComponent
-              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Heavy_3Yr_Linux_General .
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Heavy_3Yr_Linux_General , :PriceComponent_EU_Data_Transfer_IN .
 
 :PricePlan_EC2_Small_EU_Reserved_Heavy_3Yr_Windows
       rdf:type price:PricePlan ;
       rdfs:label "Price Plan for a Heavy utilization reserved EC2 Small instance with Windows in the EU region with an 3 year contract"^^xsd:string ;
       price:hasPriceComponent
-              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Heavy_3Yr_Windows_General .
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EC2_Small_EU_Reserved_Heavy_3Yr_Windows_General , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT .
 
 :PricePlan_EC2_Small_EU_Reserved_Light_1Yr_Linux
       rdf:type price:PricePlan ;
       rdfs:label "Price Plan for a light utilization reserved EC2 Small instance with Linux in the EU region with an 1 year contract"^^xsd:string ;
       price:hasPriceComponent
-              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Light_1Yr_Linux_General .
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EC2_Small_EU_Reserved_Light_1Yr_Linux_General .
 
 :PricePlan_EC2_Small_EU_Reserved_Light_1Yr_Windows
       rdf:type price:PricePlan ;
       rdfs:label "Price Plan for a light utilization reserved EC2 Small instance with Windows in the EU region with an 1 year contract"^^xsd:string ;
       price:hasPriceComponent
-              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Light_1Yr_Windows_General .
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EC2_Small_EU_Reserved_Light_1Yr_Windows_General .
 
 :PricePlan_EC2_Small_EU_Reserved_Light_3Yr_Linux
       rdf:type price:PricePlan ;
       rdfs:label "Price Plan for a light utilization reserved EC2 Small instance with Linux in the EU region with an 3 year contract"^^xsd:string ;
       price:hasPriceComponent
-              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Light_3Yr_Linux_General .
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EC2_Small_EU_Reserved_Light_3Yr_Linux_General , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EU_Data_Transfer_IN .
 
 :PricePlan_EC2_Small_EU_Reserved_Light_3Yr_Windows
       rdf:type price:PricePlan ;
       rdfs:label "Price Plan for a light utilization reserved EC2 Small instance with Windows in the EU region with an 3 year contract"^^xsd:string ;
       price:hasPriceComponent
-              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Light_3Yr_Windows_General .
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Light_3Yr_Windows_General , :PriceComponent_EU_Data_Transfer_IN .
 
 :PricePlan_EC2_Small_EU_Reserved_Medium_1Yr_Linux
       rdf:type price:PricePlan ;
       rdfs:label "Price Plan for a Medium utilization reserved EC2 Small instance with Linux in the EU region with an 1 year contract"^^xsd:string ;
       price:hasPriceComponent
-              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Medium_1Yr_Linux_General .
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Medium_1Yr_Linux_General , :PriceComponent_EU_Data_Transfer_IN .
 
 :PricePlan_EC2_Small_EU_Reserved_Medium_1Yr_Windows
       rdf:type price:PricePlan ;
       rdfs:label "Price Plan for a Medium utilization reserved EC2 Small instance with Windows in the EU region with an 1 year contract"^^xsd:string ;
       price:hasPriceComponent
-              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Medium_1Yr_Windows_General .
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EC2_Small_EU_Reserved_Medium_1Yr_Windows_General , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT .
 
 :PricePlan_EC2_Small_EU_Reserved_Medium_3Yr_Linux
       rdf:type price:PricePlan ;
       rdfs:label "Price Plan for a Medium utilization reserved EC2 Small instance with Linux in the EU region with an 3 year contract"^^xsd:string ;
       price:hasPriceComponent
-              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Medium_3Yr_Linux_General .
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Medium_3Yr_Linux_General , :PriceComponent_EU_Data_Transfer_IN .
 
 :PricePlan_EC2_Small_EU_Reserved_Medium_3Yr_Windows
       rdf:type price:PricePlan ;
       rdfs:label "Price Plan for a Medium utilization reserved EC2 Small instance with Windows in the EU region with an 3 year contract"^^xsd:string ;
       price:hasPriceComponent
-              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_IN , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Medium_3Yr_Windows_General .
+              :PriceComponent_EU_Data_Transfer_OUT_To_Amazon , :PriceComponent_EU_Data_Transfer_OUT , :PriceComponent_EC2_Small_EU_Reserved_Medium_3Yr_Windows_General , :PriceComponent_EU_Data_Transfer_IN .
 
 :Service_AmazonEC2_Instance_Small
       rdf:type core:Service ;
       rdfs:label "Amazon EC2 Small Instance"^^xsd:string ;
       dcterms:title "Amazon EC2 Small Instance"@en ;
       gr:qualitativeProductOrServiceProperty
-              Vocabulary_EC2:IOPerformance_Low , Vocabulary_EC2:AWS_Marketplace , Vocabulary_EC2:Web-Service_APIs , Vocabulary_EC2:VM_Import_Export , Vocabulary_EC2:Fully_Controllable_Instances , Vocabulary_EC2:Basic_Monitoring , Vocabulary_EC2:Platform_32bit , Vocabulary_EC2:On_Demmand_Instances , Vocabulary_EC2:Configurable_FireWall_Setting , Vocabulary_EC2:Platform_64bit , Vocabulary_EC2:Integration_with_other_Amazon_Services , Vocabulary_EC2:Automatic_Scalling ;
+              Vocabulary_EC2:Basic_Monitoring , CloudTaxonomy:IOPerformanceLow , Vocabulary_EC2:VM_Import_Export , Vocabulary_EC2:AWS_Marketplace , Vocabulary_EC2:Automatic_Scalling , CloudTaxonomy:Arch64bit , Vocabulary_EC2:Configurable_FireWall_Setting , Vocabulary_EC2:Integration_with_other_Amazon_Services , Vocabulary_EC2:Web-Service_APIs , Vocabulary_EC2:Fully_Controllable_Instances , Vocabulary_EC2:On_Demmand_Instances , CloudTaxonomy:Arch32bit ;
       gr:quantitativeProductOrServiceProperty
-              :resource_EC2_Small_EC2_Compute_Unit , :resource_EC2_Small_Main_Memory , :resource_EC2_Small_Cores , :resource_EC2_Small_EC2_Local_Storage ;
+              :resource_EC2_Small_EC2_Compute_Unit , :resource_EC2_Small_Cores , :resource_EC2_Small_Main_Memory , :resource_EC2_Small_EC2_Local_Storage ;
       core:hasClassification
-              :IaaS ;
+              CloudTaxonomy:IaaS ;
       core:hasProvider :provider_Amazon .
 
 :Variable_EC2_Small_EU_OnDemand_Linux_Price
@@ -1724,6 +1738,8 @@
       rdfs:label "Variable EC2 Small EU Windows On demand Price"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "0.065"^^xsd:float
               ] .
 
@@ -1738,6 +1754,8 @@
       rdfs:label "Variable EC2 Small EU Windows On demand Price"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "0.115"^^xsd:float
               ] .
 
@@ -1752,6 +1770,8 @@
       rdfs:label "Variable EC2 Small EU Reserved Heavy 1Yr Linux Price"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "0.025"^^xsd:float
               ] .
 
@@ -1766,6 +1786,8 @@
       rdfs:label "Variable EC2 Small EU Reserved Heavy 1Yr Linux Upfront"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "195"^^xsd:float
               ] .
 
@@ -1774,6 +1796,8 @@
       rdfs:label "Variable EC2 Small EU Reserved Heavy 1Yr Windows Price"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "0.045"^^xsd:float
               ] .
 
@@ -1788,6 +1812,8 @@
       rdfs:label "Variable EC2 Small EU Reserved Heavy 3Yr Linux Price"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "0.02"^^xsd:float
               ] .
 
@@ -1802,6 +1828,8 @@
       rdfs:label "Variable EC2 Small EU Reserved Heavy 3Yr Linux Upfront"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "300"^^xsd:float
               ] .
 
@@ -1810,6 +1838,8 @@
       rdfs:label "Variable EC2 Small EU Reserved Heavy 3Yr Windows Price"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "0.04"^^xsd:float
               ] .
 
@@ -1824,6 +1854,8 @@
       rdfs:label "Variable EC2 Small EU Reserved Light 1Yr Linux Price"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "0.049"^^xsd:float
               ] .
 
@@ -1838,6 +1870,8 @@
       rdfs:label "Variable EC2 Small EU Reserved Light 1Yr Linux Upfront"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "69"^^xsd:float
               ] .
 
@@ -1846,6 +1880,8 @@
       rdfs:label "Variable EC2 Small EU Reserved Light 1Yr Windows Price"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "0.069"^^xsd:float
               ] .
 
@@ -1860,6 +1896,8 @@
       rdfs:label "Variable EC2 Small EU Reserved Light 3Yr Linux Price"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "0.039"^^xsd:float
               ] .
 
@@ -1874,6 +1912,8 @@
       rdfs:label "Variable EC2 Small EU Reserved Light 3Yr Linux Upfront"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "106.3"^^xsd:float
               ] .
 
@@ -1882,6 +1922,8 @@
       rdfs:label "Variable EC2 Small EU Reserved Light 3Yr Windows Price"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "0.059"^^xsd:float
               ] .
 
@@ -1896,6 +1938,8 @@
       rdfs:label "Variable EC2 Small EU Reserved Medium 1Yr Linux Price"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "0.031"^^xsd:float
               ] .
 
@@ -1910,6 +1954,8 @@
       rdfs:label "Variable EC2 Small EU Reserved Medium 1Yr Linux Upfront"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "160"^^xsd:float
               ] .
 
@@ -1918,6 +1964,8 @@
       rdfs:label "Variable EC2 Small EU Reserved Medium 1Yr Windows Price"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "0.045"^^xsd:float
               ] .
 
@@ -1932,6 +1980,8 @@
       rdfs:label "Variable EC2 Small EU Reserved Medium 3Yr Linux Price"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "0.025"^^xsd:float
               ] .
 
@@ -1946,6 +1996,8 @@
       rdfs:label "Variable EC2 Small EU Reserved Medium 3Yr Linux Upfront"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "250"^^xsd:float
               ] .
 
@@ -1954,6 +2006,8 @@
       rdfs:label "Variable EC2 Small EU Reserved Medium 3Yr Windows Price"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "0.045"^^xsd:float
               ] .
 
@@ -1968,6 +2022,8 @@
       rdfs:label "Variable IN GB Price"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "0.01"^^xsd:float
               ] .
 
@@ -1982,6 +2038,8 @@
       rdfs:label "From 40TB to 100TB"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "0.07"^^xsd:float
               ] .
 
@@ -1990,6 +2048,8 @@
       rdfs:label "From 100TB to 350TB"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "0.05"^^xsd:float
               ] .
 
@@ -1998,6 +2058,8 @@
       rdfs:label "From 10TB to 40TB"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "0.09"^^xsd:float
               ] .
 
@@ -2020,6 +2082,8 @@
       rdfs:label "Transfer Out GB price for public Elastic IP or Same Region "^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "0.01"^^xsd:float
               ] .
 
@@ -2028,6 +2092,8 @@
       rdfs:label "Transfer Out GB price for different region"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
                 gr:hasValueFloat "0.02"^^xsd:float
               ] .
 
@@ -2044,7 +2110,7 @@
       dcterms:description "Offering for a 'Small' EC2 Instance in the European Region (Ireland)."@en ;
       dcterms:title "EC2 Small Instance for EU Region"@en ;
       core:includes :Service_AmazonEC2_Instance_Small ;
-      price:hasPricePlan :PricePlan_EC2_Small_EU_Reserved_Medium_1Yr_Linux , :PricePlan_EC2_Small_EU_Reserved_Light_3Yr_Linux , :PricePlan_EC2_Small_EU_Reserved_Light_1Yr_Linux , :PricePlan_EC2_Small_EU_Reserved_Light_1Yr_Windows , :PricePlan_EC2_Small_EU_Reserved_Medium_3Yr_Windows , :PricePlan_EC2_Small_EU_Reserved_Heavy_1Yr_Windows , :PricePlan_EC2_Small_EU_Reserved_Heavy_3Yr_Linux , :PricePlan_EC2_Small_EU_OnDemand_Linux , :PricePlan_EC2_Small_EU_Reserved_Light_3Yr_Windows , :PricePlan_EC2_Small_EU_Reserved_Heavy_1Yr_Linux , :PricePlan_EC2_Small_EU_Reserved_Medium_1Yr_Windows , :PricePlan_EC2_Small_EU_Reserved_Medium_3Yr_Linux , :PricePlan_EC2_Small_EU_OnDemand_Windows , :PricePlan_EC2_Small_EU_Reserved_Heavy_3Yr_Windows .
+      price:hasPricePlan :PricePlan_EC2_Small_EU_OnDemand_Linux , :PricePlan_EC2_Small_EU_Reserved_Light_1Yr_Linux , :PricePlan_EC2_Small_EU_Reserved_Heavy_3Yr_Windows , :PricePlan_EC2_Small_EU_Reserved_Medium_1Yr_Linux , :PricePlan_EC2_Small_EU_Reserved_Heavy_1Yr_Windows , :PricePlan_EC2_Small_EU_Reserved_Light_1Yr_Windows , :PricePlan_EC2_Small_EU_Reserved_Light_3Yr_Windows , :PricePlan_EC2_Small_EU_Reserved_Light_3Yr_Linux , :PricePlan_EC2_Small_EU_Reserved_Medium_3Yr_Windows , :PricePlan_EC2_Small_EU_OnDemand_Windows , :PricePlan_EC2_Small_EU_Reserved_Heavy_1Yr_Linux , :PricePlan_EC2_Small_EU_Reserved_Medium_3Yr_Linux , :PricePlan_EC2_Small_EU_Reserved_Heavy_3Yr_Linux , :PricePlan_EC2_Small_EU_Reserved_Medium_1Yr_Windows .
 
 :provider_Amazon
       rdf:type gr:BusinessEntity ;
@@ -2058,21 +2124,23 @@
       foaf:name "Amazon Web Services LLC" .
 
 :resource_EC2_Small_Cores
-      rdf:type Vocabulary_EC2:Cores ;
+      rdf:type CloudTaxonomy:CPUCores ;
       gr:hasValueInteger "1"^^xsd:float .
 
 :resource_EC2_Small_EC2_Compute_Unit
-      rdf:type Vocabulary_EC2:EC2_Compute_Unit ;
-      gr:hasValueInteger "1"^^xsd:float .
+      rdf:type CloudTaxonomy:CPUSpeed ;
+      gr:hasUnitOfMeasurement
+              "A86"^^xsd:string ;
+      gr:hasValueInteger "1.2"^^xsd:float .
 
 :resource_EC2_Small_EC2_Local_Storage
-      rdf:type Vocabulary_EC2:Local_Storage ;
+      rdf:type CloudTaxonomy:DiskSize ;
       gr:hasUnitOfMeasurement
               "E34"^^xsd:string ;
       gr:hasValueFloat "160"^^xsd:float .
 
 :resource_EC2_Small_Main_Memory
-      rdf:type Vocabulary_EC2:Main_Memory ;
+      rdf:type CloudTaxonomy:MemorySize ;
       gr:hasUnitOfMeasurement
               "E34"^^xsd:string ;
       gr:hasValueFloat "1.7"^^xsd:float .
