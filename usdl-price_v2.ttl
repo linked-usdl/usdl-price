@@ -27,13 +27,13 @@
       foaf:page <http://www.linked-usdl.org/ns/usdl-price.html> .
 
 usdl-price:Constant
-      rdf:type owl:Class , rdfs:Class ;
+      rdf:type rdfs:Class , owl:Class ;
       rdfs:comment "A constant is a Variable with a known value. The value is normaly provided by the service provided. (e.g. price per hour)"^^xsd:string ;
       rdfs:label "Constant"^^xsd:string ;
       rdfs:subClassOf usdl-price:PriceVariable .
 
 usdl-price:Deduction
-      rdf:type rdfs:Class , owl:Class ;
+      rdf:type owl:Class , rdfs:Class ;
       rdfs:comment """<p>Deduction is a negative price component. The total price will be reduced by a certain amount.</p>
 """ ;
       rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-price> ;
@@ -41,7 +41,7 @@ usdl-price:Deduction
       rdfs:subClassOf usdl-price:PriceComponent .
 
 usdl-price:PriceComponent
-      rdf:type rdfs:Class , owl:Class ;
+      rdf:type owl:Class , rdfs:Class ;
       rdfs:comment """<p>&nbsp;</p>
 <div>
 	PriceComponents are fees included in a PricePlan, which subject to conditions (expressed as</div>
@@ -68,7 +68,7 @@ usdl-price:PriceComponent
       rdfs:label "Price Component" .
 
 usdl-price:PricePlan
-      rdf:type rdfs:Class , owl:Class ;
+      rdf:type owl:Class , rdfs:Class ;
       rdfs:comment """<p>&nbsp;</p>
 <div>
 	A PricePlan is a set of charges associated with a network-provisioned entity. Alternative sets of fees</div>
@@ -93,7 +93,7 @@ usdl-price:PricePlan
       rdfs:label "Price Plan" .
 
 usdl-price:PriceVariable
-      rdf:type rdfs:Class , owl:Class ;
+      rdf:type owl:Class , rdfs:Class ;
       rdfs:comment """<p>A variable can be used for price fence expressions of dynamich price models. It has a name (rdfs:label) and a quantitative value.</p>
 <p>Variables can be referred from different fence expressions.</p>
 """ ;
@@ -101,7 +101,7 @@ usdl-price:PriceVariable
       rdfs:label "Price Variable"^^xsd:string .
 
 usdl-price:Usage
-      rdf:type owl:Class , rdfs:Class ;
+      rdf:type rdfs:Class , owl:Class ;
       rdfs:comment "Usage Variables represent unknown values. Specially used for usage purposes and dynamic pricing (e.g. pay-per-use models). Its's value migh come from user input or from provider monitoring (e.g. GB of data transfered last month)."^^xsd:string ;
       rdfs:label "Usage"^^xsd:string ;
       rdfs:subClassOf usdl-price:PriceVariable .
@@ -180,7 +180,7 @@ usdl-price:hasPriceFloor
       rdfs:label "price floor" ;
       rdfs:range gr:PriceSpecification .
 
-usdl-price:hasPriceFuntion
+usdl-price:hasPriceFunction
       rdf:type owl:ObjectProperty ;
       rdfs:comment "The SPIN price funtion used to calculate the PriceComponent price."^^xsd:string ;
       rdfs:domain usdl-price:PriceComponent ;
@@ -208,7 +208,7 @@ usdl-price:hasValue
       rdfs:domain usdl-price:PriceVariable ;
       rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-price> ;
       rdfs:label "has value" ;
-      rdfs:range gr:QualitativeValue , gr:QuantitativeValue .
+      rdfs:range gr:QuantitativeValue , gr:QualitativeValue .
 
 usdl-price:hasVariable
       rdf:type rdf:Property ;
