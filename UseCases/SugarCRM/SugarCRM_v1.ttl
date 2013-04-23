@@ -1,0 +1,504 @@
+# baseURI: http://rdfs.genssiz.org/SugarCRM
+# imports: file:///AmazonEC2_Pricing/GoodRelations_v1.owl
+# imports: http://rdfs.genssiz.org/CloudTaxonomy
+# imports: http://spinrdf.org/spin
+# imports: http://www.linked-usdl.org/ns/usdl-core
+# imports: http://www.linked-usdl.org/ns/usdl-price
+
+@prefix :        <http://rdfs.genssiz.org/SugarCRM#> .
+@prefix CloudTaxonomy:  <http://rdfs.genssiz.org/CloudTaxonomy#> .
+@prefix gr:      <http://purl.org/goodrelations/v1#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sp:      <http://spinrdf.org/sp#> .
+@prefix spin:    <http://spinrdf.org/spin#> .
+@prefix spl:     <http://spinrdf.org/spl#> .
+@prefix usdl-core:  <http://www.linked-usdl.org/ns/usdl-core#> .
+@prefix usdl-price:  <http://www.linked-usdl.org/ns/usdl-price#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+<http://rdfs.genssiz.org/SugarCRM>
+      rdf:type owl:Ontology ;
+      owl:imports <http://www.linked-usdl.org/ns/usdl-price> , <http://spinrdf.org/spin> , <file:///AmazonEC2_Pricing/GoodRelations_v1.owl> , <http://www.linked-usdl.org/ns/usdl-core> , <http://rdfs.genssiz.org/CloudTaxonomy> ;
+      owl:versionInfo "Created with TopBraid Composer"^^xsd:string .
+
+:Access_to_Sandbox
+      rdf:type gr:QualitativeValue , CloudTaxonomy:Feature , rdfs:Class ;
+      rdfs:label "Access to Sandbox"^^xsd:string .
+
+:Advanced_Customizable_Reporting
+      rdf:type gr:QualitativeValue , CloudTaxonomy:Feature , rdfs:Class ;
+      rdfs:label "Advanced Customizable Reporting"^^xsd:string .
+
+:Customer_SelfService_Portal
+      rdf:type rdfs:Class , gr:QualitativeValue , CloudTaxonomy:Feature ;
+      rdfs:label "Customer SelfService_Portal"^^xsd:string .
+
+:Customer_Service_Call_Center_Automation
+      rdf:type gr:QualitativeValue , CloudTaxonomy:Feature , rdfs:Class ;
+      rdfs:label "Customer Service Call Center Automation"^^xsd:string .
+
+:Fully_Hosted
+      rdf:type gr:QualitativeValue , CloudTaxonomy:Feature , rdfs:Class ;
+      rdfs:label "Fully Hosted"^^xsd:string .
+
+:Function_SugarCRM_Corporate
+      rdf:type spin:Function ;
+      rdfs:label "Function SugarCRM Corporate"^^xsd:string ;
+      spin:body
+              [ rdf:type sp:Select ;
+                sp:resultVariables ([ sp:varName "price"^^xsd:string
+                          ]) ;
+                sp:where ([ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate usdl-price:hasValue ;
+                            sp:subject :Variable_SugarCRM_Corporate_UserPrice
+                          ] [ sp:object
+                                    [ sp:varName "user_price"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "c"^^xsd:string
+                                    ] ;
+                            sp:predicate usdl-price:hasValue ;
+                            sp:subject :Variable_Corporate_Users
+                          ] [ sp:object
+                                    [ sp:varName "nrUsers"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "c"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:mul ;
+                                      sp:arg1 [ sp:varName "nrUsers"^^xsd:string
+                                              ] ;
+                                      sp:arg2 [ sp:varName "user_price"^^xsd:string
+                                              ]
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "price"^^xsd:string
+                                    ]
+                          ])
+              ] ;
+      usdl-price:hasVariable
+              :Variable_Corporate_Users , :Variable_SugarCRM_Corporate_UserPrice .
+
+:Function_SugarCRM_Enterprise
+      rdf:type spin:Function ;
+      rdfs:label "Function SugarCRM Enterprise"^^xsd:string ;
+      spin:body
+              [ rdf:type sp:Select ;
+                sp:resultVariables ([ sp:varName "price"^^xsd:string
+                          ]) ;
+                sp:where ([ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate usdl-price:hasValue ;
+                            sp:subject :Variable_SugarCRM_Enterprise_UserPrice
+                          ] [ sp:object
+                                    [ sp:varName "user_price"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "c"^^xsd:string
+                                    ] ;
+                            sp:predicate usdl-price:hasValue ;
+                            sp:subject :Variable_Enterprise_Users
+                          ] [ sp:object
+                                    [ sp:varName "nrUsers"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "c"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:mul ;
+                                      sp:arg1 [ sp:varName "nrUsers"^^xsd:string
+                                              ] ;
+                                      sp:arg2 [ sp:varName "user_price"^^xsd:string
+                                              ]
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "price"^^xsd:string
+                                    ]
+                          ])
+              ] ;
+      usdl-price:hasVariable
+              :Variable_SugarCRM_Enterprise_UserPrice , :Variable_Enterprise_Users .
+
+:Function_SugarCRM_Professional
+      rdf:type spin:Function ;
+      rdfs:label "Function SugarCRM Professional"^^xsd:string ;
+      spin:body
+              [ rdf:type sp:Select ;
+                sp:resultVariables ([ sp:varName "price"^^xsd:string
+                          ]) ;
+                sp:where ([ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate usdl-price:hasValue ;
+                            sp:subject :Variable_SugarCRM_Professional_UserPrice
+                          ] [ sp:object
+                                    [ sp:varName "user_price"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "c"^^xsd:string
+                                    ] ;
+                            sp:predicate usdl-price:hasValue ;
+                            sp:subject :Variable_Professional_Users
+                          ] [ sp:object
+                                    [ sp:varName "nrUsers"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "c"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:mul ;
+                                      sp:arg1 [ sp:varName "nrUsers"^^xsd:string
+                                              ] ;
+                                      sp:arg2 [ sp:varName "user_price"^^xsd:string
+                                              ]
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "price"^^xsd:string
+                                    ]
+                          ])
+              ] ;
+      usdl-price:hasVariable
+              :Variable_SugarCRM_Professional_UserPrice , :Variable_Professional_Users .
+
+:Function_SugarCRM_Ultimate
+      rdf:type spin:Function ;
+      rdfs:label "Function SugarCRM Ultimate"^^xsd:string ;
+      spin:body
+              [ rdf:type sp:Select ;
+                sp:resultVariables ([ sp:varName "price"^^xsd:string
+                          ]) ;
+                sp:where ([ sp:object
+                                    [ sp:varName "a"^^xsd:string
+                                    ] ;
+                            sp:predicate usdl-price:hasValue ;
+                            sp:subject :Variable_SugarCRM_Ultimate_UserPrice
+                          ] [ sp:object
+                                    [ sp:varName "user_price"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "a"^^xsd:string
+                                    ]
+                          ] [ sp:object
+                                    [ sp:varName "c"^^xsd:string
+                                    ] ;
+                            sp:predicate usdl-price:hasValue ;
+                            sp:subject :Variable_Ultimate_Users
+                          ] [ sp:object
+                                    [ sp:varName "nrUsers"^^xsd:string
+                                    ] ;
+                            sp:predicate gr:hasValueInteger ;
+                            sp:subject
+                                    [ sp:varName "c"^^xsd:string
+                                    ]
+                          ] [ rdf:type sp:Bind ;
+                            sp:expression
+                                    [ rdf:type sp:mul ;
+                                      sp:arg1 [ sp:varName "nrUsers"^^xsd:string
+                                              ] ;
+                                      sp:arg2 [ sp:varName "user_price"^^xsd:string
+                                              ]
+                                    ] ;
+                            sp:variable
+                                    [ sp:varName "price"^^xsd:string
+                                    ]
+                          ])
+              ] ;
+      usdl-price:hasVariable
+              :Variable_SugarCRM_Ultimate_UserPrice , :Variable_Ultimate_Users .
+
+:Marketing_Automation
+      rdf:type gr:QualitativeValue , CloudTaxonomy:Feature , rdfs:Class ;
+      rdfs:label "Marketing Automation"^^xsd:string .
+
+:Mobile_Device_Accessability
+      rdf:type gr:QualitativeValue , CloudTaxonomy:Feature , rdfs:Class ;
+      rdfs:label "Mobile Device Accessability"^^xsd:string .
+
+:On_Premise_or_Cloud_Deployment
+      rdf:type rdfs:Class , CloudTaxonomy:Feature , gr:QualitativeValue ;
+      rdfs:label "On Premise or Cloud Deployment"^^xsd:string .
+
+:Phone_Support
+      rdf:type gr:QualitativeValue , rdfs:Class , CloudTaxonomy:SupportProperties ;
+      rdfs:label "Phone Support"^^xsd:string .
+
+:PriceComponent_SugarCRM_Corporate
+      rdf:type usdl-price:PriceComponent ;
+      rdfs:label "Price component Sugar CRM Corporate"^^xsd:string ;
+      usdl-price:hasMetrics
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "MON"^^xsd:string ;
+                gr:hasValue 1
+              ] ;
+      usdl-price:hasPriceFunction
+              :Function_SugarCRM_Corporate .
+
+:PriceComponent_SugarCRM_Enterprise
+      rdf:type usdl-price:PriceComponent ;
+      rdfs:label "Price component Sugar CRM Enterprise"^^xsd:string ;
+      usdl-price:hasMetrics
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "MON"^^xsd:string ;
+                gr:hasValue 1
+              ] ;
+      usdl-price:hasPriceFunction
+              :Function_SugarCRM_Enterprise .
+
+:PriceComponent_SugarCRM_Professional
+      rdf:type usdl-price:PriceComponent ;
+      rdfs:label "Price component Sugar CRM Professional"^^xsd:string ;
+      usdl-price:hasMetrics
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "MON"^^xsd:string ;
+                gr:hasValue 1
+              ] ;
+      usdl-price:hasPriceFunction
+              :Function_SugarCRM_Professional .
+
+:PriceComponent_SugarCRM_Ultimate
+      rdf:type usdl-price:PriceComponent ;
+      rdfs:label "Price component Sugar CRM Ultimate"^^xsd:string ;
+      usdl-price:hasMetrics
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "MON"^^xsd:string ;
+                gr:hasValue 1
+              ] ;
+      usdl-price:hasPriceFunction
+              :Function_SugarCRM_Ultimate .
+
+:PricePlan_SugarCRM_Corporate
+      rdf:type usdl-price:PricePlan ;
+      rdfs:label "Price plan Sugar CRM Corporate"^^xsd:string ;
+      usdl-price:hasPriceComponent
+              :PriceComponent_SugarCRM_Corporate .
+
+:PricePlan_SugarCRM_Enterprise
+      rdf:type usdl-price:PricePlan ;
+      rdfs:label "Price plan Sugar CRM Enterprise"^^xsd:string ;
+      usdl-price:hasPriceComponent
+              :PriceComponent_SugarCRM_Enterprise .
+
+:PricePlan_SugarCRM_Professional
+      rdf:type usdl-price:PricePlan ;
+      rdfs:label "Price plan Sugar CRM Professional"^^xsd:string ;
+      usdl-price:hasPriceComponent
+              :PriceComponent_SugarCRM_Professional .
+
+:PricePlan_SugarCRM_Ultimate
+      rdf:type usdl-price:PricePlan ;
+      rdfs:label "Price plan Sugar CRM Ultimate"^^xsd:string ;
+      usdl-price:hasPriceComponent
+              :PriceComponent_SugarCRM_Ultimate .
+
+:Resource_SugarCRM_Corporate_Storage
+      rdf:type CloudTaxonomy:StorageCapacity , rdfs:Class , gr:QuantitativeValue ;
+      rdfs:label "Sugar CRM Corporate Storage"^^xsd:string ;
+      gr:hasUnitOfMeasurement
+              "E34"^^xsd:string ;
+      gr:hasValue "30"^^xsd:float .
+
+:Resource_SugarCRM_Enterprise_Storage
+      rdf:type rdfs:Class , CloudTaxonomy:StorageCapacity , gr:QuantitativeValue ;
+      rdfs:label "Sugar CRM Enterprise Storage"^^xsd:string ;
+      gr:hasUnitOfMeasurement
+              "E34"^^xsd:string ;
+      gr:hasValue "60"^^xsd:float .
+
+:Resource_SugarCRM_Professional_Storage
+      rdf:type rdfs:Class , CloudTaxonomy:StorageCapacity , gr:QuantitativeValue ;
+      rdfs:label "Sugar CRM Professional Storage"^^xsd:string ;
+      gr:hasUnitOfMeasurement
+              "E34"^^xsd:string ;
+      gr:hasValue "15"^^xsd:float .
+
+:Resource_SugarCRM_Ultimate_Storage
+      rdf:type rdfs:Class , CloudTaxonomy:StorageCapacity , gr:QuantitativeValue ;
+      rdfs:label "Sugar CRM Ultimate Storage"^^xsd:string ;
+      gr:hasUnitOfMeasurement
+              "E34"^^xsd:string ;
+      gr:hasValue "250"^^xsd:float .
+
+:Salesforce_Automation
+      rdf:type gr:QualitativeValue , CloudTaxonomy:Feature , rdfs:Class ;
+      rdfs:label "Salesforce Automation"^^xsd:string .
+
+:Scheduled_Data_Backups
+      rdf:type CloudTaxonomy:Backup_Recovery , gr:QualitativeValue , rdfs:Class ;
+      rdfs:label "Scheduled Data Backups"^^xsd:string .
+
+:ServiceModel_SugarCRM
+      rdf:type usdl-core:ServiceModel ;
+      rdfs:label "Service model Sugar CRM"^^xsd:string ;
+      gr:qualitativeProductOrServiceProperty
+              :Scheduled_Data_Backups , :Fully_Hosted , :Customer_Service_Call_Center_Automation , :Mobile_Device_Accessability , :Support_Automation , :Social_Media_Integration , :Salesforce_Automation , :Marketing_Automation , :On_Premise_or_Cloud_Deployment .
+
+:ServiceOffering_SugarCRM_Corporate
+      rdf:type usdl-core:ServiceOffering ;
+      rdfs:label "Service offering Sugar CRM Corporate"^^xsd:string ;
+      usdl-core:includes :Service_SugarCRM_Corporate ;
+      usdl-price:hasPricePlan
+              :PricePlan_SugarCRM_Corporate .
+
+:ServiceOffering_SugarCRM_Enterprise
+      rdf:type usdl-core:ServiceOffering ;
+      rdfs:label "Service offering Sugar CRM Enterprise"^^xsd:string ;
+      usdl-core:includes :Service_SugarCRM_Enterprise ;
+      usdl-price:hasPricePlan
+              :PricePlan_SugarCRM_Enterprise .
+
+:ServiceOffering_SugarCRM_Professional
+      rdf:type usdl-core:ServiceOffering ;
+      rdfs:label "Service offering Sugar CRM Professional"^^xsd:string ;
+      usdl-core:includes :Service_SugarCRM_Professional ;
+      usdl-price:hasPricePlan
+              :PricePlan_SugarCRM_Professional .
+
+:ServiceOffering_SugarCRM_Ultimate
+      rdf:type usdl-core:ServiceOffering ;
+      rdfs:label "Service offering Sugar CRM Ultimate"^^xsd:string ;
+      usdl-core:includes :Service_SugarCRM_Ultimate ;
+      usdl-price:hasPricePlan
+              :PricePlan_SugarCRM_Ultimate .
+
+:Service_SugarCRM_Corporate
+      rdf:type usdl-core:Service ;
+      rdfs:label "Service Sugar CRM Corporate"^^xsd:string ;
+      gr:qualitativeProductOrServiceProperty
+              :Access_to_Sandbox , :Sugar_Mobile_Plus ;
+      gr:quantitativeProductOrServiceProperty
+              :Resource_SugarCRM_Corporate_Storage ;
+      usdl-core:hasServiceModel
+              :ServiceModel_SugarCRM .
+
+:Service_SugarCRM_Enterprise
+      rdf:type usdl-core:Service ;
+      rdfs:label "Service Sugar CRM Enterprise"^^xsd:string ;
+      gr:qualitativeProductOrServiceProperty
+              :Sugar_Plugin_LotusNotes , :Customer_SelfService_Portal , :Phone_Support , :Access_to_Sandbox , :Advanced_Customizable_Reporting , :Sugar_Mobile_Plus ;
+      gr:quantitativeProductOrServiceProperty
+              :Resource_SugarCRM_Enterprise_Storage ;
+      usdl-core:hasServiceModel
+              :ServiceModel_SugarCRM .
+
+:Service_SugarCRM_Professional
+      rdf:type usdl-core:Service ;
+      rdfs:label "Service Sugar CRM Professional"^^xsd:string ;
+      gr:quantitativeProductOrServiceProperty
+              :Resource_SugarCRM_Professional_Storage ;
+      usdl-core:hasServiceModel
+              :ServiceModel_SugarCRM .
+
+:Service_SugarCRM_Ultimate
+      rdf:type usdl-core:Service ;
+      rdfs:label "Service Sugar CRM Ultimate"^^xsd:string ;
+      gr:qualitativeProductOrServiceProperty
+              :Access_to_Sandbox , :Sugar_Plugin_LotusNotes , :Customer_SelfService_Portal , :Advanced_Customizable_Reporting , :Phone_Support , :Sugar_Mobile_Plus ;
+      gr:quantitativeProductOrServiceProperty
+              :Resource_SugarCRM_Ultimate_Storage ;
+      usdl-core:hasServiceModel
+              :ServiceModel_SugarCRM .
+
+:Social_Media_Integration
+      rdf:type rdfs:Class , gr:QualitativeValue , CloudTaxonomy:Feature ;
+      rdfs:label "Social Media Integration"^^xsd:string .
+
+:Sugar_Mobile_Plus
+      rdf:type gr:QualitativeValue , CloudTaxonomy:Feature , rdfs:Class ;
+      rdfs:label "Sugar Mobile Plus"^^xsd:string .
+
+:Sugar_Plugin_LotusNotes
+      rdf:type gr:QualitativeValue , CloudTaxonomy:Feature , rdfs:Class ;
+      rdfs:label "Sugar Plugin LotusNotes"^^xsd:string .
+
+:Support_Automation
+      rdf:type gr:QualitativeValue , CloudTaxonomy:Feature , rdfs:Class ;
+      rdfs:label "Support Automation"^^xsd:string .
+
+:Variable_Corporate_Users
+      rdf:type usdl-price:Usage ;
+      rdfs:label "Variable Corporate Users"^^xsd:string ;
+      gr:description "The number of Corporate users"^^xsd:string .
+
+:Variable_Enterprise_Users
+      rdf:type usdl-price:Usage ;
+      rdfs:label "Variable Enterprise Users"^^xsd:string ;
+      gr:description "The number of Enterprise users"^^xsd:string .
+
+:Variable_Professional_Users
+      rdf:type usdl-price:Usage ;
+      rdfs:label "Variable Professional Users"^^xsd:string ;
+      gr:description "The number of Professional users"^^xsd:string .
+
+:Variable_SugarCRM_Corporate_UserPrice
+      rdf:type usdl-price:Constant ;
+      rdfs:label "Variable Sugar CRM Corporate User price"^^xsd:string ;
+      usdl-price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
+                gr:hasValue "45"^^xsd:float
+              ] .
+
+:Variable_SugarCRM_Enterprise_UserPrice
+      rdf:type usdl-price:Constant ;
+      rdfs:label "Variable Sugar CRM Enterprise User price"^^xsd:string ;
+      usdl-price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
+                gr:hasValue "60"^^xsd:float
+              ] .
+
+:Variable_SugarCRM_Professional_UserPrice
+      rdf:type usdl-price:Constant ;
+      rdfs:label "Variable Sugar CRM Professional User price"^^xsd:string ;
+      usdl-price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
+                gr:hasValue "35"^^xsd:float
+              ] .
+
+:Variable_SugarCRM_Ultimate_UserPrice
+      rdf:type usdl-price:Constant ;
+      rdfs:label "Variable Sugar CRM Ultimate User price"^^xsd:string ;
+      usdl-price:hasValue
+              [ rdf:type gr:QuantitativeValue ;
+                gr:hasUnitOfMeasurement
+                        "USD"^^xsd:string ;
+                gr:hasValue "100"^^xsd:float
+              ] .
+
+:Variable_Ultimate_Users
+      rdf:type usdl-price:Usage ;
+      rdfs:label "Variable Ultimate Users"^^xsd:string ;
+      gr:description "The number of Ultimate users"^^xsd:string .
