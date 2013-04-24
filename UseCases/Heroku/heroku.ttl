@@ -50,7 +50,7 @@
               ] ;
       dcterms:created "2013-02-18"^^xsd:date ;
       dcterms:description "Heroku description example" ;
-      dcterms:modified "2013-04-24"^^xsd:date ;
+      dcterms:modified "2013-03-27"^^xsd:date ;
       dcterms:title "Heroku description example" ;
       owl:imports <file:///HerokuPricing/GoodRelations_v1.owl> , <http://tutorial.topbraid.com/heroku_vocabulary> , <http://www.linked-usdl.org/ns/usdl-price> , <http://www.linked-usdl.org/ns/usdl-core> , <http://spinrdf.org/spin> , <http://rdfs.genssiz.org/CloudTaxonomy> ;
       owl:versionInfo "Created with TopBraid Composer"^^xsd:string .
@@ -71,7 +71,7 @@
                           ] [ sp:object
                                     [ sp:varName "cost"^^xsd:string
                                     ] ;
-                            sp:predicate gr:hasValueInteger ;
+                            sp:predicate gr:hasValue ;
                             sp:subject
                                     [ sp:varName "a"^^xsd:string
                                     ]
@@ -83,7 +83,7 @@
                           ] [ sp:object
                                     [ sp:varName "web_hours"^^xsd:string
                                     ] ;
-                            sp:predicate gr:hasValueInteger ;
+                            sp:predicate gr:hasValue ;
                             sp:subject
                                     [ sp:varName "b"^^xsd:string
                                     ]
@@ -95,7 +95,7 @@
                           ] [ sp:object
                                     [ sp:varName "worker_hours"^^xsd:string
                                     ] ;
-                            sp:predicate gr:hasValueInteger ;
+                            sp:predicate gr:hasValue ;
                             sp:subject
                                     [ sp:varName "c"^^xsd:string
                                     ]
@@ -116,7 +116,7 @@
                                     ]
                           ])
               ] ;
-      price:hasVariable :Variable_Worker_Dynos_Hours , :Variable_Web_Dynos_Hours , :Variable_Dyno_Hour_Cost .
+      price:hasVariable :Variable_Dyno_Hour_Cost , :Variable_Web_Dynos_Hours , :Variable_Worker_Dynos_Hours .
 
 :Function_Free_Dyno_Usage
       rdf:type spin:Function ;
@@ -134,7 +134,7 @@
                           ] [ sp:object
                                     [ sp:varName "hourPrice"^^xsd:string
                                     ] ;
-                            sp:predicate gr:hasValueFloat ;
+                            sp:predicate gr:hasValue ;
                             sp:subject
                                     [ sp:varName "a"^^xsd:string
                                     ]
@@ -146,7 +146,7 @@
                           ] [ sp:object
                                     [ sp:varName "hours"^^xsd:string
                                     ] ;
-                            sp:predicate gr:hasValueInteger ;
+                            sp:predicate gr:hasValue ;
                             sp:subject
                                     [ sp:varName "b"^^xsd:string
                                     ]
@@ -163,7 +163,7 @@
                                     ]
                           ])
               ] ;
-      price:hasVariable :Variable_Free_Hours , :Variable_Dyno_Hour_Cost .
+      price:hasVariable :Variable_Dyno_Hour_Cost , :Variable_Free_Hours .
 
 :Legal_Heroku
       rdf:type legal:TermsAndConditions ;
@@ -171,12 +171,17 @@
       dcterms:title "Heroku legal statements"@en ;
       legal:hasClause
               [ rdf:type legal:Clause ;
-                legal:name "Support Policy" ;
-                legal:text "https://policy.heroku.com/aup"@en
+                legal:name "DMCA Notice" ;
+                legal:text "https://policy.heroku.com/dmca"@en
               ] ;
       legal:hasClause
               [ rdf:type legal:Clause ;
-                legal:name "Acceptable Use Policy" ;
+                legal:name "Privacy Policy" ;
+                legal:text "https://policy.heroku.com/privacy"@en
+              ] ;
+      legal:hasClause
+              [ rdf:type legal:Clause ;
+                legal:name "Support Policy" ;
                 legal:text "https://policy.heroku.com/aup"@en
               ] ;
       legal:hasClause
@@ -186,23 +191,18 @@
               ] ;
       legal:hasClause
               [ rdf:type legal:Clause ;
-                legal:name "Heroku Security" ;
-                legal:text "https://policy.heroku.com/security"@en
-              ] ;
-      legal:hasClause
-              [ rdf:type legal:Clause ;
-                legal:name "Privacy Policy" ;
-                legal:text "https://policy.heroku.com/privacy"@en
-              ] ;
-      legal:hasClause
-              [ rdf:type legal:Clause ;
                 legal:name "Terms of Service" ;
                 legal:text "https://policy.heroku.com/tos"@en
               ] ;
       legal:hasClause
               [ rdf:type legal:Clause ;
-                legal:name "DMCA Notice" ;
-                legal:text "https://policy.heroku.com/dmca"@en
+                legal:name "Acceptable Use Policy" ;
+                legal:text "https://policy.heroku.com/aup"@en
+              ] ;
+      legal:hasClause
+              [ rdf:type legal:Clause ;
+                legal:name "Heroku Security" ;
+                legal:text "https://policy.heroku.com/security"@en
               ] .
 
 :Offering_Heroku_Baku_Database
@@ -278,7 +278,7 @@
       price:hasPricePlan :PricePlan_Heroku_Zilla_Database .
 
 :PaaS
-      rdf:type skos:Concept , rdfs:Class ;
+      rdf:type rdfs:Class , skos:Concept ;
       dcterms:description "Service model to all PaaS like services" .
 
 :PriceComponent_Baku_Database
@@ -287,7 +287,7 @@
       price:hasPrice
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
-                gr:hasCurrencyValue "3200"^^xsd:string ;
+                gr:hasCurrencyValue "3200"^^xsd:float ;
                 gr:hasUnitOfMeasurement
                         "MON"
               ] .
@@ -298,7 +298,7 @@
       price:hasPrice
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
-                gr:hasCurrencyValue "50"^^xsd:string ;
+                gr:hasCurrencyValue "50"^^xsd:float ;
                 gr:hasUnitOfMeasurement
                         "MON"
               ] .
@@ -325,7 +325,7 @@
       price:hasPrice
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
-                gr:hasCurrencyValue "400"^^xsd:string ;
+                gr:hasCurrencyValue "400"^^xsd:float ;
                 gr:hasUnitOfMeasurement
                         "MON"
               ] .
@@ -336,7 +336,7 @@
       price:hasPrice
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
-                gr:hasCurrencyValue "800"^^xsd:string ;
+                gr:hasCurrencyValue "800"^^xsd:float ;
                 gr:hasUnitOfMeasurement
                         "MON"
               ] .
@@ -347,7 +347,7 @@
       price:hasPrice
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
-                gr:hasCurrencyValue "100"^^xsd:string ;
+                gr:hasCurrencyValue "100"^^xsd:float ;
                 gr:hasUnitOfMeasurement
                         "MON"
               ] .
@@ -358,7 +358,18 @@
       price:hasPrice
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
-                gr:hasCurrencyValue "6400"^^xsd:string ;
+                gr:hasCurrencyValue "6400"^^xsd:float ;
+                gr:hasUnitOfMeasurement
+                        "MON"
+              ] .
+
+:PriceComponent_Mecha_Database_1
+      rdf:type price:PriceComponent ;
+      rdfs:label "Mecha Database"^^xsd:string ;
+      price:hasPrice
+              [ rdf:type gr:PriceSpecification ;
+                gr:hasCurrency "USD" ;
+                gr:hasCurrencyValue "6400"^^xsd:float ;
                 gr:hasUnitOfMeasurement
                         "MON"
               ] .
@@ -369,7 +380,7 @@
       price:hasPrice
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
-                gr:hasCurrencyValue "200"^^xsd:string ;
+                gr:hasCurrencyValue "200"^^xsd:float ;
                 gr:hasUnitOfMeasurement
                         "MON"
               ] .
@@ -380,7 +391,7 @@
       price:hasPrice
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
-                gr:hasCurrencyValue "1600"^^xsd:string ;
+                gr:hasCurrencyValue "1600"^^xsd:float ;
                 gr:hasUnitOfMeasurement
                         "MON"
               ] .
@@ -415,7 +426,7 @@
       rdf:type price:PricePlan ;
       rdfs:label "Heroku Dynos Price Plan"^^xsd:string ;
       price:hasPriceComponent
-              :PriceComponent_Free_Dyno_Usage , :PriceComponent_Dynos ;
+              :PriceComponent_Dynos , :PriceComponent_Free_Dyno_Usage ;
       price:hasPriceFloor
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
@@ -625,7 +636,7 @@
               [ rdf:type gr:QuantitativeValue ;
                 gr:hasUnitOfMeasurement
                         "HUR" ;
-                gr:hasValueFloat "0.05"^^xsd:float
+                gr:hasValue "0.05"^^xsd:float
               ] .
 
 :Variable_Free_Hours
@@ -633,7 +644,7 @@
       rdfs:label "Free Hours"^^xsd:string ;
       price:hasValue
               [ rdf:type gr:QuantitativeValue ;
-                gr:hasValueInteger 750
+                gr:hasValue 750
               ] .
 
 :Variable_Web_Dynos_Hours
@@ -650,63 +661,63 @@
       foaf:name "Heroku Inc" .
 
 :resource_Heroku_Baku_Cache
-      rdf:type CloudTaxonomy:CacheSize , gr:QuantitativeValue ;
+      rdf:type gr:QuantitativeValue , CloudTaxonomy:CacheSize ;
       gr:hasUnitOfMeasurement
               "E34"^^xsd:string ;
-      gr:hasValueFloat "34"^^xsd:float .
+      gr:hasValue "34"^^xsd:float .
 
 :resource_Heroku_Crane_Cache
-      rdf:type CloudTaxonomy:CacheSize , gr:QuantitativeValue ;
+      rdf:type gr:QuantitativeValue , CloudTaxonomy:CacheSize ;
       gr:hasUnitOfMeasurement
               "4L"^^xsd:string ;
-      gr:hasValueFloat "400"^^xsd:float .
+      gr:hasValue "0.39"^^xsd:float .
 
 :resource_Heroku_Database_Availability
-      rdf:type CloudTaxonomy:Availability , gr:QuantitativeValue ;
-      gr:hasValueFloat "99.95"^^xsd:float .
+      rdf:type gr:QuantitativeValue , CloudTaxonomy:Availability ;
+      gr:hasValue "99.95"^^xsd:float .
 
 :resource_Heroku_Database_Disk_Storage
       rdf:type CloudTaxonomy:StorageCapacity ;
       gr:hasUnitOfMeasurement
               "E35"^^xsd:string ;
-      gr:hasValueFloat "1"^^xsd:float .
+      gr:hasValue "1"^^xsd:float .
 
 :resource_Heroku_Dynos_Availability
-      rdf:type CloudTaxonomy:Availability , gr:QuantitativeValue ;
-      gr:hasValueFloat "99.95"^^xsd:float .
+      rdf:type gr:QuantitativeValue , CloudTaxonomy:Availability ;
+      gr:hasValue "99.95"^^xsd:float .
 
 :resource_Heroku_Fugu_Cache
-      rdf:type CloudTaxonomy:CacheSize , gr:QuantitativeValue ;
+      rdf:type gr:QuantitativeValue , CloudTaxonomy:CacheSize ;
       gr:hasUnitOfMeasurement
               "E34"^^xsd:string ;
-      gr:hasValueFloat "3.75"^^xsd:float .
+      gr:hasValue "3.75"^^xsd:float .
 
 :resource_Heroku_Ika_Cache
-      rdf:type CloudTaxonomy:CacheSize , gr:QuantitativeValue ;
+      rdf:type gr:QuantitativeValue , CloudTaxonomy:CacheSize ;
       gr:hasUnitOfMeasurement
               "E34"^^xsd:string ;
-      gr:hasValueFloat "7.5"^^xsd:float .
+      gr:hasValue "7.5"^^xsd:float .
 
 :resource_Heroku_Kappa_Cache
-      rdf:type CloudTaxonomy:CacheSize , gr:QuantitativeValue ;
+      rdf:type gr:QuantitativeValue , CloudTaxonomy:CacheSize ;
       gr:hasUnitOfMeasurement
               "4L"^^xsd:string ;
-      gr:hasValueFloat "800"^^xsd:float .
+      gr:hasValue "0.781"^^xsd:float .
 
 :resource_Heroku_Mecha_Cache
-      rdf:type CloudTaxonomy:CacheSize , gr:QuantitativeValue ;
+      rdf:type gr:QuantitativeValue , CloudTaxonomy:CacheSize ;
       gr:hasUnitOfMeasurement
               "E34"^^xsd:string ;
-      gr:hasValueFloat "68"^^xsd:float .
+      gr:hasValue "68"^^xsd:float .
 
 :resource_Heroku_Ronin_Cache
-      rdf:type CloudTaxonomy:CacheSize , gr:QuantitativeValue ;
+      rdf:type gr:QuantitativeValue , CloudTaxonomy:CacheSize ;
       gr:hasUnitOfMeasurement
               "E34"^^xsd:string ;
-      gr:hasValueFloat "1.7"^^xsd:float .
+      gr:hasValue "1.7"^^xsd:float .
 
 :resource_Heroku_Zilla_Cache
-      rdf:type CloudTaxonomy:CacheSize , gr:QuantitativeValue ;
+      rdf:type gr:QuantitativeValue , CloudTaxonomy:CacheSize ;
       gr:hasUnitOfMeasurement
               "E34"^^xsd:string ;
-      gr:hasValueFloat "17"^^xsd:float .
+      gr:hasValue "17"^^xsd:float .
