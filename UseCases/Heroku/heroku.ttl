@@ -9,6 +9,7 @@
 @prefix :        <http://rdfs.genssiz.org/heroku#> .
 @prefix CloudTaxonomy:  <http://rdfs.genssiz.org/CloudTaxonomy#> .
 @prefix blueprint:  <http://bizweb.sap.com/TR/blueprint#> .
+@prefix core:    <http://www.linked-usdl.org/ns/usdl-core#> .
 @prefix ctag:    <http://commontag.org/ns#> .
 @prefix dbpedia:  <http://dbpedia.org/resource/> .
 @prefix dcterms:  <http://purl.org/dc/terms/> .
@@ -23,6 +24,7 @@
 @prefix msm:     <http://cms-wg.sti2.org/ns/minimal-service-model#> .
 @prefix org:     <http://www.w3.org/ns/org#> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix price:   <http://www.linked-usdl.org/ns/usdl-price#> .
 @prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sarest:  <http://www.knoesis.org/research/srl/standards/sa-rest/#> .
@@ -33,8 +35,6 @@
 @prefix spin:    <http://spinrdf.org/spin#> .
 @prefix spl:     <http://spinrdf.org/spl#> .
 @prefix time:    <http://www.w3.org/2006/time#> .
-@prefix usdl-core:  <http://www.linked-usdl.org/ns/usdl-core#> .
-@prefix usdl-price:  <http://www.linked-usdl.org/ns/usdl-price#> .
 @prefix vcard:   <http://www.w3.org/2006/vcard/ns#> .
 @prefix wl:      <http://www.wsmo.org/ns/wsmo-lite#> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
@@ -50,7 +50,7 @@
               ] ;
       dcterms:created "2013-02-18"^^xsd:date ;
       dcterms:description "Heroku description example" ;
-      dcterms:modified "2013-03-27"^^xsd:date ;
+      dcterms:modified "2013-04-24"^^xsd:date ;
       dcterms:title "Heroku description example" ;
       owl:imports <file:///HerokuPricing/GoodRelations_v1.owl> , <http://tutorial.topbraid.com/heroku_vocabulary> , <http://www.linked-usdl.org/ns/usdl-price> , <http://www.linked-usdl.org/ns/usdl-core> , <http://spinrdf.org/spin> , <http://rdfs.genssiz.org/CloudTaxonomy> ;
       owl:versionInfo "Created with TopBraid Composer"^^xsd:string .
@@ -66,7 +66,7 @@
                 sp:where ([ sp:object
                                     [ sp:varName "a"^^xsd:string
                                     ] ;
-                            sp:predicate usdl-price:hasValue ;
+                            sp:predicate price:hasValue ;
                             sp:subject :Variable_Dyno_Hour_Cost
                           ] [ sp:object
                                     [ sp:varName "cost"^^xsd:string
@@ -78,7 +78,7 @@
                           ] [ sp:object
                                     [ sp:varName "b"^^xsd:string
                                     ] ;
-                            sp:predicate usdl-price:hasValue ;
+                            sp:predicate price:hasValue ;
                             sp:subject :Variable_Web_Dynos_Hours
                           ] [ sp:object
                                     [ sp:varName "web_hours"^^xsd:string
@@ -90,7 +90,7 @@
                           ] [ sp:object
                                     [ sp:varName "c"^^xsd:string
                                     ] ;
-                            sp:predicate usdl-price:hasValue ;
+                            sp:predicate price:hasValue ;
                             sp:subject :Variable_Web_Dynos_Hours
                           ] [ sp:object
                                     [ sp:varName "worker_hours"^^xsd:string
@@ -116,8 +116,7 @@
                                     ]
                           ])
               ] ;
-      usdl-price:hasVariable
-              :Variable_Worker_Dynos_Hours , :Variable_Web_Dynos_Hours , :Variable_Dyno_Hour_Cost .
+      price:hasVariable :Variable_Worker_Dynos_Hours , :Variable_Web_Dynos_Hours , :Variable_Dyno_Hour_Cost .
 
 :Function_Free_Dyno_Usage
       rdf:type spin:Function ;
@@ -130,7 +129,7 @@
                 sp:where ([ sp:object
                                     [ sp:varName "a"^^xsd:string
                                     ] ;
-                            sp:predicate usdl-price:hasValue ;
+                            sp:predicate price:hasValue ;
                             sp:subject :Variable_Dyno_Hour_Cost
                           ] [ sp:object
                                     [ sp:varName "hourPrice"^^xsd:string
@@ -142,7 +141,7 @@
                           ] [ sp:object
                                     [ sp:varName "b"^^xsd:string
                                     ] ;
-                            sp:predicate usdl-price:hasValue ;
+                            sp:predicate price:hasValue ;
                             sp:subject :Variable_Free_Hours
                           ] [ sp:object
                                     [ sp:varName "hours"^^xsd:string
@@ -164,8 +163,7 @@
                                     ]
                           ])
               ] ;
-      usdl-price:hasVariable
-              :Variable_Free_Hours , :Variable_Dyno_Hour_Cost .
+      price:hasVariable :Variable_Free_Hours , :Variable_Dyno_Hour_Cost .
 
 :Legal_Heroku
       rdf:type legal:TermsAndConditions ;
@@ -173,8 +171,8 @@
       dcterms:title "Heroku legal statements"@en ;
       legal:hasClause
               [ rdf:type legal:Clause ;
-                legal:name "Terms of Service" ;
-                legal:text "https://policy.heroku.com/tos"@en
+                legal:name "Support Policy" ;
+                legal:text "https://policy.heroku.com/aup"@en
               ] ;
       legal:hasClause
               [ rdf:type legal:Clause ;
@@ -183,18 +181,8 @@
               ] ;
       legal:hasClause
               [ rdf:type legal:Clause ;
-                legal:name "DMCA Notice" ;
-                legal:text "https://policy.heroku.com/dmca"@en
-              ] ;
-      legal:hasClause
-              [ rdf:type legal:Clause ;
-                legal:name "Support Policy" ;
-                legal:text "https://policy.heroku.com/aup"@en
-              ] ;
-      legal:hasClause
-              [ rdf:type legal:Clause ;
-                legal:name "Privacy Policy" ;
-                legal:text "https://policy.heroku.com/privacy"@en
+                legal:name "Customer Promises" ;
+                legal:text "https://policy.heroku.com/promise"@en
               ] ;
       legal:hasClause
               [ rdf:type legal:Clause ;
@@ -203,99 +191,100 @@
               ] ;
       legal:hasClause
               [ rdf:type legal:Clause ;
-                legal:name "Customer Promises" ;
-                legal:text "https://policy.heroku.com/promise"@en
+                legal:name "Privacy Policy" ;
+                legal:text "https://policy.heroku.com/privacy"@en
+              ] ;
+      legal:hasClause
+              [ rdf:type legal:Clause ;
+                legal:name "Terms of Service" ;
+                legal:text "https://policy.heroku.com/tos"@en
+              ] ;
+      legal:hasClause
+              [ rdf:type legal:Clause ;
+                legal:name "DMCA Notice" ;
+                legal:text "https://policy.heroku.com/dmca"@en
               ] .
 
 :Offering_Heroku_Baku_Database
-      rdf:type usdl-core:ServiceOffering ;
+      rdf:type core:ServiceOffering ;
       rdfs:label "Offering Heroku Databases"^^xsd:string ;
       dcterms:description "Offering for Heroku Database"@en ;
       dcterms:title "Heroku database"@en ;
-      usdl-core:includes :Service_Heroku_Baku_Databases ;
-      usdl-price:hasPricePlan
-              :PricePlan_Heroku_Baku_Database .
+      core:includes :Service_Heroku_Baku_Databases ;
+      price:hasPricePlan :PricePlan_Heroku_Baku_Database .
 
 :Offering_Heroku_Crane_Database
-      rdf:type usdl-core:ServiceOffering ;
+      rdf:type core:ServiceOffering ;
       rdfs:label "Offering Heroku Databases"^^xsd:string ;
       dcterms:description "Offering for Heroku Database"@en ;
       dcterms:title "Heroku database"@en ;
-      usdl-core:includes :Service_Heroku_Crane_Databases ;
-      usdl-price:hasPricePlan
-              :PricePlan_Heroku_Crane_Database .
+      core:includes :Service_Heroku_Crane_Databases ;
+      price:hasPricePlan :PricePlan_Heroku_Crane_Database .
 
 :Offering_Heroku_Dynos
-      rdf:type usdl-core:ServiceOffering ;
+      rdf:type core:ServiceOffering ;
       rdfs:label "offering Heroku Dynos"^^xsd:string ;
       dcterms:description "Offering for Heroku dynos."@en ;
       dcterms:title "Heroku Dynos"@en ;
-      usdl-core:includes :Service_Heroku_Dynos ;
-      usdl-price:hasPricePlan
-              :PricePlan_Heroku_Dynos .
+      core:includes :ServiceModel_Heroku_Dynos ;
+      price:hasPricePlan :PricePlan_Heroku_Dynos .
 
 :Offering_Heroku_Fugu_Database
-      rdf:type usdl-core:ServiceOffering ;
+      rdf:type core:ServiceOffering ;
       rdfs:label "Offering Heroku Databases"^^xsd:string ;
       dcterms:description "Offering for Heroku Database"@en ;
       dcterms:title "Heroku database"@en ;
-      usdl-core:includes :Service_Heroku_Fugu_Databases ;
-      usdl-price:hasPricePlan
-              :PricePlan_Heroku_Fugu_Database .
+      core:includes :Service_Heroku_Fugu_Databases ;
+      price:hasPricePlan :PricePlan_Heroku_Fugu_Database .
 
 :Offering_Heroku_Ika_Database
-      rdf:type usdl-core:ServiceOffering ;
+      rdf:type core:ServiceOffering ;
       rdfs:label "Offering Heroku Databases"^^xsd:string ;
       dcterms:description "Offering for Heroku Database"@en ;
       dcterms:title "Heroku database"@en ;
-      usdl-core:includes :Service_Heroku_Ika_Databases ;
-      usdl-price:hasPricePlan
-              :PricePlan_Heroku_Ika_Database .
+      core:includes :Service_Heroku_Ika_Databases ;
+      price:hasPricePlan :PricePlan_Heroku_Ika_Database .
 
 :Offering_Heroku_Kappa_Database
-      rdf:type usdl-core:ServiceOffering ;
+      rdf:type core:ServiceOffering ;
       rdfs:label "Offering Heroku Databases"^^xsd:string ;
       dcterms:description "Offering for Heroku Database"@en ;
       dcterms:title "Heroku database"@en ;
-      usdl-core:includes :Service_Heroku_Kappa_Databases ;
-      usdl-price:hasPricePlan
-              :PricePlan_Heroku_Kappa_Database .
+      core:includes :Service_Heroku_Kappa_Databases ;
+      price:hasPricePlan :PricePlan_Heroku_Kappa_Database .
 
 :Offering_Heroku_Mecha_Database
-      rdf:type usdl-core:ServiceOffering ;
+      rdf:type core:ServiceOffering ;
       rdfs:label "Offering Heroku Databases"^^xsd:string ;
       dcterms:description "Offering for Heroku Database"@en ;
       dcterms:title "Heroku database"@en ;
-      usdl-core:includes :Service_Heroku_Mecha_Databases ;
-      usdl-price:hasPricePlan
-              :PricePlan_Heroku_Mecha_Database .
+      core:includes :Service_Heroku_Mecha_Databases ;
+      price:hasPricePlan :PricePlan_Heroku_Mecha_Database .
 
 :Offering_Heroku_Ronin_Database
-      rdf:type usdl-core:ServiceOffering ;
+      rdf:type core:ServiceOffering ;
       rdfs:label "Offering Heroku Databases"^^xsd:string ;
       dcterms:description "Offering for Heroku Database"@en ;
       dcterms:title "Heroku database"@en ;
-      usdl-core:includes :Service_Heroku_Ronin_Databases ;
-      usdl-price:hasPricePlan
-              :PricePlan_Heroku_Ronin_Database .
+      core:includes :Service_Heroku_Ronin_Databases ;
+      price:hasPricePlan :PricePlan_Heroku_Ronin_Database .
 
 :Offering_Heroku_Zilla_Database
-      rdf:type usdl-core:ServiceOffering ;
+      rdf:type core:ServiceOffering ;
       rdfs:label "Offering Heroku Databases"^^xsd:string ;
       dcterms:description "Offering for Heroku Database"@en ;
       dcterms:title "Heroku database"@en ;
-      usdl-core:includes :Service_Heroku_Zilla_Databases ;
-      usdl-price:hasPricePlan
-              :PricePlan_Heroku_Zilla_Database .
+      core:includes :Service_Heroku_Zilla_Databases ;
+      price:hasPricePlan :PricePlan_Heroku_Zilla_Database .
 
 :PaaS
       rdf:type skos:Concept , rdfs:Class ;
       dcterms:description "Service model to all PaaS like services" .
 
 :PriceComponent_Baku_Database
-      rdf:type usdl-price:PriceComponent ;
+      rdf:type price:PriceComponent ;
       rdfs:label "Baku Database"^^xsd:string ;
-      usdl-price:hasPrice
+      price:hasPrice
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
                 gr:hasCurrencyValue "3200"^^xsd:string ;
@@ -303,14 +292,10 @@
                         "MON"
               ] .
 
-:PriceComponent_Basic_Database
-      rdf:type usdl-price:PriceComponent ;
-      rdfs:label "Basic Database"^^xsd:string .
-
 :PriceComponent_Crane_Database
-      rdf:type usdl-price:PriceComponent ;
+      rdf:type price:PriceComponent ;
       rdfs:label "Crane Database"^^xsd:string ;
-      usdl-price:hasPrice
+      price:hasPrice
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
                 gr:hasCurrencyValue "50"^^xsd:string ;
@@ -318,30 +303,26 @@
                         "MON"
               ] .
 
-:PriceComponent_Dev_Database
-      rdf:type usdl-price:PriceComponent ;
-      rdfs:label "Dev Database"^^xsd:string .
-
 :PriceComponent_Dynos
-      rdf:type usdl-price:PriceComponent ;
+      rdf:type price:PriceComponent ;
       rdfs:label "Dynos"^^xsd:string ;
-      usdl-price:hasPriceFuntion
+      price:hasPriceFunction
               :Function_Dynos ;
-      usdl-price:hasTextFuntion
+      price:hasTextFuntion
               "Number of web dynos Hours used + number of worker dynos hours used * price per hour"^^xsd:string .
 
 :PriceComponent_Free_Dyno_Usage
-      rdf:type usdl-price:Deduction ;
+      rdf:type price:Deduction ;
       rdfs:label "Free Dyno Usage"^^xsd:string ;
-      usdl-price:hasPriceFuntion
+      price:hasPriceFunction
               :Function_Free_Dyno_Usage ;
-      usdl-price:hasTextFuntion
+      price:hasTextFuntion
               "Number of free hours per month * dyno hour cost"^^xsd:string .
 
 :PriceComponent_Fugu_Database
-      rdf:type usdl-price:PriceComponent ;
+      rdf:type price:PriceComponent ;
       rdfs:label "Fugu Database"^^xsd:string ;
-      usdl-price:hasPrice
+      price:hasPrice
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
                 gr:hasCurrencyValue "400"^^xsd:string ;
@@ -350,9 +331,9 @@
               ] .
 
 :PriceComponent_Ika_Database
-      rdf:type usdl-price:PriceComponent ;
+      rdf:type price:PriceComponent ;
       rdfs:label "Ika Database"^^xsd:string ;
-      usdl-price:hasPrice
+      price:hasPrice
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
                 gr:hasCurrencyValue "800"^^xsd:string ;
@@ -361,9 +342,9 @@
               ] .
 
 :PriceComponent_Kappa_Database
-      rdf:type usdl-price:PriceComponent ;
+      rdf:type price:PriceComponent ;
       rdfs:label "Kappa Database"^^xsd:string ;
-      usdl-price:hasPrice
+      price:hasPrice
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
                 gr:hasCurrencyValue "100"^^xsd:string ;
@@ -372,9 +353,9 @@
               ] .
 
 :PriceComponent_Mecha_Database
-      rdf:type usdl-price:PriceComponent ;
+      rdf:type price:PriceComponent ;
       rdfs:label "Mecha Database"^^xsd:string ;
-      usdl-price:hasPrice
+      price:hasPrice
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
                 gr:hasCurrencyValue "6400"^^xsd:string ;
@@ -383,9 +364,9 @@
               ] .
 
 :PriceComponent_Ronin_Database
-      rdf:type usdl-price:PriceComponent ;
+      rdf:type price:PriceComponent ;
       rdfs:label "Ronin Database"^^xsd:string ;
-      usdl-price:hasPrice
+      price:hasPrice
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
                 gr:hasCurrencyValue "200"^^xsd:string ;
@@ -394,9 +375,9 @@
               ] .
 
 :PriceComponent_Zilla_Database
-      rdf:type usdl-price:PriceComponent ;
+      rdf:type price:PriceComponent ;
       rdfs:label "Zilla Database"^^xsd:string ;
-      usdl-price:hasPrice
+      price:hasPrice
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
                 gr:hasCurrencyValue "1600"^^xsd:string ;
@@ -405,11 +386,11 @@
               ] .
 
 :PricePlan_Heroku_Baku_Database
-      rdf:type usdl-price:PricePlan ;
+      rdf:type price:PricePlan ;
       rdfs:label "Price plan Heroku Databases"^^xsd:string ;
-      usdl-price:hasPriceComponent
+      price:hasPriceComponent
               :PriceComponent_Baku_Database ;
-      usdl-price:hasPriceFloor
+      price:hasPriceFloor
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
                 gr:hasCurrencyValue "0" ;
@@ -418,11 +399,11 @@
               ] .
 
 :PricePlan_Heroku_Crane_Database
-      rdf:type usdl-price:PricePlan ;
+      rdf:type price:PricePlan ;
       rdfs:label "Price plan Heroku Databases"^^xsd:string ;
-      usdl-price:hasPriceComponent
+      price:hasPriceComponent
               :PriceComponent_Crane_Database ;
-      usdl-price:hasPriceFloor
+      price:hasPriceFloor
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
                 gr:hasCurrencyValue "0" ;
@@ -431,11 +412,11 @@
               ] .
 
 :PricePlan_Heroku_Dynos
-      rdf:type usdl-price:PricePlan ;
+      rdf:type price:PricePlan ;
       rdfs:label "Heroku Dynos Price Plan"^^xsd:string ;
-      usdl-price:hasPriceComponent
+      price:hasPriceComponent
               :PriceComponent_Free_Dyno_Usage , :PriceComponent_Dynos ;
-      usdl-price:hasPriceFloor
+      price:hasPriceFloor
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
                 gr:hasCurrencyValue "0" ;
@@ -444,11 +425,11 @@
               ] .
 
 :PricePlan_Heroku_Fugu_Database
-      rdf:type usdl-price:PricePlan ;
+      rdf:type price:PricePlan ;
       rdfs:label "Price plan Heroku Databases"^^xsd:string ;
-      usdl-price:hasPriceComponent
+      price:hasPriceComponent
               :PriceComponent_Fugu_Database ;
-      usdl-price:hasPriceFloor
+      price:hasPriceFloor
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
                 gr:hasCurrencyValue "0" ;
@@ -457,11 +438,11 @@
               ] .
 
 :PricePlan_Heroku_Ika_Database
-      rdf:type usdl-price:PricePlan ;
+      rdf:type price:PricePlan ;
       rdfs:label "Price plan Heroku Databases"^^xsd:string ;
-      usdl-price:hasPriceComponent
+      price:hasPriceComponent
               :PriceComponent_Ika_Database ;
-      usdl-price:hasPriceFloor
+      price:hasPriceFloor
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
                 gr:hasCurrencyValue "0" ;
@@ -470,11 +451,11 @@
               ] .
 
 :PricePlan_Heroku_Kappa_Database
-      rdf:type usdl-price:PricePlan ;
+      rdf:type price:PricePlan ;
       rdfs:label "Price plan Heroku Databases"^^xsd:string ;
-      usdl-price:hasPriceComponent
+      price:hasPriceComponent
               :PriceComponent_Kappa_Database ;
-      usdl-price:hasPriceFloor
+      price:hasPriceFloor
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
                 gr:hasCurrencyValue "0" ;
@@ -483,11 +464,11 @@
               ] .
 
 :PricePlan_Heroku_Mecha_Database
-      rdf:type usdl-price:PricePlan ;
+      rdf:type price:PricePlan ;
       rdfs:label "Price plan Heroku Databases"^^xsd:string ;
-      usdl-price:hasPriceComponent
+      price:hasPriceComponent
               :PriceComponent_Mecha_Database ;
-      usdl-price:hasPriceFloor
+      price:hasPriceFloor
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
                 gr:hasCurrencyValue "0" ;
@@ -496,11 +477,11 @@
               ] .
 
 :PricePlan_Heroku_Ronin_Database
-      rdf:type usdl-price:PricePlan ;
+      rdf:type price:PricePlan ;
       rdfs:label "Price plan Heroku Databases"^^xsd:string ;
-      usdl-price:hasPriceComponent
+      price:hasPriceComponent
               :PriceComponent_Ronin_Database ;
-      usdl-price:hasPriceFloor
+      price:hasPriceFloor
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
                 gr:hasCurrencyValue "0" ;
@@ -509,11 +490,11 @@
               ] .
 
 :PricePlan_Heroku_Zilla_Database
-      rdf:type usdl-price:PricePlan ;
+      rdf:type price:PricePlan ;
       rdfs:label "Price plan Heroku Databases"^^xsd:string ;
-      usdl-price:hasPriceComponent
+      price:hasPriceComponent
               :PriceComponent_Zilla_Database ;
-      usdl-price:hasPriceFloor
+      price:hasPriceFloor
               [ rdf:type gr:PriceSpecification ;
                 gr:hasCurrency "USD" ;
                 gr:hasCurrencyValue "0" ;
@@ -521,125 +502,126 @@
                         "MON"
               ] .
 
-:Service_Heroku_Baku_Databases
-      rdf:type usdl-core:Service ;
-      rdfs:label "Service Heroku Databases"^^xsd:string ;
-      dcterms:title "Heroku  - Cloud Databases"@en ;
+:ServiceModel_Heroku_Databases
+      rdf:type core:ServiceModel ;
+      rdfs:label "Service model Heroku Databases"^^xsd:string ;
       gr:qualitativeProductOrServiceProperty
-              heroku_vocabulary:Multi_Ingress , heroku_vocabulary:Continuos_Protection , heroku_vocabulary:Production_Database , heroku_vocabulary:Automatic_Health_Checks , heroku_vocabulary:Configuration_Strings , heroku_vocabulary:PostgreSQL , heroku_vocabulary:Direct_Psql_Access , heroku_vocabulary:Fork , heroku_vocabulary:Data_Clips , heroku_vocabulary:Follow ;
+              heroku_vocabulary:Direct_Psql_Access , heroku_vocabulary:Continuos_Protection , heroku_vocabulary:Production_Database , heroku_vocabulary:Configuration_Strings , heroku_vocabulary:Follow , heroku_vocabulary:Multi_Ingress , heroku_vocabulary:Automatic_Health_Checks , heroku_vocabulary:Fork , heroku_vocabulary:PostgreSQL , heroku_vocabulary:Data_Clips ;
       gr:quantitativeProductOrServiceProperty
-              :resource_Heroku_Database_Disk_Storage , :resource_Heroku_Baku_Cache ;
-      usdl-core:hasClassification
-              CloudTaxonomy:PaaS ;
-      usdl-core:hasProvider
-              :provider_Heroku .
+              :resource_Heroku_Database_Disk_Storage , :resource_Heroku_Database_Availability .
 
-:Service_Heroku_Crane_Databases
-      rdf:type usdl-core:Service ;
-      rdfs:label "Service Heroku Databases"^^xsd:string ;
-      dcterms:title "Heroku - Cloud Databases"@en ;
-      gr:qualitativeProductOrServiceProperty
-              heroku_vocabulary:Continuos_Protection , heroku_vocabulary:Automatic_Health_Checks , heroku_vocabulary:Configuration_Strings , heroku_vocabulary:PostgreSQL , heroku_vocabulary:Direct_Psql_Access , heroku_vocabulary:Follow , heroku_vocabulary:Multi_Ingress , heroku_vocabulary:Fork , heroku_vocabulary:Data_Clips , heroku_vocabulary:Production_Database ;
-      gr:quantitativeProductOrServiceProperty
-              :resource_Heroku_Crane_Cache , :resource_Heroku_Database_Disk_Storage ;
-      usdl-core:hasClassification
-              CloudTaxonomy:PaaS ;
-      usdl-core:hasProvider
-              :provider_Heroku .
-
-:Service_Heroku_Dynos
-      rdf:type usdl-core:Service ;
-      rdfs:label "Service Heroku"^^xsd:string ;
+:ServiceModel_Heroku_Dynos
+      rdf:type core:ServiceModel ;
+      rdfs:label "Service Model Heroku Dynos"^^xsd:string ;
       dcterms:title "Heroku - Cloud Application Platform "@en ;
       gr:qualitativeProductOrServiceProperty
-              heroku_vocabulary:Technical_Support , heroku_vocabulary:Secure_Hardened_and_Tuned_Runtime , heroku_vocabulary:Open_and_Standard_Stacks_No_Lock-in , heroku_vocabulary:Instant_Deployment_And_Scalling , heroku_vocabulary:Fast_And_Fault-Tolerant_HTTP_Routing , <http://tutorial.topbraid.com/heroku_vocabulary#24x7_Platform-Wide_Monitoring> , heroku_vocabulary:Complete_API_CLI_for_App_Management ;
-      usdl-core:hasClassification
+              heroku_vocabulary:Technical_Support , heroku_vocabulary:Complete_API_CLI_for_App_Management , heroku_vocabulary:Fast_And_Fault-Tolerant_HTTP_Routing , heroku_vocabulary:Platform-Wide_Monitoring_24x7 , heroku_vocabulary:Secure_Hardened_and_Tuned_Runtime , heroku_vocabulary:Instant_Deployment_And_Scalling , heroku_vocabulary:Open_and_Standard_Stacks_No_Lock-in ;
+      gr:quantitativeProductOrServiceProperty
+              :resource_Heroku_Dynos_Availability ;
+      core:hasClassification
               CloudTaxonomy:PaaS ;
-      usdl-core:hasProvider
-              :provider_Heroku .
+      core:hasProvider :provider_Heroku .
+
+:Service_Heroku_Baku_Databases
+      rdf:type core:Service ;
+      rdfs:label "Service Heroku BAKU Databases"^^xsd:string ;
+      dcterms:title "Heroku  - Cloud Databases"@en ;
+      gr:quantitativeProductOrServiceProperty
+              :resource_Heroku_Baku_Cache ;
+      core:hasClassification
+              CloudTaxonomy:PaaS ;
+      core:hasProvider :provider_Heroku ;
+      core:hasServiceModel
+              :ServiceModel_Heroku_Databases .
+
+:Service_Heroku_Crane_Databases
+      rdf:type core:Service ;
+      rdfs:label "Service Heroku Crane Databases"^^xsd:string ;
+      dcterms:title "Heroku  - Cloud Databases"@en ;
+      gr:quantitativeProductOrServiceProperty
+              :resource_Heroku_Crane_Cache ;
+      core:hasClassification
+              CloudTaxonomy:PaaS ;
+      core:hasProvider :provider_Heroku ;
+      core:hasServiceModel
+              :ServiceModel_Heroku_Databases .
 
 :Service_Heroku_Fugu_Databases
-      rdf:type usdl-core:Service ;
-      rdfs:label "Service Heroku Databases"^^xsd:string ;
-      dcterms:title "Heroku - Cloud Databases"@en ;
-      gr:qualitativeProductOrServiceProperty
-              heroku_vocabulary:Automatic_Health_Checks , heroku_vocabulary:Multi_Ingress , heroku_vocabulary:Data_Clips , heroku_vocabulary:Follow , heroku_vocabulary:Fork , heroku_vocabulary:Direct_Psql_Access , heroku_vocabulary:Production_Database , heroku_vocabulary:PostgreSQL , heroku_vocabulary:Continuos_Protection , heroku_vocabulary:Configuration_Strings ;
+      rdf:type core:Service ;
+      rdfs:label "Service Heroku Fugu Databases"^^xsd:string ;
+      dcterms:title "Heroku  - Cloud Databases"@en ;
       gr:quantitativeProductOrServiceProperty
-              :resource_Heroku_Database_Disk_Storage , :resource_Heroku_Fugu_Cache ;
-      usdl-core:hasClassification
+              :resource_Heroku_Fugu_Cache ;
+      core:hasClassification
               CloudTaxonomy:PaaS ;
-      usdl-core:hasProvider
-              :provider_Heroku .
+      core:hasProvider :provider_Heroku ;
+      core:hasServiceModel
+              :ServiceModel_Heroku_Databases .
 
 :Service_Heroku_Ika_Databases
-      rdf:type usdl-core:Service ;
-      rdfs:label "Service Heroku Databases"^^xsd:string ;
-      dcterms:title "Heroku - Cloud Databases"@en ;
-      gr:qualitativeProductOrServiceProperty
-              heroku_vocabulary:Data_Clips , heroku_vocabulary:Fork , heroku_vocabulary:Direct_Psql_Access , heroku_vocabulary:Configuration_Strings , heroku_vocabulary:Follow , heroku_vocabulary:Automatic_Health_Checks , heroku_vocabulary:Production_Database , heroku_vocabulary:PostgreSQL , heroku_vocabulary:Continuos_Protection , heroku_vocabulary:Multi_Ingress ;
+      rdf:type core:Service ;
+      rdfs:label "Service Heroku Ika Databases"^^xsd:string ;
+      dcterms:title "Heroku  - Cloud Databases"@en ;
       gr:quantitativeProductOrServiceProperty
-              :resource_Heroku_Ika_Cache , :resource_Heroku_Database_Disk_Storage ;
-      usdl-core:hasClassification
+              :resource_Heroku_Ika_Cache ;
+      core:hasClassification
               CloudTaxonomy:PaaS ;
-      usdl-core:hasProvider
-              :provider_Heroku .
+      core:hasProvider :provider_Heroku ;
+      core:hasServiceModel
+              :ServiceModel_Heroku_Databases .
 
 :Service_Heroku_Kappa_Databases
-      rdf:type usdl-core:Service ;
-      rdfs:label "Service Heroku Databases"^^xsd:string ;
-      dcterms:title "Heroku - Cloud Databases"@en ;
-      gr:qualitativeProductOrServiceProperty
-              heroku_vocabulary:Automatic_Health_Checks , heroku_vocabulary:PostgreSQL , heroku_vocabulary:Direct_Psql_Access , heroku_vocabulary:Fork , heroku_vocabulary:Data_Clips , heroku_vocabulary:Configuration_Strings , heroku_vocabulary:Multi_Ingress , heroku_vocabulary:Production_Database , heroku_vocabulary:Continuos_Protection , heroku_vocabulary:Follow ;
+      rdf:type core:Service ;
+      rdfs:label "Service Heroku Kappa Databases"^^xsd:string ;
+      dcterms:title "Heroku  - Cloud Databases"@en ;
       gr:quantitativeProductOrServiceProperty
-              :resource_Heroku_Kappa_Cache , :resource_Heroku_Database_Disk_Storage ;
-      usdl-core:hasClassification
+              :resource_Heroku_Kappa_Cache ;
+      core:hasClassification
               CloudTaxonomy:PaaS ;
-      usdl-core:hasProvider
-              :provider_Heroku .
+      core:hasProvider :provider_Heroku ;
+      core:hasServiceModel
+              :ServiceModel_Heroku_Databases .
 
 :Service_Heroku_Mecha_Databases
-      rdf:type usdl-core:Service ;
-      rdfs:label "Service Heroku Databases"^^xsd:string ;
-      dcterms:title "Heroku - Cloud Databases"@en ;
-      gr:qualitativeProductOrServiceProperty
-              heroku_vocabulary:Configuration_Strings , heroku_vocabulary:Automatic_Health_Checks , heroku_vocabulary:Multi_Ingress , heroku_vocabulary:Direct_Psql_Access , heroku_vocabulary:Follow , heroku_vocabulary:Data_Clips , heroku_vocabulary:PostgreSQL , heroku_vocabulary:Continuos_Protection , heroku_vocabulary:Fork , heroku_vocabulary:Production_Database ;
+      rdf:type core:Service ;
+      rdfs:label "Service Heroku Mecha Databases"^^xsd:string ;
+      dcterms:title "Heroku  - Cloud Databases"@en ;
       gr:quantitativeProductOrServiceProperty
-              :resource_Heroku_Mecha_Cache , :resource_Heroku_Database_Disk_Storage ;
-      usdl-core:hasClassification
+              :resource_Heroku_Mecha_Cache ;
+      core:hasClassification
               CloudTaxonomy:PaaS ;
-      usdl-core:hasProvider
-              :provider_Heroku .
+      core:hasProvider :provider_Heroku ;
+      core:hasServiceModel
+              :ServiceModel_Heroku_Databases .
 
 :Service_Heroku_Ronin_Databases
-      rdf:type usdl-core:Service ;
-      rdfs:label "Service Heroku Databases"^^xsd:string ;
-      dcterms:title "Heroku - Cloud Databases"@en ;
-      gr:qualitativeProductOrServiceProperty
-              heroku_vocabulary:Data_Clips , heroku_vocabulary:Continuos_Protection , heroku_vocabulary:Production_Database , heroku_vocabulary:Configuration_Strings , heroku_vocabulary:Fork , heroku_vocabulary:PostgreSQL , heroku_vocabulary:Automatic_Health_Checks , heroku_vocabulary:Direct_Psql_Access , heroku_vocabulary:Follow , heroku_vocabulary:Multi_Ingress ;
+      rdf:type core:Service ;
+      rdfs:label "Service Heroku Ronin Databases"^^xsd:string ;
+      dcterms:title "Heroku  - Cloud Databases"@en ;
       gr:quantitativeProductOrServiceProperty
-              :resource_Heroku_Database_Disk_Storage , :resource_Heroku_Ronin_Cache ;
-      usdl-core:hasClassification
+              :resource_Heroku_Ronin_Cache ;
+      core:hasClassification
               CloudTaxonomy:PaaS ;
-      usdl-core:hasProvider
-              :provider_Heroku .
+      core:hasProvider :provider_Heroku ;
+      core:hasServiceModel
+              :ServiceModel_Heroku_Databases .
 
 :Service_Heroku_Zilla_Databases
-      rdf:type usdl-core:Service ;
-      rdfs:label "Service Heroku Databases"^^xsd:string ;
-      dcterms:title "Heroku - Cloud Databases"@en ;
-      gr:qualitativeProductOrServiceProperty
-              heroku_vocabulary:Fork , heroku_vocabulary:Follow , heroku_vocabulary:PostgreSQL , heroku_vocabulary:Automatic_Health_Checks , heroku_vocabulary:Multi_Ingress , heroku_vocabulary:Production_Database , heroku_vocabulary:Direct_Psql_Access , heroku_vocabulary:Data_Clips , heroku_vocabulary:Continuos_Protection , heroku_vocabulary:Configuration_Strings ;
+      rdf:type core:Service ;
+      rdfs:label "Service Heroku Zilla Databases"^^xsd:string ;
+      dcterms:title "Heroku  - Cloud Databases"@en ;
       gr:quantitativeProductOrServiceProperty
-              :resource_Heroku_Database_Disk_Storage , :resource_Heroku_Zilla_Cache ;
-      usdl-core:hasClassification
+              :resource_Heroku_Zilla_Cache ;
+      core:hasClassification
               CloudTaxonomy:PaaS ;
-      usdl-core:hasProvider
-              :provider_Heroku .
+      core:hasProvider :provider_Heroku ;
+      core:hasServiceModel
+              :ServiceModel_Heroku_Databases .
 
 :Variable_Dyno_Hour_Cost
-      rdf:type usdl-price:Constant ;
+      rdf:type price:Constant ;
       rdfs:label "Dyno Hour Cost"^^xsd:string ;
-      usdl-price:hasValue
+      price:hasValue
               [ rdf:type gr:QuantitativeValue ;
                 gr:hasUnitOfMeasurement
                         "HUR" ;
@@ -647,19 +629,19 @@
               ] .
 
 :Variable_Free_Hours
-      rdf:type usdl-price:Constant ;
+      rdf:type price:Constant ;
       rdfs:label "Free Hours"^^xsd:string ;
-      usdl-price:hasValue
+      price:hasValue
               [ rdf:type gr:QuantitativeValue ;
                 gr:hasValueInteger 750
               ] .
 
 :Variable_Web_Dynos_Hours
-      rdf:type usdl-price:Usage ;
+      rdf:type price:Usage ;
       rdfs:label "Web Dynos"^^xsd:string .
 
 :Variable_Worker_Dynos_Hours
-      rdf:type usdl-price:Usage ;
+      rdf:type price:Usage ;
       rdfs:label "Worker Dynos"^^xsd:string .
 
 :provider_Heroku
@@ -668,16 +650,20 @@
       foaf:name "Heroku Inc" .
 
 :resource_Heroku_Baku_Cache
-      rdf:type CloudTaxonomy:CacheSize ;
+      rdf:type CloudTaxonomy:CacheSize , gr:QuantitativeValue ;
       gr:hasUnitOfMeasurement
               "E34"^^xsd:string ;
       gr:hasValueFloat "34"^^xsd:float .
 
 :resource_Heroku_Crane_Cache
-      rdf:type CloudTaxonomy:CacheSize ;
+      rdf:type CloudTaxonomy:CacheSize , gr:QuantitativeValue ;
       gr:hasUnitOfMeasurement
               "4L"^^xsd:string ;
       gr:hasValueFloat "400"^^xsd:float .
+
+:resource_Heroku_Database_Availability
+      rdf:type CloudTaxonomy:Availability , gr:QuantitativeValue ;
+      gr:hasValueFloat "99.95"^^xsd:float .
 
 :resource_Heroku_Database_Disk_Storage
       rdf:type CloudTaxonomy:StorageCapacity ;
@@ -685,38 +671,42 @@
               "E35"^^xsd:string ;
       gr:hasValueFloat "1"^^xsd:float .
 
+:resource_Heroku_Dynos_Availability
+      rdf:type CloudTaxonomy:Availability , gr:QuantitativeValue ;
+      gr:hasValueFloat "99.95"^^xsd:float .
+
 :resource_Heroku_Fugu_Cache
-      rdf:type CloudTaxonomy:CacheSize ;
+      rdf:type CloudTaxonomy:CacheSize , gr:QuantitativeValue ;
       gr:hasUnitOfMeasurement
               "E34"^^xsd:string ;
       gr:hasValueFloat "3.75"^^xsd:float .
 
 :resource_Heroku_Ika_Cache
-      rdf:type CloudTaxonomy:CacheSize ;
+      rdf:type CloudTaxonomy:CacheSize , gr:QuantitativeValue ;
       gr:hasUnitOfMeasurement
               "E34"^^xsd:string ;
       gr:hasValueFloat "7.5"^^xsd:float .
 
 :resource_Heroku_Kappa_Cache
-      rdf:type CloudTaxonomy:CacheSize ;
+      rdf:type CloudTaxonomy:CacheSize , gr:QuantitativeValue ;
       gr:hasUnitOfMeasurement
               "4L"^^xsd:string ;
       gr:hasValueFloat "800"^^xsd:float .
 
 :resource_Heroku_Mecha_Cache
-      rdf:type CloudTaxonomy:CacheSize ;
+      rdf:type CloudTaxonomy:CacheSize , gr:QuantitativeValue ;
       gr:hasUnitOfMeasurement
               "E34"^^xsd:string ;
       gr:hasValueFloat "68"^^xsd:float .
 
 :resource_Heroku_Ronin_Cache
-      rdf:type CloudTaxonomy:CacheSize ;
+      rdf:type CloudTaxonomy:CacheSize , gr:QuantitativeValue ;
       gr:hasUnitOfMeasurement
               "E34"^^xsd:string ;
       gr:hasValueFloat "1.7"^^xsd:float .
 
 :resource_Heroku_Zilla_Cache
-      rdf:type CloudTaxonomy:CacheSize ;
+      rdf:type CloudTaxonomy:CacheSize , gr:QuantitativeValue ;
       gr:hasUnitOfMeasurement
               "E34"^^xsd:string ;
       gr:hasValueFloat "17"^^xsd:float .

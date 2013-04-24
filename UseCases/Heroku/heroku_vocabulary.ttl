@@ -17,65 +17,66 @@
 
 <http://tutorial.topbraid.com/heroku_vocabulary>
       rdf:type owl:Ontology ;
-      owl:imports <http://rdfs.genssiz.org/CloudTaxonomy> ;
-      owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
       dcterms:contributor
-              [ a       foaf:Person ;
+              [ rdf:type foaf:Person ;
                 foaf:firstName "Jorge" ;
                 foaf:lastName "Araújo" ;
                 foaf:name "Jorge Araújo"
               ] ;
       dcterms:created "2013-03-05"^^xsd:date ;
       dcterms:description "Heroku Vocabulary" ;
-      dcterms:modified "2013-03-27"^^xsd:date ;
-      dcterms:title "Heroku Vocabulary" .
-
-<http://tutorial.topbraid.com/heroku_vocabulary#24x7_Platform-Wide_Monitoring>
-      rdf:type rdfs:Class , skos:Concept , CloudTaxonomy:Monitoring ;
-      rdfs:label "monitoring everytime"^^xsd:string ;
-      rdfs:subClassOf gr:QualitativeValue ;
-      skos:broader :heroku_concepts .
+      dcterms:modified "2013-04-24"^^xsd:date ;
+      dcterms:title "Heroku Vocabulary" ;
+      owl:imports <http://rdfs.genssiz.org/CloudTaxonomy> ;
+      owl:versionInfo "Created with TopBraid Composer"^^xsd:string .
 
 :Addons
-      rdf:type rdfs:Class , skos:Concept ;
+      rdf:type CloudTaxonomy:Feature , skos:Concept , rdfs:Class ;
       rdfs:label "Addons"^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "Addons"^^xsd:string ;
       skos:broader :heroku_concepts .
 
 :Automatic_Health_Checks
-      rdf:type CloudTaxonomy:Backup_Recovery , CloudTaxonomy:Reliability , rdfs:Class , skos:Concept ;
+      rdf:type skos:Concept , rdfs:Class , CloudTaxonomy:Reliability , CloudTaxonomy:Backup_Recovery ;
       rdfs:label "PAround the clock, Heroku Postgres performs a battery of health checks on every database in operation. These checks ensure that the database is online and working properly. You can sleep well, knowing that if a problem is detected, our 24/7 on-call team is immediately dispatched and our automated recovery software can have you back online in minutes, even in the event of catastrophic hardware failure."^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "Automatic_Health_Checks"^^xsd:string ;
       skos:broader :Database .
 
 :Cache
-      rdf:type skos:Concept , rdfs:Class ;
+      rdf:type rdfs:Class , skos:Concept ;
       rdfs:label "Cache"^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "Cache"^^xsd:string ;
       skos:broader :heroku_concepts .
 
 :Complete_API_CLI_for_App_Management
-      rdf:type CloudTaxonomy:API , rdfs:Class , skos:Concept ;
+      rdf:type skos:Concept , rdfs:Class , CloudTaxonomy:API ;
       rdfs:label "It is possible to control and manage the app with an API or command line instructions"^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "Complete API CLI for App Management"^^xsd:string ;
       skos:broader :heroku_concepts .
 
 :Configuration_Strings
-      rdf:type CloudTaxonomy:CommandLine , rdfs:Class , skos:Concept ;
+      rdf:type skos:Concept , rdfs:Class , CloudTaxonomy:CommandLine ;
       rdfs:label "Connecting an application to Heroku Postgres is simple. The service automatically generates configuration and connection strings for databases for a variety of languages, command line tools, and application frameworks. There include PSQL, pg_restore, Ruby on Rails (ActiveRecord), Ruby Sequel, Ruby Datamapper, PHP, Django, and JDBC."^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "Automatic_Health_Checks"^^xsd:string ;
       skos:broader :Database .
 
 :Continuos_Protection
-      rdf:type CloudTaxonomy:Backup_Recovery , CloudTaxonomy:Durability , rdfs:Class , skos:Concept ;
+      rdf:type skos:Concept , rdfs:Class , CloudTaxonomy:Durability , CloudTaxonomy:Backup_Recovery ;
       rdfs:label "Continuous Protection keeps data safe on Heroku Postgres. Every change to your data is written to write-ahead logs, which are shipped to multi-datacenter, high-durability storage. In the unlikely event of unrecoverable hardware failure, these logs can be automatically 'replayed' to recover the database to within seconds of its last known state."^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "Continuos_Protection"^^xsd:string ;
       skos:broader :Database .
 
 :Data_Clips
-      rdf:type CloudTaxonomy:Interface , rdfs:Class , skos:Concept ;
-      rdfs:label "When we share information on the Internet, we do so by sharing URLs. We send URLs for locations, books, videos, and even source code. Until now there hasn’t been a convenient way to share data inside a database. Dataclips is that mechanism to easily share data within your organization. Dataclips are available on all Heroku Postgres dedicated and starter databases. Use standard SQL to create data clips.No authentication required for easy sharing. Data clips are protected via a 128-bit URL hash. Query your database within a read-only transaction, so your data is safe from alteration. Downloadable in many formats including JSON, Excel, CSV, YAML. Easily exportable to Google spreadsheets."^^xsd:string ;
+      rdf:type skos:Concept , rdfs:Class , CloudTaxonomy:Interface ;
+      rdfs:label "When we share information on the Internet, we do so by sharing URLs. We send URLs for locations, books, videos, and even source code. Until now there hasnt been a convenient way to share data inside a database. Dataclips is that mechanism to easily share data within your organization. Dataclips are available on all Heroku Postgres dedicated and starter databases. Use standard SQL to create data clips.No authentication required for easy sharing. Data clips are protected via a 128-bit URL hash. Query your database within a read-only transaction, so your data is safe from alteration. Downloadable in many formats including JSON, Excel, CSV, YAML. Easily exportable to Google spreadsheets."^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "Data_Clips"^^xsd:string ;
       skos:broader :Database .
 
 :Database
@@ -86,19 +87,20 @@
       skos:narrower :Configuration_Strings , :Fork , :Continuos_Protection , :direct_Psql_access , :Starter_Database , :Multi_Ingress , :PostgreSQL , :Automatic_Health_Checks , :Data_Clips , :Follow , :Production_Database .
 
 :Direct_Psql_Access
-      rdf:type CloudTaxonomy:Interface , rdfs:Class , skos:Concept ;
+      rdf:type skos:Concept , rdfs:Class , CloudTaxonomy:Interface ;
       rdfs:label "direct psql access"^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "Direct_Psql_Access"^^xsd:string ;
       skos:broader :Database .
 
 :Disk_Storage
-      rdf:type rdfs:Class , skos:Concept ;
+      rdf:type CloudTaxonomy:StorageCapacity , skos:Concept , rdfs:Class ;
       rdfs:label "Disk Storage"^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
       skos:broader :heroku_concepts .
 
 :Dyno
-      rdf:type rdfs:Class , skos:Concept ;
+      rdf:type skos:Concept , rdfs:Class ;
       rdfs:label "Dyno"^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
       gr:hasMaxValueInteger
@@ -106,24 +108,27 @@
       gr:hasMinValueInteger
               0 ;
       skos:broader :heroku_concepts ;
-      skos:narrower :Web_Dyno , :Worker_Dyno .
+      skos:narrower :Worker_Dyno , :Web_Dyno .
 
 :Fast_And_Fault-Tolerant_HTTP_Routing
-      rdf:type CloudTaxonomy:NetworkFunctionalProperty , rdfs:Class , skos:Concept ;
+      rdf:type skos:Concept , rdfs:Class , CloudTaxonomy:NetworkFunctionalProperty ;
       rdfs:label "the HTTP routing is fault tolerant"^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "Fast_And_Fault-Tolerant_HTTP_Routing"^^xsd:string ;
       skos:broader :heroku_concepts .
 
 :Follow
-      rdf:type CloudTaxonomy:Replication , rdfs:Class , skos:Concept ;
-      rdfs:label "Followers are read-only asynchronous replicas of a database. Followers stay up-to-date with changes to your database and can be queried. Traditionally, setting-up and maintaining replication is a difficult and specialized task. But with followers, it just works. Followers provide horizontal scalability by distributing database read traffic. They are also perfect for real-time analytics — use them to make expensive queries against up-to-date data without affecting application speed and availability."^^xsd:string ;
+      rdf:type skos:Concept , rdfs:Class , CloudTaxonomy:Replication ;
+      rdfs:label "Followers are read-only asynchronous replicas of a database. Followers stay up-to-date with changes to your database and can be queried. Traditionally, setting-up and maintaining replication is a difficult and specialized task. But with followers, it just works. Followers provide horizontal scalability by distributing database read traffic. They are also perfect for real-time analytics  use them to make expensive queries against up-to-date data without affecting application speed and availability."^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "Follow"^^xsd:string ;
       skos:broader :Database .
 
 :Fork
-      rdf:type CloudTaxonomy:Replication , rdfs:Class , skos:Concept ;
+      rdf:type skos:Concept , rdfs:Class , CloudTaxonomy:Replication ;
       rdfs:label "Forking a database is just like forking source code. It creates a perfect, byte-for-byte clone of your database with a single command. Do you have new schema migrations that you need to test? Simply fork your production database and run the new migrations against the fork. Load testing? Fork your database and run your testing environment against it. Forking databases lets you work with your production schema and data without risk or hassle. And when you are done, simply throw the fork away."^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "Fork"^^xsd:string ;
       skos:broader :Database .
 
 :General_Concepts
@@ -131,72 +136,89 @@
       rdfs:label "general concepts for the heroku service"^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
       skos:broader :heroku_concepts ;
-      skos:narrower :Instant_Deployment_And_Scalling , :Secure_Hardened_and_Tuned_Runtime , :Complete_API_CLI_for_App_Management , :Open_and_Standard_Stacks_No_Lock-in , :Fast_And_Fault-Tolerant_HTTP_Routing , :Technical_Support , <http://tutorial.topbraid.com/heroku_vocabulary#24x7_Platform-Wide_Monitoring> .
+      skos:narrower :Instant_Deployment_And_Scalling , :Secure_Hardened_and_Tuned_Runtime , :Complete_API_CLI_for_App_Management , :Open_and_Standard_Stacks_No_Lock-in , :Platform-Wide_Monitoring_24x7 , :Fast_And_Fault-Tolerant_HTTP_Routing , :Technical_Support .
 
 :Instant_Deployment_And_Scalling
-      rdf:type CloudTaxonomy:Scalability , rdfs:Class , skos:Concept ;
+      rdf:type skos:Concept , rdfs:Class , CloudTaxonomy:Scalability ;
       rdfs:label "Instant deployment and scalling"^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "Instant_Deployment_And_Scalling"^^xsd:string ;
       skos:broader :heroku_concepts .
 
 :Multi_Ingress
-      rdf:type CloudTaxonomy:PlatformFunctionalProperty , rdfs:Class , skos:Concept ;
+      rdf:type CloudTaxonomy:Platform , skos:Concept , rdfs:Class ;
       rdfs:label "Databases on Heroku Postgres can be used from anywhere and with any Postgres client. Apps can connect to Heroku Postgres from Heroku, Google App Engine, Microsoft Azure, Cloud Foundry, EC2, or from your local computer. PostgreSQL is supported by most modern programming languages - including Perl, Python, Ruby, Scala, Go, Tcl, C/C++, Java, .Net, and Javascript. It is even available via ODBC."^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "Multi_Ingress"^^xsd:string ;
       skos:broader :Database .
 
 :Open_and_Standard_Stacks_No_Lock-in
-      rdf:type CloudTaxonomy:OpenSource , rdfs:Class , skos:Concept ;
+      rdf:type skos:Concept , rdfs:Class , CloudTaxonomy:OpenSource ;
       rdfs:label "No data lock-in, the service is based in open standards"^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "Open_and_Standard_Stacks_No_Lock-in"^^xsd:string ;
+      skos:broader :heroku_concepts .
+
+:Platform-Wide_Monitoring_24x7
+      rdf:type rdfs:Class , skos:Concept , CloudTaxonomy:Monitoring ;
+      rdfs:label "monitoring everytime"^^xsd:string ;
+      rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "Platform-Wide_Monitoring_24x7"^^xsd:string ;
       skos:broader :heroku_concepts .
 
 :PostgreSQL
-      rdf:type rdfs:Class , skos:Concept ;
+      rdf:type CloudTaxonomy:Platform , skos:Concept , rdfs:Class ;
       rdfs:label "OpenSource database"^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "PostgreSQL"^^xsd:string ;
       skos:broader :Database .
 
 :Production_Database
-      rdf:type rdfs:Class , skos:Concept ;
+      rdf:type skos:Concept , rdfs:Class ;
       rdfs:label "Production Database"^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "Production_Database"^^xsd:string ;
       skos:broader :Database .
 
 :Rows
-      rdf:type rdfs:Class , skos:Concept ;
+      rdf:type skos:Concept , rdfs:Class ;
       rdfs:label "Database Rows"^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
       skos:broader :heroku_concepts .
 
 :Secure_Hardened_and_Tuned_Runtime
-      rdf:type CloudTaxonomy:Security , rdfs:Class , skos:Concept ;
+      rdf:type skos:Concept , rdfs:Class , CloudTaxonomy:Security ;
       rdfs:label "Secure Hardened and Tuned Runtime"^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "Secure_Hardened_and_Tuned_Runtime"^^xsd:string ;
       skos:broader :heroku_concepts .
 
 :Starter_Database
-      rdf:type rdfs:Class , skos:Concept ;
+      rdf:type skos:Concept , rdfs:Class ;
       rdfs:label "Starter Database"^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "Starter_Database"^^xsd:string ;
       skos:broader :Database .
 
 :Technical_Support
-      rdf:type CloudTaxonomy:Support_24_7 , CloudTaxonomy:SupportTeam , rdfs:Class , skos:Concept ;
+      rdf:type skos:Concept , rdfs:Class , CloudTaxonomy:SupportTeam , CloudTaxonomy:Support_24_7 ;
       rdfs:label "Technical Support"^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "Technical_Support"^^xsd:string ;
       skos:broader :heroku_concepts .
 
 :Web_Dyno
-      rdf:type CloudTaxonomy:ComputingInstance , rdfs:Class , skos:Concept ;
+      rdf:type skos:Concept , rdfs:Class , CloudTaxonomy:ComputingInstance ;
       rdfs:label "Web Dyno"^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "Web Dyno"^^xsd:string ;
       skos:broader :Dyno .
 
 :Worker_Dyno
-      rdf:type CloudTaxonomy:ComputingInstance , rdfs:Class , skos:Concept ;
+      rdf:type skos:Concept , rdfs:Class , CloudTaxonomy:ComputingInstance ;
       rdfs:label "Worker Dyno"^^xsd:string ;
       rdfs:subClassOf gr:QualitativeValue ;
+      gr:name "Worker Dyno"^^xsd:string ;
       skos:broader :Dyno .
 
 :heroku_concepts
