@@ -363,17 +363,6 @@
                         "MON"
               ] .
 
-:PriceComponent_Mecha_Database_1
-      rdf:type price:PriceComponent ;
-      rdfs:label "Mecha Database"^^xsd:string ;
-      price:hasPrice
-              [ rdf:type gr:PriceSpecification ;
-                gr:hasCurrency "USD" ;
-                gr:hasCurrencyValue "6400"^^xsd:float ;
-                gr:hasUnitOfMeasurement
-                        "MON"
-              ] .
-
 :PriceComponent_Ronin_Database
       rdf:type price:PriceComponent ;
       rdfs:label "Ronin Database"^^xsd:string ;
