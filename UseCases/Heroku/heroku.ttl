@@ -57,6 +57,7 @@
 
 :Function_Dynos
       rdf:type spin:Function ;
+      rdfs:comment "Number of web dynos Hours used + number of worker dynos hours used * price per hour"^^xsd:string ;
       rdfs:label "Dynos Function"^^xsd:string ;
       rdfs:subClassOf spin:Functions ;
       spin:body
@@ -120,6 +121,7 @@
 
 :Function_Free_Dyno_Usage
       rdf:type spin:Function ;
+      rdfs:comment "Number of free hours per month * dyno hour cost"^^xsd:string ;
       rdfs:label "Free Dyno Usage Function"^^xsd:string ;
       rdfs:subClassOf spin:Functions ;
       spin:body
@@ -171,26 +173,6 @@
       dcterms:title "Heroku legal statements"@en ;
       legal:hasClause
               [ rdf:type legal:Clause ;
-                legal:name "DMCA Notice" ;
-                legal:text "https://policy.heroku.com/dmca"@en
-              ] ;
-      legal:hasClause
-              [ rdf:type legal:Clause ;
-                legal:name "Privacy Policy" ;
-                legal:text "https://policy.heroku.com/privacy"@en
-              ] ;
-      legal:hasClause
-              [ rdf:type legal:Clause ;
-                legal:name "Support Policy" ;
-                legal:text "https://policy.heroku.com/aup"@en
-              ] ;
-      legal:hasClause
-              [ rdf:type legal:Clause ;
-                legal:name "Customer Promises" ;
-                legal:text "https://policy.heroku.com/promise"@en
-              ] ;
-      legal:hasClause
-              [ rdf:type legal:Clause ;
                 legal:name "Terms of Service" ;
                 legal:text "https://policy.heroku.com/tos"@en
               ] ;
@@ -201,13 +183,33 @@
               ] ;
       legal:hasClause
               [ rdf:type legal:Clause ;
+                legal:name "Customer Promises" ;
+                legal:text "https://policy.heroku.com/promise"@en
+              ] ;
+      legal:hasClause
+              [ rdf:type legal:Clause ;
+                legal:name "DMCA Notice" ;
+                legal:text "https://policy.heroku.com/dmca"@en
+              ] ;
+      legal:hasClause
+              [ rdf:type legal:Clause ;
                 legal:name "Heroku Security" ;
                 legal:text "https://policy.heroku.com/security"@en
+              ] ;
+      legal:hasClause
+              [ rdf:type legal:Clause ;
+                legal:name "Privacy Policy" ;
+                legal:text "https://policy.heroku.com/privacy"@en
+              ] ;
+      legal:hasClause
+              [ rdf:type legal:Clause ;
+                legal:name "Support Policy" ;
+                legal:text "https://policy.heroku.com/aup"@en
               ] .
 
 :Offering_Heroku_Baku_Database
       rdf:type core:ServiceOffering ;
-      rdfs:label "Offering Heroku Databases"^^xsd:string ;
+      rdfs:label "Offering Heroku Baku Databases"^^xsd:string ;
       dcterms:description "Offering for Heroku Database"@en ;
       dcterms:title "Heroku database"@en ;
       core:includes :Service_Heroku_Baku_Databases ;
@@ -215,7 +217,7 @@
 
 :Offering_Heroku_Crane_Database
       rdf:type core:ServiceOffering ;
-      rdfs:label "Offering Heroku Databases"^^xsd:string ;
+      rdfs:label "Offering Heroku Crane Databases"^^xsd:string ;
       dcterms:description "Offering for Heroku Database"@en ;
       dcterms:title "Heroku database"@en ;
       core:includes :Service_Heroku_Crane_Databases ;
@@ -231,7 +233,7 @@
 
 :Offering_Heroku_Fugu_Database
       rdf:type core:ServiceOffering ;
-      rdfs:label "Offering Heroku Databases"^^xsd:string ;
+      rdfs:label "Offering Heroku Fugu Databases"^^xsd:string ;
       dcterms:description "Offering for Heroku Database"@en ;
       dcterms:title "Heroku database"@en ;
       core:includes :Service_Heroku_Fugu_Databases ;
@@ -239,7 +241,7 @@
 
 :Offering_Heroku_Ika_Database
       rdf:type core:ServiceOffering ;
-      rdfs:label "Offering Heroku Databases"^^xsd:string ;
+      rdfs:label "Offering Heroku Ika Databases"^^xsd:string ;
       dcterms:description "Offering for Heroku Database"@en ;
       dcterms:title "Heroku database"@en ;
       core:includes :Service_Heroku_Ika_Databases ;
@@ -247,7 +249,7 @@
 
 :Offering_Heroku_Kappa_Database
       rdf:type core:ServiceOffering ;
-      rdfs:label "Offering Heroku Databases"^^xsd:string ;
+      rdfs:label "Offering Heroku Kappa Databases"^^xsd:string ;
       dcterms:description "Offering for Heroku Database"@en ;
       dcterms:title "Heroku database"@en ;
       core:includes :Service_Heroku_Kappa_Databases ;
@@ -255,7 +257,7 @@
 
 :Offering_Heroku_Mecha_Database
       rdf:type core:ServiceOffering ;
-      rdfs:label "Offering Heroku Databases"^^xsd:string ;
+      rdfs:label "Offering Heroku Mecha Databases"^^xsd:string ;
       dcterms:description "Offering for Heroku Database"@en ;
       dcterms:title "Heroku database"@en ;
       core:includes :Service_Heroku_Mecha_Databases ;
@@ -263,7 +265,7 @@
 
 :Offering_Heroku_Ronin_Database
       rdf:type core:ServiceOffering ;
-      rdfs:label "Offering Heroku Databases"^^xsd:string ;
+      rdfs:label "Offering Heroku Ronin Databases"^^xsd:string ;
       dcterms:description "Offering for Heroku Database"@en ;
       dcterms:title "Heroku database"@en ;
       core:includes :Service_Heroku_Ronin_Databases ;
@@ -271,7 +273,7 @@
 
 :Offering_Heroku_Zilla_Database
       rdf:type core:ServiceOffering ;
-      rdfs:label "Offering Heroku Databases"^^xsd:string ;
+      rdfs:label "Offering Heroku Zilla Databases"^^xsd:string ;
       dcterms:description "Offering for Heroku Database"@en ;
       dcterms:title "Heroku database"@en ;
       core:includes :Service_Heroku_Zilla_Databases ;
@@ -307,17 +309,13 @@
       rdf:type price:PriceComponent ;
       rdfs:label "Dynos"^^xsd:string ;
       price:hasPriceFunction
-              :Function_Dynos ;
-      price:hasTextFuntion
-              "Number of web dynos Hours used + number of worker dynos hours used * price per hour"^^xsd:string .
+              :Function_Dynos .
 
 :PriceComponent_Free_Dyno_Usage
       rdf:type price:Deduction ;
       rdfs:label "Free Dyno Usage"^^xsd:string ;
       price:hasPriceFunction
-              :Function_Free_Dyno_Usage ;
-      price:hasTextFuntion
-              "Number of free hours per month * dyno hour cost"^^xsd:string .
+              :Function_Free_Dyno_Usage .
 
 :PriceComponent_Fugu_Database
       rdf:type price:PriceComponent ;
@@ -586,6 +584,8 @@
       rdf:type core:Service ;
       rdfs:label "Service Heroku Mecha Databases"^^xsd:string ;
       dcterms:title "Heroku  - Cloud Databases"@en ;
+      gr:qualitativeProductOrServiceProperty
+              CloudTaxonomy:Redundancy ;
       gr:quantitativeProductOrServiceProperty
               :resource_Heroku_Mecha_Cache ;
       core:hasClassification
@@ -668,8 +668,8 @@
 :resource_Heroku_Database_Disk_Storage
       rdf:type CloudTaxonomy:StorageCapacity ;
       gr:hasUnitOfMeasurement
-              "E35"^^xsd:string ;
-      gr:hasValue "1"^^xsd:float .
+              "E34"^^xsd:string ;
+      gr:hasValue "1024"^^xsd:float .
 
 :resource_Heroku_Dynos_Availability
       rdf:type gr:QuantitativeValue , CloudTaxonomy:Availability ;
