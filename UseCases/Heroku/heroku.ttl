@@ -228,7 +228,7 @@
       rdfs:label "offering Heroku Dynos"^^xsd:string ;
       dcterms:description "Offering for Heroku dynos."@en ;
       dcterms:title "Heroku Dynos"@en ;
-      core:includes :ServiceModel_Heroku_Dynos ;
+      core:includes :Service_Heroku_Dynos ;
       price:hasPricePlan :PricePlan_Heroku_Dynos .
 
 :Offering_Heroku_Fugu_Database
@@ -508,9 +508,9 @@
       gr:quantitativeProductOrServiceProperty
               :resource_Heroku_Database_Disk_Storage , :resource_Heroku_Database_Availability .
 
-:ServiceModel_Heroku_Dynos
-      rdf:type core:ServiceModel ;
-      rdfs:label "Service Model Heroku Dynos"^^xsd:string ;
+:Service_Heroku_Dynos
+      rdf:type core:Service ;
+      rdfs:label "Service Heroku Dynos"^^xsd:string ;
       dcterms:title "Heroku - Cloud Application Platform "@en ;
       gr:qualitativeProductOrServiceProperty
               heroku_vocabulary:Technical_Support , heroku_vocabulary:Complete_API_CLI_for_App_Management , heroku_vocabulary:Fast_And_Fault-Tolerant_HTTP_Routing , heroku_vocabulary:Platform-Wide_Monitoring_24x7 , heroku_vocabulary:Secure_Hardened_and_Tuned_Runtime , heroku_vocabulary:Instant_Deployment_And_Scalling , heroku_vocabulary:Open_and_Standard_Stacks_No_Lock-in ;
