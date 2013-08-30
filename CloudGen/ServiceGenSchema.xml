@@ -1,0 +1,37 @@
+<service>
+	<servicename></servicename>  <!-- works as a name for the group of services to be generated-->
+	<freeattributes> <!-- list of free attributes that all offerings share (in linked USDL these are the Service properties)-->
+		<attribute> <!-- the feature represents a Goodrelations Qualitative or Quantitative Value-->		
+			<attrtype></attrtype> <!-- the CloudTaxonomy type -->
+			<optional></optional> <!-- if it contains "no" means that this is a mandatory attribute for the generated service. If it contains "yes" means that this attribute may or may not be present in the generated service -->
+			<options> <!-- list of possible attribute options -->
+				<option> <!--an option is a potencial value that the attribute can have (e.g. low, medium, high can be different values of the same attribute)-->
+					<attrtype></attrtype> <!-- the CloudTaxonomy type -->
+					<optionvalue></optionvalue> <!-- the option value can be a string describing the service feature or a number. If it contains "unlimited" means that this numerical attribute has no value limit  -->
+					<avgprice></avgprice> <!-- the price for this attribute -->
+					<diffprice></diffprice> <!-- the price difference to be applied in multiple service generations (eg. a price of 10 with a difference of 1 means that the attribute could cost between 9 and 11) -->
+					<min></min> <!-- the minimum value for the optionvalue. Used in numerical attributes and if present means the minimum value for the generation of the attribute-->
+					<max></max> <!-- the maximum value for the optionvalue. Used in numerical attributes and if present means the maximum value for the generation of the attribute-->
+					<unit></unit> <!-- The pricing unit of measurement for the attribute (e.g. the attribute can have no limit og GB but can be priced per GB). Uses the UN/CEFACT Common Code (3 characters). -->
+				</option>
+			</options>
+		</attribute>
+	</freeattributes>
+	<paidattributes> <!-- list of paid attributes Specific to the Service Offering .(in linked USDL these are the ServiceOffering properties)-->
+		<attribute>		
+			<attrtype></attrtype> <!-- the CloudTaxonomy type -->
+			<optional></optional>
+			<options>
+				<option>
+					<attrtype></attrtype>
+					<optionvalue></optionvalue>
+					<avgprice></avgprice>
+					<diffprice></diffprice>
+					<min></min>
+					<max></max>
+					<unit></unit>
+				</option>
+			</options>
+		</attribute>
+	</paidattributes>
+</service>

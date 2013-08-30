@@ -1,0 +1,146 @@
+free
+	Availability - 99.5
+	Support_24_7
+	Security - VPC
+	API
+	Web
+	Console
+	Scalability - autoscalling
+	
+paid
+	location
+	OperatingSystem (Unix/Windows)
+	Small
+		CPUARCH (Arch32bit/Arch64bit)
+		CPUCores - 1 
+		MemorySize - 1.7
+		StorageCapacity - 160
+		Performance - Network Low
+		StorageType - HardDisk
+		NumberOfIPs - 8
+	medium
+		CPUARCH (Arch32bit/Arch64bit)
+		CPUCores - 1 
+		MemorySize - 3.75
+		StorageCapacity - 410
+		StorageType - HardDisk
+		NumberOfIPs - 12
+		Performance - Network Moderate
+	large
+		CPUARCH (Arch64bit)
+		CPUCores - 2
+		MemorySize - 7.5
+		StorageCapacity - 840
+		StorageType - HardDisk
+		NumberOfIPs - 30
+		Performance - Network Moderate	
+	xlarge_m1
+		CPUARCH (Arch64bit)
+		CPUCores - 4
+		MemorySize - 15
+		StorageCapacity - 1680
+		StorageType - HardDisk
+		NumberOfIPs - 60
+		Performance - Network High
+	xlarge_m3
+		CPUARCH (Arch64bit)
+		CPUCores - 4
+		MemorySize - 15
+		StorageType - EBS
+		NumberOfIPs - 60
+		Performance - Network Moderate
+	xlarge_m3.2
+		CPUARCH (Arch64bit)
+		CPUCores - 8
+		MemorySize - 30
+		StorageType - EBS
+		NumberOfIPs - 120
+		Performance - Network High
+	medium_c1
+		CPUARCH (Arch32bit/Arch64bit)
+		CPUCores - 2
+		MemorySize - 1.7
+		StorageCapacity - 350
+		StorageType - HardDisk
+		NumberOfIPs - 12
+		Performance - Network Moderate
+	xlarge_c1
+		CPUARCH (Arch64bit)
+		CPUCores - 8
+		MemorySize - 7
+		StorageCapacity - 1680
+		StorageType - HardDisk
+		NumberOfIPs - 60
+		Performance - Network High
+	xlarge_cc2.8
+		CPUARCH (Arch64bit)
+		CPUCores - 32
+		MemorySize - 60.5
+		StorageCapacity - 3360
+		StorageType - HardDisk
+		NumberOfIPs - 240
+		Performance - Network VeryHigh
+	xlarge_m2
+		CPUARCH (Arch64bit)
+		CPUCores - 2
+		MemorySize - 17.1
+		StorageCapacity - 420
+		StorageType - HardDisk
+		NumberOfIPs - 60
+		Performance - Network Moderate
+	xlarge_m2.2
+		CPUARCH (Arch64bit)
+		CPUCores - 4
+		MemorySize - 34.2
+		StorageCapacity - 850
+		StorageType - HardDisk
+		NumberOfIPs - 120
+		Performance - Network Moderate
+	xlarge_m2.4
+		CPUARCH (Arch64bit)
+		CPUCores - 8
+		MemorySize - 68.4
+		StorageCapacity - 1680
+		StorageType - HardDisk
+		NumberOfIPs - 240
+		Performance - Network High
+	xlarge_cr1.8
+		CPUARCH (Arch64bit)
+		CPUCores - 32
+		MemorySize - 244
+		StorageCapacity - 240
+		StorageType - SSD
+		NumberOfIPs - 1
+		Performance - Network VeryHigh
+	xlarge_hi1.4
+		CPUARCH (Arch64bit)
+		CPUCores - 16
+		MemorySize - 60.5
+		StorageCapacity - 2048
+		StorageType - SSD
+		NumberOfIPs - 1
+		Performance - Network VeryHigh
+	xlarge_hs1.8
+		CPUARCH (Arch64bit)
+		CPUCores - 16
+		MemorySize - 117
+		StorageCapacity - 49152
+		StorageType - SSD
+		NumberOfIPs - 1
+		Performance - Network VeryHigh
+	micro
+		CPUARCH (Arch32bit/Arch64bit)
+		CPUCores - 1
+		MemorySize - 0.615
+		StorageType - EBS
+		NumberOfIPs - 1
+		Performance - Network VeryLow
+	xlarge_cg1.4
+		CPUARCH (Arch64bit)
+		CPUCores - 16
+		MemorySize - 22.5
+		StorageCapacity - 1680
+		StorageType - HardDisk
+		NumberOfIPs - 1
+		Performance - Network VeryHigh
+		

@@ -1,0 +1,21 @@
+CloudGen
+
+README
+CloudGen is a simple java application for automated generation of Linked USDL Service Descriptions. It was developed as part of the CloudAid project for the creation of Linked USDL service sets. 
+The applications needs a XML input file in order to generate de service descriptions. This input file contains all the necessary data about the services to generate (features, interval prices, etc). Examples can be found in: 
+https://github.com/jorgearj/CloudAid/tree/master/CloudGen/FullServiceSetGeneration
+
+INSTRUCTIONS:
+	1 - Create the input file according to the examples in: https://github.com/jorgearj/CloudAid/tree/master/CloudGen/FullServiceSetGeneration also an explanation on the tags can be found in https://github.com/jorgearj/CloudAid/blob/master/CloudGen/ServiceGenSchema.xml
+	2 - save the input files in a folder with the name "input" in the same folder of the jar file or the the src folder.
+	3 - Either compile and run the source code or use the jar file both available in: https://github.com/jorgearj/CloudAid/tree/master/CloudGen
+	4 - The resulting turtle files with the service description can be found in the "Service" folder in the folder where the application is running.
+
+
+Notes: You can run the application without the input folder created, it will be created for you. However, if there is not at least one input file there is nothing the application can do. 
+
+CONTACT:
+
+Jorge Araújo
+
+e-mail: jorge.arj@gmail.com
