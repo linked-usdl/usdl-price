@@ -14,7 +14,7 @@
 
 <http://www.linked-usdl.org/ns/usdl-price>
       rdf:type owl:Ontology ;
-      dc:creator usdl-price:jaraujo ;
+      dc:creator <http://linked-usdl.org/ns/usdl-price#jaraujo>, <http://linked-usdl.org/ns/usdl-price#tleidig>, <http://linked-usdl.org/ns/usdl-price#cpedrinaci>, <http://linked-usdl.org/ns/usdl-price#jcardoso>, <http://linked-usdl.org/ns/usdl-price#cfsilva> ;
       dc:description """<p>Simple pricing model vocabulary for USDL</p>
 """ ;
       dc:modified "2013-02-12"^^xsd:date ;
@@ -211,7 +211,23 @@ usdl-price:hasVariable
       rdfs:label "has variable" ;
       rdfs:range usdl-price:PriceVariable .
 
-usdl-price:jaraujo
+<http://linked-usdl.org/ns/usdl-price#jaraujo>
       rdf:type foaf:Person ;
       foaf:homepage <http://no-valid-base-found.com/> ;
       foaf:name "Jorge Araújo" .
+
+<http://linked-usdl.org/ns/usdl-price#tleidig> a foaf:Person;
+    foaf:name "Torsten Leidig";
+    foaf:homepage <> .
+
+<http://linked-usdl.org/ns/usdl-price#cpedrinaci> a foaf:Person;
+    foaf:name "Carlos Pedrinaci";
+    foaf:homepage <> .
+
+<http://linked-usdl.org/ns/usdl-price#jcardoso> a foaf:Person;
+    foaf:name "Jorge Cardoso";
+    foaf:homepage <> .
+
+<http://linked-usdl.org/ns/usdl-price#cfsilva> a foaf:Person;
+    foaf:name "Catarina Ferreira da Silva";
+    foaf:homepage <> .
